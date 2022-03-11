@@ -44,12 +44,16 @@ app.use(function (req, res, next) {
 });
 
 //Import Routes
+
 const indexRoute = require("./routes/index");
 const authRoute = require("./routes/auth");
+
+const apiRoutes = require("./routes/api");
 
 //Mount Routes
 app.use("/", indexRoute);
 app.use("/", authRoute);
+app.use("/", apiRoutes);
 
 // tell NodeJS to look in a folder called views for all ejs files
 app.set("view engine", "ejs");
