@@ -27,6 +27,12 @@ const userSchema = mongoose.Schema(
       required: true,
       minlength: [6, "Password must be at least 6 characters"],
     },
+    account: {
+      type: Number,
+      default: Math.round(
+        Math.random() * (9999999999999 - 123456791011 + 1) + 1
+      ),
+    },
     //userRole: {
     //   type: String,
     //   enum: ["admin", "regular", "SuperAdmin"],

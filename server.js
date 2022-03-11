@@ -12,6 +12,8 @@ const app = express();
 
 // look for static files(like css/image/audio/js/etc files) in public folder
 app.use(express.static("public"));
+
+//body parser, password entry doesnt work without it
 app.use(express.urlencoded({ extended: true }));
 
 const expressLayouts = require("express-ejs-layouts");
@@ -48,13 +50,14 @@ app.use(function (req, res, next) {
 
 const indexRoute = require("./routes/index");
 const authRoute = require("./routes/auth");
-
+const tradeRoute = require("./routes/trade");
 const apiRoutes = require("./routes/api");
 
 //Mount Routes
 app.use("/", indexRoute);
 app.use("/", authRoute);
 app.use("/", apiRoutes);
+app.use("/", tradeRoute);
 
 // tell NodeJS to look in a folder called views for all ejs files
 app.set("view engine", "ejs");

@@ -17,3 +17,21 @@ exports.api_memes_get = (req, res) => {
       console.log(error);
     });
 };
+
+
+
+// let options = {
+//   method: 'GET',
+//   url: 'https://yfapi.net/v11/finance/quoteSummary/AAPL',
+//   params: {modules: 'defaultKeyStatistics,assetProfile'},
+//   headers: {
+//     'x-api-key': 'K9mJSDcAuf5lwZ7dNnkY687NO8L9D1si1eQEARqR'
+//   }
+// };
+
+// axios.request(options).then(function (response) {
+// 	console.log(response.data);
+// }).catch(function (error) {
+// 	console.error(error);
+// });
+     

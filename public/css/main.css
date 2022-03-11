@@ -7,7 +7,30 @@ body {
   text-decoration: none;
   color: black;
 }
+.buyArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 
 .menu-right {
   text-align: right;
+}
+.subheader {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.buyForm {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
 }
