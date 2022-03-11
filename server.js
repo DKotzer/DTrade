@@ -12,6 +12,7 @@ const app = express();
 
 // look for static files(like css/image/audio/js/etc files) in public folder
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
 const expressLayouts = require("express-ejs-layouts");
 

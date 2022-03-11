@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const salt = 10;
 const { validationResult } = require("express-validator");
+var bodyParser = require("body-parser");
 //HTTP Get - load sign up form
 
 exports.auth_signup_get = (req, res) => {
