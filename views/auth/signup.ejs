@@ -1,0 +1,27 @@
+<h1>Create Account</h1>
+<form action="/auth/signup" method="post">
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input class="form-control" type="text" name="firstName" id="firstName" />
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input class="form-control" type="text" name="lastName" id="lastName" />
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      class="form-control"
+      type="email"
+      name="emailAddress"
+      id="emailAddress"
+    />
+  </div>
+  <br />
+  <div>
+    <label>Password</label>
+    <input type="password" name="password" id="password" class="form-contorl" />
+  </div>
+  <br />
+  <div><button type="submit">Sign Up</button></div>
+</form>

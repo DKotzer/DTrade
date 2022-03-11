@@ -1,0 +1,37 @@
+{
+  "name": "dtrade-express",
+  "version": "1.0.0",
+  "description": "DTrade - stock trading practice app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DKotzer/DTrade.git"
+  },
+  "keywords": [
+    "Stocks",
+    "Stonks"
+  ],
+  "author": "Dylan Kotzer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DKotzer/DTrade/issues"
+  },
+  "homepage": "https://github.com/DKotzer/DTrade#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.2",
+    "express-validator": "^6.14.0",
+    "mongoose": "^6.2.5",
+    "nodemon": "^2.0.15",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0"
+  }
+}

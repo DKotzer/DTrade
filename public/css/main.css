@@ -1,0 +1,13 @@
+body {
+  background-color: aliceblue;
+  padding: 20px;
+}
+
+.noStyle {
+  text-decoration: none;
+  color: black;
+}
+
+.menu-right {
+  text-align: right;
+}
