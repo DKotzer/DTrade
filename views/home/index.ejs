@@ -28,14 +28,16 @@
       <th>Change</th>
       <th></th>
     </tr>
+
+    <% account.positions.forEach(function(position) { %>
     <tr>
-      <td>Andvanced Micro Devices</td>
-      <td>AMD</td>
-      <td>10</td>
-      <td>100</td>
-      <td>106</td>
-      <td>1060</td>
-      <td>60</td>
+      <td><%=position.symbol %></td>
+      <td><%=position.symbol %></td>
+      <td><%=position.shares %></td>
+      <td><%=position.originalPrice %></td>
+      <td><%=position.shares*position.originalPrice %></td>
+      <td><%=position.shares*position.originalPrice %></td>
+      <td>0</td>
       <td>
         <div class="dropdown">
           <button class="dropbtn">⇓</button>
@@ -46,5 +48,6 @@
         </div>
       </td>
     </tr>
+    <% }) %>
   </table>
 </div>

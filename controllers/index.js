@@ -5,6 +5,7 @@ const User = require("../models/User");
 
 exports.index_get = (req, res) => {
   Account.findById(req.user.account)
+    .populate("positions")
     // .populate("user")
     .then((account) => {
       res.render("home/index", { account });

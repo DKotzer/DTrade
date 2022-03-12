@@ -20,5 +20,5 @@ router.get("/trade/sell", isLoggedIn, tradeCntrl.trade_sell_get);
 
 router.post("/trade/buy/quote", isLoggedIn, tradeCntrl.trade_buy_quote_post);
 
-// router.post("/trade/buy/submit", isLoggedIn, tradeCntrl.trade_buy_submit_post);
+router.post("/trade/buy/submit", isLoggedIn, tradeCntrl.trade_buy_submit_post);
 module.exports = router;

@@ -23,6 +23,7 @@ exports.auth_signup_post = (req, res) => {
   //create a new account when a new user is created and link them via Ids
   let account = new Account();
   account.user = user._id;
+  user.account.push(account._id);
 
   account.save();
 

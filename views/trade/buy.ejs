@@ -20,11 +20,11 @@
       <form class="buyForm" action="/trade/buy/quote" method="post">
     <div>
       <label for="symbol">Symbol</label>
-      <input type="text" name="symbol" placeholder="symbol"   />
+      <input onkeyup="this.value = this.value.toUpperCase();" type="text" name="symbol" placeholder="symbol"   />
     </div>
     <div>
       <label for="shares">shares</label>
-      <input type="number" name="shares" placeholder="shares"  min="1" />
+      <input  required type="number" name="shares" placeholder="shares"  min="1" />
     </div>
     <button type="submit">quote</button>
   </form>

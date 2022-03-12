@@ -22,13 +22,7 @@ const positionSchema = mongoose.Schema(
     value: {
       type: Number,
       value: this.price * this.shares,
-
       //some fancy way of adding up all the values from all positions goes here
-    },
-    totalValue: {
-      type: Number,
-      value: this.marketValue + this.cash,
-      default: 10000,
     },
   },
   {
