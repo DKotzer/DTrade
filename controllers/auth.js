@@ -17,8 +17,6 @@ exports.auth_signup_get = (req, res) => {
 
 exports.auth_signup_post = (req, res) => {
   let user = new User(req.body);
-
-  // console.log(req.body);
   let hash = bcrypt.hashSync(req.body.password, salt);
   console.log(hash);
   user.password = hash;
@@ -27,17 +25,10 @@ exports.auth_signup_post = (req, res) => {
   account.user = user._id;
 
   account.save();
-  user.account = account._id;
-  console.log("user.account " + user.account);
 
   user
-    // .populate("account")
     .save()
     .then(() => {
-      user.account.forEach(function (acc) {
-        console.log("for each :" + acc.cash);
-      });
-      // user.account = account._Id;
       res.redirect("/auth/signin");
     })
     .catch((err) => {
@@ -47,11 +38,9 @@ exports.auth_signup_post = (req, res) => {
       } else {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-          // res.status(400).json({ errors: errors.array });
           req.flash("validationErrors", errors.errors);
         }
         res.redirect("/auth/signup");
-        // res.send(err);
       }
     });
 };

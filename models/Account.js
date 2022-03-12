@@ -35,11 +35,6 @@ const accountSchema = mongoose.Schema(
         Math.random() * (9999999999999 - 123456791011 + 1) + 1
       ),
     },
-    //userRole: {
-    //   type: String,
-    //   enum: ["admin", "regular", "SuperAdmin"],
-    //   default: "regular",
-    // }
   },
   {
     timestamps: true,

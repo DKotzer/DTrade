@@ -8,7 +8,6 @@ exports.index_get = (req, res) => {
     // .populate("user")
     .then((account) => {
       res.render("home/index", { account });
-      console.log("account: " + account);
     });
 };
 //render instad of send, related to bellow comment

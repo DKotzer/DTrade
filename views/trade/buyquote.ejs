@@ -18,14 +18,15 @@
   <h1>Buy</h1>
   <form class="buyForm" action="/trade/buy/quote" method="post">
     <label for="symbol">Symbol</label>
-    <input type="text" name="symbol" placeholder="symbol" />
+    <input type="text" name="symbol" value="<%=symbol%>" />
     <button type="submit">quote</button>
   </form>
   <p></p>
   <form class="sharesForm" action="/trade/buy" method="post">
     <label for="">Price</label>
-    
-    <div id="price"/>price</div>
+    <% if(price) { %>
+    <div id="price"/><%=price%></div>
+   <% }%>
     <label for="shares">shares</label>
     <input type="number" name="shares" placeholder="shares" />
     <label for="total">Total</label>

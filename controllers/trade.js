@@ -37,6 +37,27 @@ exports.trade_quote_get = (req, res) => {
 exports.trade_buy_quote_post = (req, res) => {
   let symbol = req.body.symbol;
   console.log(symbol);
+  let price = quote(`${symbol}`);
+  console.log(price);
+  Account.findById(req.user.account)
+
+    // .populate("user")
+    .then((account) => {
+      res.render("trade/buyquote", { price, account, symbol });
+    });
+};
+
+exports.trade_buy_quote_post = async (req, res) => {
+  let symbol = req.body.symbol;
+  console.log(symbol);
+  let price = await quote(`${symbol}`);
+  console.log(price);
+  Account.findById(req.user.account)
+
+    // .populate("user")
+    .then((account) => {
+      res.render("trade/buyquote", { price, account, symbol });
+    });
 };
 
 //to do: trade_quote_post that uses quote function on req.body.quote input and then render the page with price, then render the page with toal after shares is entered
