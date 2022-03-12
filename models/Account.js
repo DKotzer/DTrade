@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const accountSchema = mongoose.Schema(
   {
-    // user: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "User",
-    // },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
     positions: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Position",
@@ -43,4 +43,4 @@ const accountSchema = mongoose.Schema(
 );
 
 const Account = mongoose.model("Account", accountSchema);
-module.exports = { Account };
+module.exports = Account;

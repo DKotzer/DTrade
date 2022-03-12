@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const salt = 10;
 const { validationResult } = require("express-validator");
+const Account = require("../models/Account");
 
 //HTTP Get - load sign up form
 
@@ -16,14 +17,23 @@ exports.auth_signup_get = (req, res) => {
 
 exports.auth_signup_post = (req, res) => {
   let user = new User(req.body);
+
   // console.log(req.body);
   let hash = bcrypt.hashSync(req.body.password, salt);
   console.log(hash);
   user.password = hash;
+  let account = new Account();
+  account.user = user._id;
+  account.save();
+
+  user.account = account._id;
+
+  console.log(account);
 
   user
     .save()
     .then(() => {
+      // user.account = account._Id;
       res.redirect("/auth/signin");
     })
     .catch((err) => {

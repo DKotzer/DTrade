@@ -1,4 +1,3 @@
-<h1><%=welcomeMessage %></h1>
 <div class="buyArea">
   <div class="subheader">
     <div class="row">
@@ -12,25 +11,40 @@
     </div>
   </div>
 </div>
-<table>
-  <tr>
-    <th>Equity</th>
-    <th>Symbol</th>
-    <th>Average Cost</th>
-    <th>Shares</th>
-    <th>Market Price</th>
-    <th>Market Value</th>
-    <th>Change</th>
-    <th>Quick Menu</th>
-  </tr>
-  <tr>
-    <td>Andvanced Micro Devices</td>
-    <td>AMD</td>
-    <td>100</td>
-    <td>10</td>
-    <td>106</td>
-    <td>1060</td>
-    <td>60</td>
-    <td>=></td>
-  </tr>
-</table>
+<p></p>
+<p></p>
+<h1 class="center">Account Summary</h1>
+<p></p>
+<p></p>
+<div class="summary">
+  <table class="summaryTable table table-striped">
+    <tr>
+      <th>Equity</th>
+      <th>Symbol</th>
+      <th>Shares</th>
+      <th>Avg Cost</th>
+      <th>Mkt Price</th>
+      <th>Mkt Value</th>
+      <th>Change</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>Andvanced Micro Devices</td>
+      <td>AMD</td>
+      <td>10</td>
+      <td>100</td>
+      <td>106</td>
+      <td>1060</td>
+      <td>60</td>
+      <td>
+        <div class="dropdown">
+          <button class="dropbtn">⇓</button>
+          <div class="dropdown-content">
+            <a href="/trade/buy">Buy</a>
+            <a href="/trade/sell">Sell</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
