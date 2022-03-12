@@ -96,3 +96,11 @@ body {
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+
+.red {
+  color: red;
+}
+
+.hidden {
+  visibility: hidden;
+}

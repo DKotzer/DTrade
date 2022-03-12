@@ -17,20 +17,26 @@
   <p></p>
   <h1>Buy</h1>
   <form class="buyForm" action="/trade/buy/quote" method="post">
-    <label for="symbol">Symbol</label>
-    <input type="text" name="symbol" value="<%=symbol%>" />
+    <div>
+      <label for="symbol">Symbol</label>
+      <input type="text" name="symbol" value="<%=symbol%>" />
+      <% if(price) { %> Price: <%=price%> <% }%>
+    </div>
+    <% let red = '' %> <% let buyButton = '' %> <% if (shares*price >
+    account.cash ){ red="red", buyButton = 'hidden' } %>
+    <div>
+      <label for="shares">shares</label>
+      <input type="number" name="shares" value="<%=shares%>" />
+      <% if(shares) { %>
+      <span id="total" class="<%=red%>"> Total: <%=shares*price%></span>
+      <% }%>
+    </div>
     <button type="submit">quote</button>
   </form>
   <p></p>
-  <form class="sharesForm" action="/trade/buy" method="post">
-    <% if(price) { %>
-    <div>Price: <%=price%></div>
-    <% }%>
-    <label for="shares">shares</label>
-    <input type="number" name="shares" placeholder="shares" />
-    <label for="total">Total</label>
-    <input type="number" name="total" placeholder="total" />
-    <br />
-    <div><button type="submit">Buy</button></div>
+  <form class="sharesForm" action="/trade/buy/submit" method="post">
+    <input type="hidden" name="symbol" value="<%=symbol%>" />
+    <input type="hidden" name="shares" value="<%=shares%>" />
+    <div><button class="type <%=buyButton%>" ="submit">Buy</button></div>
   </form>
 </div>

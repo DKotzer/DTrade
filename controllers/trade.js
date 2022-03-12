@@ -14,7 +14,7 @@ async function quote(ticker) {
   // await res.render("trade/quote.ejs", { btcPrice: btcPrice });
 }
 
-quote("BTC");
+// quote("BTC");
 
 exports.trade_buy_get = (req, res) => {
   Account.findById(req.user.account)
@@ -34,29 +34,17 @@ exports.trade_quote_get = (req, res) => {
   res.render("trade/quote");
 };
 
-exports.trade_buy_quote_post = (req, res) => {
-  let symbol = req.body.symbol;
-  console.log(symbol);
-  let price = quote(`${symbol}`);
-  console.log(price);
-  Account.findById(req.user.account)
-
-    // .populate("user")
-    .then((account) => {
-      res.render("trade/buyquote", { price, account, symbol });
-    });
-};
-
 exports.trade_buy_quote_post = async (req, res) => {
   let symbol = req.body.symbol;
-  console.log(symbol);
+  let shares = req.body.shares;
+  // console.log("symbol " + symbol);
   let price = await quote(`${symbol}`);
-  console.log(price);
+  // console.log("price " + price);
   Account.findById(req.user.account)
 
     // .populate("user")
     .then((account) => {
-      res.render("trade/buyquote", { price, account, symbol });
+      res.render("trade/buyquote", { price, account, symbol, shares });
     });
 };
 
