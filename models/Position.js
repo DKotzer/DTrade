@@ -2,38 +2,33 @@ const mongoose = require("mongoose");
 
 const positionSchema = mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
+    symbol: {
+      type: String,
       ref: "User",
     },
-    positions: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Position",
-      },
-    ],
-    cash: {
-      type: Number,
-      default: 10000,
+    account: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Position",
     },
-    marketValue: {
+    price: {
       type: Number,
-      default: 0,
+    },
+    shares: {
+      type: Number,
+    },
+    originalPrice: {
+      type: Number,
+    },
+    value: {
+      type: Number,
+      value: this.price * this.shares,
+
       //some fancy way of adding up all the values from all positions goes here
-    },
-    history: {
-      type: Object,
     },
     totalValue: {
       type: Number,
       value: this.marketValue + this.cash,
       default: 10000,
-    },
-    number: {
-      type: Number,
-      default: Math.round(
-        Math.random() * (9999999999999 - 123456791011 + 1) + 1
-      ),
     },
   },
   {

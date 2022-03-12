@@ -2,6 +2,7 @@ var ccxt = require("ccxt");
 // module.exports = { quote };
 const { Account } = require("../models/Account");
 const User = require("../models/User");
+let { Position } = require("../models/Position");
 // console.log(ccxt.exchanges);
 
 async function quote(ticker) {
@@ -48,4 +49,19 @@ exports.trade_buy_quote_post = async (req, res) => {
     });
 };
 
+// exports.trade_buy_submit_post = async (req, res) => {
+//   let symbol = req.body.symbol;
+//   let shares = req.body.shares;
+//   // console.log("symbol " + symbol);
+//   let price = await quote(`${symbol}`);
+//   // console.log("price " + price);
+//   let position = new Position(req.body);
+//   position.save();
+//   Account.findById(req.user.account)
+
+//     // .populate("user")
+//     .then((account) => {
+//       res.render("/", { price, account, symbol, shares });
+//     });
+// };
 //to do: trade_quote_post that uses quote function on req.body.quote input and then render the page with price, then render the page with toal after shares is entered

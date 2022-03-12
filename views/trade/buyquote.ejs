@@ -35,8 +35,23 @@
   </form>
   <p></p>
   <form class="sharesForm" action="/trade/buy/submit" method="post">
-    <input type="hidden" name="symbol" value="<%=symbol%>" />
-    <input type="hidden" name="shares" value="<%=shares%>" />
+    <input class="hidden" type="text" name="symbol" value="<%=symbol%>" />
+    <input class="hidden" type="number" name="shares" value="<%=shares%>" />
+    <input class="hidden" type="number" name="price" value="<%=price%>" />
+    <input
+      class="hidden"
+      type="number"
+      name="originalPrice"
+      value="<%=price%>"
+    />
+    <input
+      class="hidden"
+      type="number"
+      name="value"
+      value="<%=shares*price%>"
+    />
+    <input class="hidden" type="text" name="account" value="<%=account._id%>" />
+
     <div><button class="type <%=buyButton%>" ="submit">Buy</button></div>
   </form>
 </div>
