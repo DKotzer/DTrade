@@ -23,10 +23,9 @@
   </form>
   <p></p>
   <form class="sharesForm" action="/trade/buy" method="post">
-    <label for="">Price</label>
     <% if(price) { %>
-    <div id="price"/><%=price%></div>
-   <% }%>
+    <div>Price: <%=price%></div>
+    <% }%>
     <label for="shares">shares</label>
     <input type="number" name="shares" placeholder="shares" />
     <label for="total">Total</label>
