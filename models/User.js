@@ -27,10 +27,12 @@ const userSchema = mongoose.Schema(
       required: true,
       minlength: [6, "Password must be at least 6 characters"],
     },
-    account: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Account",
-    },
+    account: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Account",
+      },
+    ],
     accountNum: {
       type: Number,
       default: Math.round(
