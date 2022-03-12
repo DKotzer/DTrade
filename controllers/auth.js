@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const salt = 10;
 const { validationResult } = require("express-validator");
-var bodyParser = require("body-parser");
+
 //HTTP Get - load sign up form
 
 exports.auth_signup_get = (req, res) => {
@@ -16,7 +16,7 @@ exports.auth_signup_get = (req, res) => {
 
 exports.auth_signup_post = (req, res) => {
   let user = new User(req.body);
-  console.log(req.body);
+  // console.log(req.body);
   let hash = bcrypt.hashSync(req.body.password, salt);
   console.log(hash);
   user.password = hash;

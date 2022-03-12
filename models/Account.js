@@ -2,9 +2,13 @@ const mongoose = require("mongoose");
 
 const accountSchema = mongoose.Schema(
   {
-    user: {
+    // user: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "User",
+    // },
+    positions: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Position",
     },
     cash: {
       type: Number,
@@ -12,19 +16,16 @@ const accountSchema = mongoose.Schema(
     },
     marketValue: {
       type: Number,
+      //some fancy way of adding up all the values from all positions goes here
     },
-    emailAddress: {
-      type: String,
-      required: true,
-      lowercase: true, //converts everything to lowercase
-      unique: true, //requires the email to be unique to database
+    history: {
+      type: Object,
     },
-    password: {
-      type: String,
-      required: true,
-      minlength: [6, "Password must be at least 6 characters"],
+    totalValue: {
+      type: Number,
+      value: this.marketValue + this.cash,
     },
-    account: {
+    number: {
       type: Number,
       default: Math.round(
         Math.random() * (9999999999999 - 123456791011 + 1) + 1
@@ -40,3 +41,6 @@ const accountSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+
+const Account = mongoose.model("Account", accountSchema);
+module.exports = { Account };

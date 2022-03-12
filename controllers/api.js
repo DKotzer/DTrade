@@ -18,20 +18,31 @@ exports.api_memes_get = (req, res) => {
     });
 };
 
+var ccxt = require("ccxt");
 
+// console.log(ccxt.exchanges);
 
-// let options = {
-//   method: 'GET',
-//   url: 'https://yfapi.net/v11/finance/quoteSummary/AAPL',
-//   params: {modules: 'defaultKeyStatistics,assetProfile'},
-//   headers: {
-//     'x-api-key': 'K9mJSDcAuf5lwZ7dNnkY687NO8L9D1si1eQEARqR'
-//   }
-// };
+// async function quote(req, res) {
+//   // let bitfinex = new ccxt.bitfinex();
+//   // let btcPrice = (bitfinex.id, await bitfinex.fetchTicker("BTC/USD"));
+//   let kraken = new ccxt.kraken();
+//   let btcPrice = (kraken.id, await kraken.fetchTicker("BTC/USD"));
+//   console.log("BTC/USD: " + btcPrice.ask);
+//   // await res.render("trade/quote.ejs", { btcPrice: btcPrice });
+// }
 
-// axios.request(options).then(function (response) {
-// 	console.log(response.data);
-// }).catch(function (error) {
-// 	console.error(error);
-// });
-     
+// (async function priceCheck(ticker) {
+//   // let bitfinex = new ccxt.bitfinex();
+//   // let btcPrice = (bitfinex.id, await bitfinex.fetchTicker("BTC/USD"));
+//   let kraken = new ccxt.kraken();
+//   let price = (kraken.id, await kraken.fetchTicker(`${ticker}/USD`));
+//   console.log(`${ticker}/USD: ` + price.ask);
+// })();
+
+(async function priceCheck(req, res) {
+  // let bitfinex = new ccxt.bitfinex();
+  // let btcPrice = (bitfinex.id, await bitfinex.fetchTicker("BTC/USD"));
+  let kraken = new ccxt.kraken();
+  let price = (kraken.id, await kraken.fetchTicker(`BTC/USD`));
+  console.log(`BTC/USD: ` + price.ask);
+})();

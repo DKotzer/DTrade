@@ -1,1 +1,31 @@
-<h1>Sell</h1>
+<div class="buyArea">
+  <div class="subheader">
+    <div class="row">
+      <div>Account: <%=currentUser.account%></div>
+      <div>Total Value:</div>
+    </div>
+    <br />
+    <div class="row">
+      <div>Buying Power</div>
+      <div>Total Value:</div>
+    </div>
+  </div>
+
+  <div>graph</div>
+  <img src="https://i.imgur.com/EFqRbev.png" alt="stonks" />
+  <P> </P>
+  <p></p>
+  <h1>Sell</h1>
+  <form class="buyForm" action="/trade/sell" method="post">
+    <label for="symbol">Symbol</label>
+    <input type="text" name="symbol" placeholder="symbol" />
+    <label for="">Price</label>
+    <input type="number" name="price" placeholder="price" />
+    <label for="shares">shares</label>
+    <input type="number" name="shares" placeholder="shares" />
+    <label for="total">Total</label>
+    <input type="number" name="total" placeholder="total" />
+    <br />
+    <div><button type="submit">Sell</button></div>
+  </form>
+</div>
