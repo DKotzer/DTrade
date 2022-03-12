@@ -18,19 +18,21 @@ exports.api_memes_get = (req, res) => {
     });
 };
 
-var ccxt = require("ccxt");
+// var ccxt = require("ccxt");
+// // module.exports = { quote };
 
-// console.log(ccxt.exchanges);
+// // console.log(ccxt.exchanges);
 
-// async function quote(req, res) {
+// async function quote(ticker) {
 //   // let bitfinex = new ccxt.bitfinex();
 //   // let btcPrice = (bitfinex.id, await bitfinex.fetchTicker("BTC/USD"));
 //   let kraken = new ccxt.kraken();
-//   let btcPrice = (kraken.id, await kraken.fetchTicker("BTC/USD"));
-//   console.log("BTC/USD: " + btcPrice.ask);
+//   let price = (kraken.id, await kraken.fetchTicker(`${ticker}/USD`));
+//   console.log(`${ticker}/USD: ` + price.ask);
 //   // await res.render("trade/quote.ejs", { btcPrice: btcPrice });
 // }
 
+// quote("BTC");
 // (async function priceCheck(ticker) {
 //   // let bitfinex = new ccxt.bitfinex();
 //   // let btcPrice = (bitfinex.id, await bitfinex.fetchTicker("BTC/USD"));
@@ -39,10 +41,12 @@ var ccxt = require("ccxt");
 //   console.log(`${ticker}/USD: ` + price.ask);
 // })();
 
-(async function priceCheck(req, res) {
-  // let bitfinex = new ccxt.bitfinex();
-  // let btcPrice = (bitfinex.id, await bitfinex.fetchTicker("BTC/USD"));
-  let kraken = new ccxt.kraken();
-  let price = (kraken.id, await kraken.fetchTicker(`BTC/USD`));
-  console.log(`BTC/USD: ` + price.ask);
-})();
+// (async function priceCheck(req, res) {
+//   // let bitfinex = new ccxt.bitfinex();
+//   // let btcPrice = (bitfinex.id, await bitfinex.fetchTicker("BTC/USD"));
+//   let kraken = new ccxt.kraken();
+//   let btcPrice = (kraken.id, await kraken.fetchTicker(`BTC/USD`));
+//   let ethPrice = (kraken.id, await kraken.fetchTicker(`ETH/USD`));
+//   console.log(`BTC/USD: ` + btcPrice.ask);
+//   console.log(`ETH/USD: ` + ethPrice.ask);
+// })();
