@@ -1,13 +1,13 @@
 <div class="buyArea">
   <div class="subheader">
     <div class="row">
-      <div>Account: <%=currentUser.accountNum%></div>
-      <div>Total Value:</div>
+      <div>Account: <%=account.number%></div>
+      <div>Total Value: <%=account.totalValue%></div>
     </div>
     <br />
     <div class="row">
-      <div>Buying Power</div>
-      <div>Total Value:</div>
+      <div>Buying Power: <%=account.cash%></div>
+      <div>Market Value: <%=account.marketValue%></div>
     </div>
   </div>
 
@@ -16,9 +16,13 @@
   <P> </P>
   <p></p>
   <h1>Buy</h1>
-  <form class="buyForm" action="/trade/buy" method="post">
+  <form class="buyForm" action="/trade/buy/quote" method="post">
     <label for="symbol">Symbol</label>
     <input type="text" name="symbol" placeholder="symbol" />
+    <button type="submit">quote</button>
+  </form>
+  <p></p>
+  <form class="sharesForm" action="/trade/buy" method="post">
     <label for="">Price</label>
     <input type="number" name="price" placeholder="price" />
     <label for="shares">shares</label>
