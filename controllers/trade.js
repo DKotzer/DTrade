@@ -15,8 +15,14 @@ async function quote(ticker) {
   // await res.render("trade/quote.ejs", { btcPrice: btcPrice });
 }
 
-// quote("BTC");
+// async function kraken() {
+//   let kraken = new ccxt.kraken();
+//   console.log(kraken.id, await kraken.fetchOrderBook());
+// }
 
+// kraken();
+
+// quote("BTC");
 exports.trade_buy_get = (req, res) => {
   Account.findById(req.user.account)
     // .populate("user")

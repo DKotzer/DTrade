@@ -2,12 +2,21 @@
   <div class="subheader">
     <div class="row">
       <div>Account: <%=account.number%></div>
-      <div>Total Value: <%=account.totalValue%></div>
+      <div>
+        Total Value:
+        <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+      </div>
     </div>
     <br />
     <div class="row">
-      <div>Buying Power: <%=account.cash%></div>
-      <div>Market Value: <%=account.marketValue%></div>
+      <div>
+        Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+        '$&,')%>
+      </div>
+      <div>
+        Market Value:
+        <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+      </div>
     </div>
   </div>
 
@@ -17,17 +26,48 @@
   <p></p>
   <h1>Buy</h1>
   <form class="buyForm" action="/trade/buy/quote" method="post">
-      <form class="buyForm" action="/trade/buy/quote" method="post">
     <div>
       <label for="symbol">Symbol</label>
-      <input onkeyup="this.value = this.value.toUpperCase();" type="text" name="symbol" placeholder="symbol"   />
+      <input
+        onkeyup="this.value = this.value.toUpperCase();"
+        list="symbol"
+        name="symbol"
+        id="symbol"
+      />
+      <datalist id="symbol">
+        <option value="BTC"></option>
+        <option value="ETH"></option>
+        <option value="DOGE"></option>
+        <option value="XRP"></option>
+        <option value="LUNA"></option>
+        <option value="SOL"></option>
+        <option value="ADA"></option>
+        <option value="DOT"></option>
+        <option value="UST"></option>
+        <option value="SHIB"></option>
+        <option value="MATIC"></option>
+        <option value="DAI"></option>
+        <option value="LTC"></option>
+        <option value="LINK"></option>
+        <option value="TRX"></option>
+        <option value="UNI"></option>
+        <option value="XLM"></option>
+        <option value="XTZ"></option>
+        <option value="ZEC"></option>
+        <option value="MKR"></option>
+      </datalist>
     </div>
     <div>
-      <label for="shares">shares</label>
-      <input  required type="number" name="shares" placeholder="shares"  min="1" />
+      <label for="shares">Shares</label>
+      <input
+        required
+        type="number"
+        name="shares"
+        placeholder="shares"
+        min="1"
+      />
     </div>
     <button type="submit">quote</button>
   </form>
   <p></p>
-  
 </div>

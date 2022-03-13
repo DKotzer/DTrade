@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="/css/main.css" />
   </head>
   <body>
-    <h1>DTrade</h1>
-    <br /><br />
+    <h1 class="title">DTrade</h1>
+
     <hr />
     <% if(alerts.validationErrors) { %> <%
     alerts.validationErrors.forEach(function(msg) { %>
@@ -33,15 +33,15 @@
       <a class="btn btn-outline-primary" href="/trade/sell">Sell</a>
       <a class="btn btn-outline-primary" href="/api/memes">History</a>
       <a class="btn btn-outline-primary" href="/">Overview</a>
-      <div class="menu-right">
+      <span class="menu-right">
         <% if(currentUser){ %> Welcome <%=currentUser.firstName%>
-        <%=currentUser.lastName%>
+        <%=currentUser.lastName%> &nbsp; &nbsp; &nbsp;
         <a class="btn btn-outline-primary" href="/auth/logout">Sign Out</a>
         <%} else { %>
         <a class="btn btn-outline-primary" href="/auth/signin">Sign In</a>
         <a class="btn btn-outline-primary" href="/auth/signup">Sign Up</a>
         <%}%>
-      </div>
+      </span>
       <br /><br />
       <%- body %> <br /><br />
     </nav>

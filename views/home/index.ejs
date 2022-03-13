@@ -2,12 +2,21 @@
   <div class="subheader">
     <div class="row">
       <div>Account: <%=account.number%></div>
-      <div>Total Value: <%=account.totalValue%></div>
+      <div>
+        Total Value:
+        <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+      </div>
     </div>
     <br />
     <div class="row">
-      <div>Buying Power: <%=account.cash%></div>
-      <div>Market Value: <%=account.marketValue%></div>
+      <div>
+        Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+        '$&,')%>
+      </div>
+      <div>
+        Market Value:
+        <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+      </div>
     </div>
   </div>
 </div>
@@ -34,9 +43,18 @@
       <td><%=position.symbol %></td>
       <td><%=position.symbol %></td>
       <td><%=position.shares %></td>
-      <td><%=position.originalPrice %></td>
-      <td><%=position.shares*position.originalPrice %></td>
-      <td><%=position.shares*position.originalPrice %></td>
+      <td>
+        <%=position.originalPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+        %>
+      </td>
+      <td>
+        <%=(position.shares*position.originalPrice).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+        '$&,') %>
+      </td>
+      <td>
+        <%=(position.shares*position.originalPrice).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+        '$&,') %>
+      </td>
       <td>0</td>
       <td>
         <div class="dropdown">

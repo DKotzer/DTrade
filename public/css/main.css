@@ -13,9 +13,15 @@ body {
   justify-content: center;
   flex-direction: column;
 }
+.title {
+  text-align: center;
+}
 
 .menu-right {
   text-align: right;
+  display: flex;
+  justify-content: right;
+  margin-top: -34px;
 }
 .subheader {
   display: flex;
@@ -103,4 +109,11 @@ body {
 
 .hidden {
   visibility: hidden;
+}
+
+nav {
+  text-align: center;
+}
+nav li {
+  display: inline;
 }

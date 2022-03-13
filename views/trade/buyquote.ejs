@@ -2,12 +2,21 @@
   <div class="subheader">
     <div class="row">
       <div>Account: <%=account.number%></div>
-      <div>Total Value: <%=account.totalValue%></div>
+      <div>
+        Total Value:
+        <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+      </div>
     </div>
     <br />
     <div class="row">
-      <div>Buying Power: <%=account.cash%></div>
-      <div>Market Value: <%=account.marketValue%></div>
+      <div>
+        Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+        '$&,')%>
+      </div>
+      <div>
+        Market Value:
+        <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+      </div>
     </div>
   </div>
 
@@ -20,7 +29,8 @@
     <div>
       <label for="symbol">Symbol</label>
       <input type="text" name="symbol" value="<%=symbol%>" />
-      <% if(price) { %> Price: <%=price%> <% }%>
+      <% if(price) { %> Price: <%=price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+      '$&,')%> <% }%>
     </div>
     <% let red = '' %> <% let buyButton = '' %> <% if (shares*price >
     account.cash ){ red="red", buyButton = 'hidden' } %>
@@ -28,7 +38,10 @@
       <label for="shares">shares</label>
       <input type="number" name="shares" value="<%=shares%>" />
       <% if(shares) { %>
-      <span id="total" class="<%=red%>"> Total: <%=shares*price%></span>
+      <span id="total" class="<%=red%>">
+        Total: <%=(shares*price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+        '$&,')%></span
+      >
       <% }%>
     </div>
     <button type="submit">quote</button>
@@ -37,18 +50,23 @@
   <form class="sharesForm" action="/trade/buy/submit" method="post">
     <input class="hidden" type="text" name="symbol" value="<%=symbol%>" />
     <input class="hidden" type="number" name="shares" value="<%=shares%>" />
-    <input class="hidden" type="number" name="price" value="<%=price%>" />
+    <input
+      class="hidden"
+      type="number"
+      name="price"
+      value="<%=price.toFixed(2)%>"
+    />
     <input
       class="hidden"
       type="number"
       name="originalPrice"
-      value="<%=price%>"
+      value="<%=price.toFixed(2)%>"
     />
     <input
       class="hidden"
       type="number"
       name="value"
-      value="<%=shares*price%>"
+      value="<%=(shares*price).toFixed(2)%>"
     />
     <input class="hidden" type="text" name="account" value="<%=account._id%>" />
 
