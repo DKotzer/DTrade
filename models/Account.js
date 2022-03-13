@@ -21,9 +21,7 @@ const accountSchema = mongoose.Schema(
       default: 0,
       //some fancy way of adding up all the values from all positions goes here
     },
-    history: {
-      type: Object,
-    },
+    history: [],
     totalValue: {
       type: Number,
       value: this.marketValue + this.cash,

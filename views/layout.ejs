@@ -28,23 +28,29 @@
     <div class="alert alert-danger"><%=msg %></div>
     <% }) %> <% }%>
     <nav class="navbar-brand">
-      <a class="btn btn-outline-primary" href="/trade/quote">Quote</a>
-      <a class="btn btn-outline-primary" href="/trade/buy">Buy</a>
-      <a class="btn btn-outline-primary" href="/trade/sell">Sell</a>
-      <a class="btn btn-outline-primary" href="/api/memes">History</a>
-      <a class="btn btn-outline-primary" href="/">Overview</a>
-      <span class="menu-right">
-        <% if(currentUser){ %> Welcome <%=currentUser.firstName%>
-        <%=currentUser.lastName%> &nbsp; &nbsp; &nbsp;
-        <a class="btn btn-outline-primary" href="/auth/logout">Sign Out</a>
-        <%} else { %>
-        <a class="btn btn-outline-primary" href="/auth/signin">Sign In</a>
-        <a class="btn btn-outline-primary" href="/auth/signup">Sign Up</a>
-        <%}%>
-      </span>
+      <ul>
+        <a href="/trade/quote">Quote</a>
+        <a href="/trade/buy">Buy</a>
+        <a href="/trade/sell">Sell</a>
+        <a href="/api/memes">History</a>
+        <a href="/">Overview</a>
+        <span class="menu-right">
+          <span class="name">
+            <% if(currentUser){ %> Welcome <%=currentUser.firstName%>
+            <%=currentUser.lastName%></span
+          >
+          &nbsp; &nbsp; &nbsp;
+          <a href="/auth/logout">Sign Out</a>
+          <%} else { %>
+          <a href="/auth/signin">Sign In</a>
+          <a href="/auth/signup">Sign Up</a>
+          <%}%>
+        </span>
+      </ul>
       <br /><br />
-      <%- body %> <br /><br />
     </nav>
+    <%- body %> <br /><br />
+
     Shared Footer<br />
     <!-- <img src="../images/lucky.jpg" width="400px" /> -->
     <script
