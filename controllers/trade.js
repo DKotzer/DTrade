@@ -3,6 +3,8 @@ var ccxt = require("ccxt");
 const { Account } = require("../models/Account");
 const User = require("../models/User");
 let { Position } = require("../models/Position");
+const { validationResult } = require("express-validator");
+const flash = require("connect-flash");
 // console.log(ccxt.exchanges);
 
 async function quote(ticker) {
@@ -42,6 +44,88 @@ exports.trade_quote_get = (req, res) => {
 };
 
 exports.trade_buy_quote_post = async (req, res) => {
+  //array of acceptable values
+  let stonks = [
+    "BTC",
+    "ETH",
+    "DOGE",
+    "XRP",
+    "LUNA",
+    "USDT",
+    "USDC",
+    "SOL",
+    "ADA",
+    "AVAX",
+    "DOT",
+    "UST",
+    "SHIB",
+    "MATIC",
+    "DAI",
+    "ATOM",
+    "LTC",
+    "LINK",
+    "TRX",
+    "UNI",
+    "ALGO",
+    "XLM",
+    "XMR",
+    "SAND",
+    "WAVES",
+    "XTZ",
+    "ZEC",
+    "EOS",
+    "MKR",
+    "ENJ",
+    "DASH",
+    "KSM",
+    "BAT",
+    "LRC",
+    "ICX",
+    "QTUM",
+    "OMG",
+    "ZRX",
+    "STORJ",
+    "SUSHI",
+    "SC",
+    "ANT",
+    "REP",
+    "NANO",
+  ];
+  //check if req.body.symbol is in array  .includes  if(arr.includes()){}
+  if (stonks.includes(`${req.body.symbol}`)) {
+    let symbol = req.body.symbol;
+    let shares = req.body.shares;
+    // console.log("symbol " + symbol);
+    let price = await quote(`${symbol}`);
+    // console.log("price " + price);
+    Account.findById(req.user.account)
+
+      //up to here in includes function
+
+      // .populate("user")
+      .then((account) => {
+        res.render("trade/buyquote", { price, account, symbol, shares });
+      });
+  } else {
+    req.flash("error", "Email is already in use");
+    res.render("trade/quote");
+  }
+  // let symbol = req.body.symbol;
+  // let shares = req.body.shares;
+  // // console.log("symbol " + symbol);
+  // let price = await quote(`${symbol}`);
+  // // console.log("price " + price);
+  // Account.findById(req.user.account)
+
+  //   //up to here in includes function
+
+  //   // .populate("user")
+  //   .then((account) => {
+  //     res.render("trade/buyquote", { price, account, symbol, shares });
+  //   });
+};
+
+exports.trade_sell_quote_post = async (req, res) => {
   let symbol = req.body.symbol;
   let shares = req.body.shares;
   // console.log("symbol " + symbol);
@@ -51,7 +135,7 @@ exports.trade_buy_quote_post = async (req, res) => {
 
     // .populate("user")
     .then((account) => {
-      res.render("trade/buyquote", { price, account, symbol, shares });
+      res.render("trade/sellquote", { price, account, symbol, shares });
     });
 };
 

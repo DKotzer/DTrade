@@ -18,7 +18,23 @@ router.get("/trade/buy", isLoggedIn, tradeCntrl.trade_buy_get);
 router.get("/trade/sell", isLoggedIn, tradeCntrl.trade_sell_get);
 // router.post("/trade/sell", tradeCntrl.trade_sell_post);
 
-router.post("/trade/buy/quote", isLoggedIn, tradeCntrl.trade_buy_quote_post);
+router.post(
+  "/trade/sell/quote",
+  //   [body("symbol")
+  //     .is
+  // ],
+  isLoggedIn,
+  tradeCntrl.trade_sell_quote_post
+);
+
+router.post(
+  "/trade/buy/quote",
+  //   [body("symbol")
+  //     .is
+  // ],
+  isLoggedIn,
+  tradeCntrl.trade_buy_quote_post
+);
 
 router.post("/trade/buy/submit", isLoggedIn, tradeCntrl.trade_buy_submit_post);
 module.exports = router;

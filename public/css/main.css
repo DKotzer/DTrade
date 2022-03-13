@@ -1,5 +1,5 @@
 body {
-  background-color: aliceblue;
+  background-color: lightblue;
   padding: 20px;
 }
 
@@ -28,6 +28,7 @@ body {
   border: 1px solid black;
   border-radius: 15px;
   padding: 5px;
+  background-color: aliceblue;
 }
 
 .row {
@@ -155,4 +156,8 @@ a:hover {
 
 .name {
   margin-top: 15px;
+}
+
+img {
+  width: 600px;
 }

@@ -36,9 +36,9 @@
         <a href="/">Overview</a>
         <span class="menu-right">
           <span class="name">
-            <% if(currentUser){ %> Welcome <%=currentUser.firstName%>
-            <%=currentUser.lastName%></span
-          >
+            <% if(currentUser){ %> <%=currentUser.firstName%>
+            <%=currentUser.lastName%>
+          </span>
           &nbsp; &nbsp; &nbsp;
           <a href="/auth/logout">Sign Out</a>
           <%} else { %>
