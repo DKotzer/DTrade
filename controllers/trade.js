@@ -153,6 +153,14 @@ exports.trade_buy_submit_post = (req, res) => {
     account.maketValue = Number(account.marketValue);
     account.marketValue += Number(req.body.value);
     account.positions.push(position);
+    let history = {
+      symbol: req.body.symbol,
+      price: req.body.price,
+      shares: req.body.shares,
+      value: req.body.value,
+      trade: "buy",
+    };
+    account.history.push(history);
     account.save();
     res.redirect("/");
   });
