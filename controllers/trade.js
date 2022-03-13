@@ -60,7 +60,8 @@ exports.trade_buy_submit_post = (req, res) => {
   position.save();
   Account.findById(req.user.account).then((account) => {
     account.cash -= req.body.value;
-    account.marketValue += req.body.value;
+    account.maketValue = Number(account.marketValue);
+    account.marketValue += Number(req.body.value);
     account.positions.push(position);
     account.save();
     res.redirect("/");
