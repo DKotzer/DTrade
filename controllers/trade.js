@@ -34,11 +34,13 @@ exports.trade_buy_get = (req, res) => {
 };
 exports.trade_sell_get = (req, res) => {
   Account.findById(req.user.account)
+    .populate("positions")
     // .populate("user")
     .then((account) => {
       res.render("trade/sell", { account });
     });
 };
+
 exports.trade_quote_get = (req, res) => {
   res.render("trade/quote");
 };
@@ -146,6 +148,7 @@ exports.trade_sell_quote_post = async (req, res) => {
       res.render("trade/sellquote", { price, account, symbol, shares });
     });
 };
+
 exports.trade_buy_submit_post = (req, res) => {
   Position.find({ account: req.user.account, symbol: req.body.symbol }).then(
     (existingPosition) => {
@@ -171,7 +174,7 @@ exports.trade_buy_submit_post = (req, res) => {
             price: req.body.price,
             shares: req.body.shares,
             value: req.body.value,
-            trade: "buy",
+            trade: "Buy",
           };
           account.history.push(history);
           account.save();

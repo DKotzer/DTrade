@@ -28,34 +28,13 @@
   <form class="buyForm" action="/trade/sell/quote" method="post">
     <div>
       <label for="symbol">Symbol</label>
-      <input
-        onkeyup="this.value = this.value.toUpperCase();"
-        list="symbol"
-        name="symbol"
-        id="symbol"
-      />
-      <datalist id="symbol">
-        <option value="BTC"></option>
-        <option value="ETH"></option>
-        <option value="DOGE"></option>
-        <option value="XRP"></option>
-        <option value="LUNA"></option>
-        <option value="SOL"></option>
-        <option value="ADA"></option>
-        <option value="DOT"></option>
-        <option value="UST"></option>
-        <option value="SHIB"></option>
-        <option value="MATIC"></option>
-        <option value="DAI"></option>
-        <option value="LTC"></option>
-        <option value="LINK"></option>
-        <option value="TRX"></option>
-        <option value="UNI"></option>
-        <option value="XLM"></option>
-        <option value="XTZ"></option>
-        <option value="ZEC"></option>
-        <option value="MKR"></option>
-      </datalist>
+          
+    <select class="form-select select" name="symbol">
+    <selected>
+      <% account.positions.forEach(function(position) { %>
+        <option value="<%=position.symbol%>"><%=position.symbol%></option>
+      <% }) %>
+  </selected>
     </div>
     <div>
       <label for="shares">Shares</label>
@@ -71,3 +50,9 @@
   </form>
   <p></p>
 </div>
+
+<% account.positions.forEach(function(position) { %>
+
+<div><%=position.symbol%></div>
+
+<% }) %>
