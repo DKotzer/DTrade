@@ -139,18 +139,17 @@ exports.trade_sell_quote_post = async (req, res) => {
     });
 };
 exports.trade_buy_submit_post = (req, res) => {
-  //if a position exists with symbol=symbol , add values to that position instead of create new position
-
-  // let existing = Position.find({ symbol: req.body.symbol });
-  // //check if position already exists for the inputed symbol
-  // if (existing) {
   Position.find({ account: req.user.account, symbol: req.body.symbol }).then(
     (existingPosition) => {
       //need help here, existingPosition is not updating
-      console.log("position.find: " + existingPosition);
+      console.log("existingPosition " + existingPosition);
       if (existingPosition != "") {
+        console.log(
+          "existingPosition.shares before " + existingPosition.shares
+        );
         existingPosition.shares += Number(req.body.shares);
-        existingPosition.price = req.body.price;
+        // console.log("existingPosition.shares after " + existingPosition.shares);
+        existingPosition.price = Number(req.body.price);
         existingPosition.value =
           (existingPosition.shares + req.body.shares) * req.body.price;
 
@@ -167,6 +166,7 @@ exports.trade_buy_submit_post = (req, res) => {
             trade: "buy",
           };
           account.history.push(history);
+          account.save();
           res.redirect("/");
         });
       } else {
@@ -192,9 +192,6 @@ exports.trade_buy_submit_post = (req, res) => {
       }
     }
   );
-  // } else
-
-  //if position doesnt exist, create it
 };
 
 //to do: trade_quote_post that uses quote function on req.body.quote input and then render the page with price, then render the page with toal after shares is entered

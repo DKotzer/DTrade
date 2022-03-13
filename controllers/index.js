@@ -1,6 +1,7 @@
 //API's
 
 const { Account } = require("../models/Account");
+let { Position } = require("../models/Position");
 const User = require("../models/User");
 var ccxt = require("ccxt");
 // convert this in to a function to check all tickers in index, or call this function for all tickers in index
@@ -24,13 +25,21 @@ async function quote(ticker) {
 //   // await res.render("trade/quote.ejs", { btcPrice: btcPrice });
 // }
 
-exports.index_get = (req, res) => {
+exports.index_get = async (req, res) => {
   Account.findById(req.user.account)
     .populate("positions")
-    // .populate("user")
-    .then((account) => {
-      account.positions.forEach(function (position) {});
-      res.render("home/index", { account });
+    .then(async (account) => {
+      //look up each position and update values/totals
+      account.positions.forEach(async function (position) {
+        let price = await quote(`${position.symbol}`);
+        console.log("position price before: " + position.price);
+        position.price = Number(price);
+        console.log("position price after: " + position.price);
+        position.value = price * position.shares;
+
+        position.save();
+      });
+      await res.render("home/index", { account });
     });
 };
 //render instad of send, related to bellow comment

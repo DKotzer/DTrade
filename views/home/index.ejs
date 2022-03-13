@@ -31,9 +31,9 @@
       <th>Equity</th>
       <th>Symbol</th>
       <th>Shares</th>
-      <th>Avg Cost</th>
+      <th>Cost</th>
       <th>Mkt Price</th>
-      <th>Mkt Value</th>
+      <th>Total</th>
       <th>Change</th>
       <th></th>
     </tr>
@@ -52,10 +52,13 @@
         '$&,') %>
       </td>
       <td>
-        <%=(position.shares*position.originalPrice).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+        <%=(position.shares*position.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
         '$&,') %>
       </td>
-      <td>0</td>
+      <td>
+        <%=((position.shares*position.price)-(position.shares*position.originalPrice)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+        '$&,')%>
+      </td>
       <td>
         <div class="dropdown">
           <button class="dropbtn">⇓</button>
