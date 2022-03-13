@@ -138,31 +138,63 @@ exports.trade_sell_quote_post = async (req, res) => {
       res.render("trade/sellquote", { price, account, symbol, shares });
     });
 };
-
 exports.trade_buy_submit_post = (req, res) => {
-  // let symbol = req.body.symbol;
-  // let shares = req.body.shares;
-  // // console.log("symbol " + symbol);
-  // let price = req.body.price;
-  // console.log("price " + price);
+  //if a position exists with symbol=symbol , add values to that position instead of create new position
 
-  let position = new Position(req.body);
-  position.save();
-  Account.findById(req.user.account).then((account) => {
-    account.cash -= req.body.value;
-    account.maketValue = Number(account.marketValue);
-    account.marketValue += Number(req.body.value);
-    account.positions.push(position);
-    let history = {
-      symbol: req.body.symbol,
-      price: req.body.price,
-      shares: req.body.shares,
-      value: req.body.value,
-      trade: "buy",
-    };
-    account.history.push(history);
-    account.save();
-    res.redirect("/");
-  });
+  // let existing = Position.find({ symbol: req.body.symbol });
+  // //check if position already exists for the inputed symbol
+  // if (existing) {
+  Position.find({ account: req.user.account, symbol: req.body.symbol }).then(
+    (existingPosition) => {
+      //need help here, existingPosition is not updating
+      console.log("position.find: " + existingPosition);
+      if (existingPosition != "") {
+        existingPosition.shares += Number(req.body.shares);
+        existingPosition.price = req.body.price;
+        existingPosition.value =
+          (existingPosition.shares + req.body.shares) * req.body.price;
+
+        Account.findById(req.user.account).then((account) => {
+          account.cash -= req.body.value;
+          account.maketValue = Number(account.marketValue);
+          account.marketValue += Number(req.body.value);
+
+          let history = {
+            symbol: req.body.symbol,
+            price: req.body.price,
+            shares: req.body.shares,
+            value: req.body.value,
+            trade: "buy",
+          };
+          account.history.push(history);
+          res.redirect("/");
+        });
+      } else {
+        //this is working, if no position exists, new one is made
+        let position = new Position(req.body);
+        position.save();
+        Account.findById(req.user.account).then((account) => {
+          account.cash -= req.body.value;
+          account.maketValue = Number(account.marketValue);
+          account.marketValue += Number(req.body.value);
+          account.positions.push(position);
+          let history = {
+            symbol: req.body.symbol,
+            price: req.body.price,
+            shares: req.body.shares,
+            value: req.body.value,
+            trade: "buy",
+          };
+          account.history.push(history);
+          account.save();
+          res.redirect("/");
+        });
+      }
+    }
+  );
+  // } else
+
+  //if position doesnt exist, create it
 };
+
 //to do: trade_quote_post that uses quote function on req.body.quote input and then render the page with price, then render the page with toal after shares is entered
