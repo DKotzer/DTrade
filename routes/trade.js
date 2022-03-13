@@ -12,6 +12,8 @@ const tradeCntrl = require("../controllers/trade");
 router.get("/trade/quote", isLoggedIn, tradeCntrl.trade_quote_get);
 // router.post("/trade/quote", tradeCntrl.trade_quote_post);
 
+router.get("/trade/history", isLoggedIn, tradeCntrl.trade_history_get);
+
 router.get("/trade/buy", isLoggedIn, tradeCntrl.trade_buy_get);
 // router.post("/trade/buy", tradeCntrl.trade_buy_post);
 

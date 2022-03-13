@@ -43,6 +43,14 @@ exports.trade_quote_get = (req, res) => {
   res.render("trade/quote");
 };
 
+exports.trade_history_get = (req, res) => {
+  Account.findById(req.user.account)
+    // .populate("user")
+    .then((account) => {
+      res.render("trade/history", { account });
+    });
+};
+
 exports.trade_buy_quote_post = async (req, res) => {
   //array of acceptable values
   let stonks = [
