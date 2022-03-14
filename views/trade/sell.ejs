@@ -26,17 +26,21 @@
   <p></p>
   <h1>Sell</h1>
   <form class="buyForm" action="/trade/sell/quote" method="post">
-    <div>
-      <label for="symbol">Symbol</label>
-          
-    <select class="form-select select sellDropDown" name="symbol">
-    <selected>
-      <% account.positions.forEach(function(position) { %>
+    <div class="sellDropDown">
+      <label for="symbol"><span>Symbol</span>
+      <select class="form-select select " name="symbol">
+        <option  value="symbol" selected="symbol" disabled>Symbol</option>
+        <% account.positions.forEach(function(position) { %>
         <option value="<%=position.symbol%>"><%=position.symbol%></option>
-      <% }) %>
-  </selected>
+        <% }) %>
+      </label>       
+      
     </div>
     <div>
+      <div></div>
+    </div>
+    
+<div>
       <label for="shares">Shares</label>
       <input
         required
@@ -46,6 +50,7 @@
         min="1"
       />
     </div>
+    
     <button type="submit">quote</button>
   </form>
   <p></p>
