@@ -51,7 +51,22 @@
     </div>
     <button type="submit">quote</button>
   </form>
-  <p></p>
+  <div class="quoteTable">
+    <div class="topRow">
+        <div>Symbol:</div>
+        <div>Price:</div>
+        <div>Shares:</div>
+        <div>Total:</div>
+    </div>
+    <div class="bottomRow">
+         <div><%=symbol%></div>
+         <div><%=price%></div>
+        <div><%=shares%></div>
+        <div><%=Number(price*shares)%></div>
+    </div>
+      
+  </div>
+  
   <form class="sharesForm" action="/trade/buy/submit" method="post">
     <input class="hidden" type="text" name="symbol" value="<%=symbol%>" />
     <input class="hidden" type="number" name="shares" value="<%=shares%>" />
@@ -75,7 +90,7 @@
     />
     <input class="hidden" type="text" name="account" value="<%=account._id%>" />
 
-    <div><button class="<%=buyButton%>" type="submit">Sell</button></div>
+    <div><button class="bottomButton center <%=buyButton%>" type="submit">Sell</button></div>
   </form>
 </div>
 

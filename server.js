@@ -51,12 +51,10 @@ app.use(function (req, res, next) {
 const indexRoute = require("./routes/index");
 const authRoute = require("./routes/auth");
 const tradeRoute = require("./routes/trade");
-const apiRoutes = require("./routes/api");
 
 //Mount Routes
 app.use("/", indexRoute);
 app.use("/", authRoute);
-app.use("/", apiRoutes);
 app.use("/", tradeRoute);
 
 // tell NodeJS to look in a folder called views for all ejs files

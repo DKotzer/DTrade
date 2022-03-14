@@ -58,6 +58,7 @@ td {
 
 .center {
   text-align: center;
+  align-self: center;
 }
 
 .summaryTable {
@@ -179,4 +180,30 @@ img {
   position: relative;
   top: 1px;
   left: 1px;
+}
+
+.quoteTable {
+  display: flex;
+  margin-top: 15px;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 20px;
+  background-color: white;
+}
+.topRow {
+  flex-direction: row;
+  margin-right: 10px;
+  text-align: right;
+}
+
+.bottomRow {
+  flex-direction: row;
+}
+
+.bottomButton {
+  position: relative;
+  left: 608px;
+  top: -25px;
+  width: 70px;
+  border-radius: 9px;
 }
