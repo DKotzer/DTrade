@@ -20,37 +20,54 @@
     </div>
   </div>
 
-  <div>graph</div>
-  <img src="https://i.imgur.com/EFqRbev.png" alt="stonks" />
-  <P> </P>
+
+ <div class="row2 float">
+    <script
+      type="text/javascript"
+      src="https://s3.tradingview.com/tv.js"
+    ></script>
+    <script type="text/javascript">
+      new TradingView.widget({
+        width: 475,
+        height: 475,
+        symbol: "KRAKEN:<%=symbol%>USD",
+        interval: "H",
+        timezone: "Etc/UTC",
+        theme: "Dark",
+        style: "1",
+        locale: "en",
+        toolbar_bg: "#f1f3f6",
+        enable_publishing: true,
+        hide_side_toolbar: true,
+        allow_symbol_change: true,
+        details: true,
+        hideideas: true,
+        studies: [
+          "MASimple@tv-basicstudies",
+        ],
+        show_popup_button: true,
+        popup_width: "600",
+        popup_height: "325",
+      });
+    </script>
+  </div>
   <p></p>
   <h1>Sell</h1>
   <form class="buyForm" action="/trade/sell/quote" method="post">
-    <div>
+    <div class="sellMain">
       <select class="form-select select sellDropDown" name="symbol" value="<%=symbol%>">
     <selected>
       <% account.positions.forEach(function(position) { %>
         <option value="<%=position.symbol%>"><%=position.symbol%></option>
       <% }) %>
   </selected>  
-    
-    
     </div>
-    <% let red = '' %> <% let buyButton = '' %> <% if (shares > shares){ red="red", buyButton = 'hidden' } %>
-    <div>
-      <label for="shares">shares</label>
-      <input type="number" name="shares" value="<%=shares%>" />
-      <% if(shares) { %>
-          <span id="priceFix">
-     Price: <%=price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,')%>   
-     </span> 
-      <span id="total" class="<%=red%>">
-        Total: <%=(shares*price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,')%>
-      </span>
-      <% }%>
+    <div class="sharesInput">
+      <input class="sharesInput" type="number" name="shares" value="<%=shares%>" >
     </div>
     <button type="submit">quote</button>
   </form>
+  <% let red = '' %> <% let buyButton = '' %> <% if (shares > shares){ red="red", buyButton = 'hidden' } %>
   <div class="quoteTable">
     <div class="topRow">
         <div>Symbol:</div>
@@ -62,11 +79,14 @@
          <div><%=symbol%></div>
          <div><%=price%></div>
         <div><%=shares%></div>
-        <div><%=Number(price*shares)%></div>
+        <div><span id="total" class="<%=red%>"><%=(shares*price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,')%>
+      </span></div>
     </div>
-      
   </div>
-  
+     
+   
+      
+
   <form class="sharesForm" action="/trade/buy/submit" method="post">
     <input class="hidden" type="text" name="symbol" value="<%=symbol%>" />
     <input class="hidden" type="number" name="shares" value="<%=shares%>" />

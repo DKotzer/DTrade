@@ -36,8 +36,10 @@ exports.index_get = async (req, res) => {
         position.price = Number(price);
         console.log("position price after: " + position.price);
         position.value = price * position.shares;
-
         position.save();
+        //for each position, holderVar += position.value
+        //marketValue = holderVar
+        //totalValue = buying power + marketValue
       });
       await res.render("home/index", { account });
     });

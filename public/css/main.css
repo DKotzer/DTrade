@@ -126,6 +126,12 @@ td {
 
 .sellDropDown {
   width: 100px;
+  margin: 0 auto;
+}
+.sharesInput {
+  width: 100px;
+  position: center;
+  margin: 0 auto;
 }
 nav {
   text-align: left;
@@ -202,8 +208,13 @@ img {
 
 .bottomButton {
   position: relative;
-  left: 608px;
+  left: 605px;
   top: -25px;
   width: 70px;
   border-radius: 9px;
+}
+
+.sellMain {
+  justify-content: center;
+  justify-items: center;
 }

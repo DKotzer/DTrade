@@ -48,8 +48,7 @@
         %>
       </td>
       <td>
-        <%=(position.shares*position.originalPrice).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-        '$&,') %>
+        <%=(position.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') %>
       </td>
       <td>
         <%=(position.shares*position.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,

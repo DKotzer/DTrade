@@ -124,6 +124,7 @@ exports.trade_sell_quote_post = async (req, res) => {
   Account.findById(req.user.account)
     .populate("positions")
 
+    // .populate("user")
     .then((account) => {
       res.render("trade/sellquote", { price, account, symbol, shares });
     });
@@ -175,6 +176,42 @@ exports.trade_buy_submit_post = (req, res) => {
             shares: req.body.shares,
             value: req.body.value,
             trade: "buy",
+          };
+          account.history.push(history);
+          account.save();
+          res.redirect("/");
+        });
+      }
+    }
+  );
+};
+
+exports.trade_sell_submit_post = (req, res) => {
+  Position.find({ account: req.user.account, symbol: req.body.symbol }).then(
+    (existingPosition) => {
+      //need help here, existingPosition is not updating
+      console.log("existingPosition " + existingPosition);
+      if (existingPosition != "") {
+        console.log(
+          "existingPosition.shares before " + existingPosition.shares
+        );
+        existingPosition.shares -= Number(req.body.shares);
+        // console.log("existingPosition.shares after " + existingPosition.shares);
+        existingPosition.price = Number(req.body.price);
+        existingPosition.value =
+          (existingPosition.shares - req.body.shares) * req.body.price;
+
+        Account.findById(req.user.account).then((account) => {
+          account.cash += req.body.value;
+          account.maketValue = Number(account.marketValue);
+          account.marketValue -= Number(req.body.value);
+
+          let history = {
+            symbol: req.body.symbol,
+            price: req.body.price,
+            shares: req.body.shares,
+            value: req.body.value,
+            trade: "Sell",
           };
           account.history.push(history);
           account.save();
