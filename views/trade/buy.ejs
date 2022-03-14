@@ -27,38 +27,18 @@
   <p></p>
   <h1>Buy</h1>
   <form class="buyForm" action="/trade/buy/quote" method="post">
-    <div>
+    <div class="sellDropDown">
       <label for="symbol">Symbol</label>
       <input
+        class="sellDropDown"
+        type="text"
         onkeyup="this.value = this.value.toUpperCase();"
         list="symbol"
         name="symbol"
         id="symbol"
       />
-      <datalist id="symbol">
-        <option value="BTC"></option>
-        <option value="ETH"></option>
-        <option value="DOGE"></option>
-        <option value="XRP"></option>
-        <option value="LUNA"></option>
-        <option value="SOL"></option>
-        <option value="ADA"></option>
-        <option value="DOT"></option>
-        <option value="UST"></option>
-        <option value="SHIB"></option>
-        <option value="MATIC"></option>
-        <option value="DAI"></option>
-        <option value="LTC"></option>
-        <option value="LINK"></option>
-        <option value="TRX"></option>
-        <option value="UNI"></option>
-        <option value="XLM"></option>
-        <option value="XTZ"></option>
-        <option value="ZEC"></option>
-        <option value="MKR"></option>
-      </datalist>
     </div>
-    <div>
+    <div class="sellDropDown">
       <label for="shares">Shares</label>
       <input
         required
@@ -66,9 +46,10 @@
         name="shares"
         placeholder="shares"
         min="1"
+        class="sellDropDown"
       />
     </div>
-    <button type="submit">quote</button>
+    <button class="sellDropDown" type="submit">quote</button>
   </form>
   <p></p>
 </div>

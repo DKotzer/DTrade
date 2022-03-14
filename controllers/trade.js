@@ -268,6 +268,9 @@ exports.trade_sell_submit_post = (req, res) => {
           existingPosition[0].shares -
           Number(req.body.shares) * Number(req.body.price);
         existingPosition[0].save();
+        // if (existingPosition[0].shares == 0) {
+        //   Position.findByIdAndDelete(existingPosition[0]._Id);
+        // }
 
         Account.findById(req.user.account).then((account) => {
           account.cash += Number(req.body.value);
