@@ -109,25 +109,87 @@ exports.trade_buy_quote_post = async (req, res) => {
       res.render("trade/buyquote", { price, account, symbol, shares });
     });
   } else {
-    req.flash("error", "Email is already in use");
-    res.render("trade/quote");
+    req.flash("error", "Please input a Valid Symbol");
+    Account.findById(req.user.account)
+      .populate("positions")
+      // .populate("user")
+      .then((account) => {
+        res.render("trade/buy", { account });
+      });
   }
 };
 
 //HTTP POST sell/quote/post
 exports.trade_sell_quote_post = async (req, res) => {
-  let symbol = req.body.symbol;
-  let shares = req.body.shares;
-  // console.log("symbol " + symbol);
-  let price = await quote(`${symbol}`);
-  // console.log("price " + price);
-  Account.findById(req.user.account)
-    .populate("positions")
+  let stonks = [
+    "BTC",
+    "ETH",
+    "DOGE",
+    "XRP",
+    "LUNA",
+    "USDT",
+    "USDC",
+    "SOL",
+    "ADA",
+    "AVAX",
+    "DOT",
+    "UST",
+    "SHIB",
+    "MATIC",
+    "DAI",
+    "ATOM",
+    "LTC",
+    "LINK",
+    "TRX",
+    "UNI",
+    "ALGO",
+    "XLM",
+    "XMR",
+    "SAND",
+    "WAVES",
+    "XTZ",
+    "ZEC",
+    "EOS",
+    "MKR",
+    "ENJ",
+    "DASH",
+    "KSM",
+    "BAT",
+    "LRC",
+    "ICX",
+    "QTUM",
+    "OMG",
+    "ZRX",
+    "STORJ",
+    "SUSHI",
+    "SC",
+    "ANT",
+    "REP",
+    "NANO",
+  ];
+  //check if req.body.symbol is in array  .includes  if(arr.includes()){}
+  if (stonks.includes(`${req.body.symbol}`)) {
+    let symbol = req.body.symbol;
+    let shares = req.body.shares;
+    // console.log("symbol " + symbol);
+    let price = await quote(`${symbol}`);
+    // console.log("price " + price);
+    Account.findById(req.user.account)
+      .populate("positions")
 
-    // .populate("user")
-    .then((account) => {
-      res.render("trade/sellquote", { price, account, symbol, shares });
-    });
+      // .populate("user")
+      .then((account) => {
+        res.render("trade/sellquote", { price, account, symbol, shares });
+      });
+  } else {
+    req.flash("error", "Please input a Valid Symbol");
+    Account.findById(req.user.account)
+      .populate("positions")
+      // .populate("user")
+      .then((account) => {
+        res.render("trade/sell", { account });
+      });
+  }
 };
 
 exports.trade_buy_submit_post = (req, res) => {
@@ -136,14 +198,12 @@ exports.trade_buy_submit_post = (req, res) => {
       //need help here, existingPosition is not updating
       console.log("existingPosition " + existingPosition);
       if (existingPosition != "") {
-        console.log(
-          "existingPosition.shares before " + existingPosition.shares
-        );
-        existingPosition.shares += Number(req.body.shares);
-        // console.log("existingPosition.shares after " + existingPosition.shares);
-        existingPosition.price = Number(req.body.price);
-        existingPosition.value =
-          (existingPosition.shares + req.body.shares) * req.body.price;
+        console.log("existing shares before " + existingPosition[0].shares);
+        existingPosition[0].shares += Number(req.body.shares);
+        console.log("existing shares after " + existingPosition[0].shares);
+        existingPosition[0].price = Number(req.body.price);
+        existingPosition[0].value =
+          (existingPosition[0].shares + req.body.shares) * req.body.price;
 
         Account.findById(req.user.account).then((account) => {
           account.cash -= req.body.value;
@@ -160,6 +220,7 @@ exports.trade_buy_submit_post = (req, res) => {
           account.history.push(history);
           account.save();
           res.redirect("/");
+          existingPosition[0].save();
         });
       } else {
         //this is working, if no position exists, new one is made
@@ -190,21 +251,29 @@ exports.trade_sell_submit_post = (req, res) => {
   Position.find({ account: req.user.account, symbol: req.body.symbol }).then(
     (existingPosition) => {
       //need help here, existingPosition is not updating
-      console.log("existingPosition " + existingPosition);
+      // console.log("existingPosition " + existingPosition);
       if (existingPosition != "") {
-        console.log(
-          "existingPosition.shares before " + existingPosition.shares
-        );
-        existingPosition.shares -= Number(req.body.shares);
+        // console.log(
+        //   "existingPosition.shares before " +
+        //     JSON.parse(existingPosition).symbol
+        // );
+        // console.log("stringify " + JSON.stringify(existingPosition));
+        // console.log("existingPosition " + existingPosition[0].shares);
+        console.log("existing shares before " + existingPosition[0].shares);
+        existingPosition[0].shares -= Number(req.body.shares);
+        console.log("existing shares after " + existingPosition[0].shares);
         // console.log("existingPosition.shares after " + existingPosition.shares);
-        existingPosition.price = Number(req.body.price);
-        existingPosition.value =
-          (existingPosition.shares - req.body.shares) * req.body.price;
+        existingPosition[0].price = Number(req.body.price);
+        existingPosition[0].value =
+          existingPosition[0].shares -
+          Number(req.body.shares) * Number(req.body.price);
+        existingPosition[0].save();
 
         Account.findById(req.user.account).then((account) => {
           account.cash += Number(req.body.value);
           account.maketValue = Number(account.marketValue);
           account.marketValue -= Number(req.body.value);
+          account.totalValue = account.marketValue + account.cash;
 
           let history = {
             symbol: req.body.symbol,
@@ -215,6 +284,7 @@ exports.trade_sell_submit_post = (req, res) => {
           };
           account.history.push(history);
           account.save();
+
           res.redirect("/");
         });
       }

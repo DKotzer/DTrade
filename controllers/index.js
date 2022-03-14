@@ -30,14 +30,25 @@ exports.index_get = async (req, res) => {
     .populate("positions")
     .then(async (account) => {
       //look up each position and update values/totals
+      let newMarketValue = [];
       account.positions.forEach(async function (position) {
         let price = await quote(`${position.symbol}`);
-        console.log("position price before: " + position.price);
+        console.log(`${position.symbol} price before: ` + position.price);
         position.price = Number(price);
-        console.log("position price after: " + position.price);
+        console.log(`${position.symbol} price after: ` + position.price);
         position.value = price * position.shares;
+        console.log("position value " + position.value);
+        newMarketValue.push(position.value);
         position.save();
+        account.marketValue = newMarketValue.reduce((a, b) => a + b, 0);
+        console.log("account MarketValue update: " + account.marketValue);
+        account.totalValue = account.marketValue + account.cash;
+        account.save();
+        console.log("new market value :" + newMarketValue);
       });
+      // console.log("new market value out of for Each:" + newMarketValue);
+      // account.totalValue = newMarketValue.reduce((a, b) => a + b, 0);
+      // account.save();
       //for each position, holderVar += position.value
       //marketValue = holderVar
       //totalValue = buying power + marketValue
