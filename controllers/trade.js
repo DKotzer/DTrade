@@ -10,6 +10,7 @@ const flash = require("connect-flash");
 //external API function to get quote, can alter it to also get name of stock or do own filter
 async function quote(ticker) {
   // let bitfinex = new ccxt.bitfinex();
+
   // let btcPrice = (bitfinex.id, await bitfinex.fetchTicker("BTC/USD"));
   let kraken = new ccxt.kraken();
   let price = (kraken.id, await kraken.fetchTicker(`${ticker}/USD`));
@@ -298,25 +299,6 @@ exports.trade_sell_submit_post = (req, res) => {
           console.log(account.positions[i]._id + " == " + existingID);
 
           if (account.positions[i]._id.toString() == existingID.toString()) {
-            // console.log("Wheres Waldo");
-            // account
-            //   .updateOne(
-            //     { _id: req.user.account },
-            //     {
-            //       $pull: {
-            //         positions: { $in: account.positions[i]._id.toString() },
-            //       },
-            //     }
-            //   )
-            //   .then(
-            //     console.log(req.user.account),
-            //     console.log(
-            //       "account position delete test " + account.positions[i]._id
-            //     )
-            //   )
-            //   .catch((err) => {
-            //     console.log(err);
-            //   });
             account.positions.splice(i, 1);
           }
         }
