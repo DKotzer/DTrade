@@ -259,18 +259,31 @@ exports.trade_sell_submit_post = (req, res) => {
         // );
         // console.log("stringify " + JSON.stringify(existingPosition));
         // console.log("existingPosition " + existingPosition[0].shares);
-        console.log("existing shares before " + existingPosition[0].shares);
+        // console.log("existing shares before " + existingPosition[0].shares);
         existingPosition[0].shares -= Number(req.body.shares);
-        console.log("existing shares after " + existingPosition[0].shares);
+        // console.log("existing shares after " + existingPosition[0].shares);
         // console.log("existingPosition.shares after " + existingPosition.shares);
         existingPosition[0].price = Number(req.body.price);
         existingPosition[0].value =
           existingPosition[0].shares -
           Number(req.body.shares) * Number(req.body.price);
         existingPosition[0].save();
-        // if (existingPosition[0].shares == 0) {
-        //   Position.findByIdAndDelete(existingPosition[0]._Id);
-        // }
+
+        console.log("existing position id" + existingPosition[0]._id);
+        console.log("test " + existingPosition[0].shares);
+        if (existingPosition[0].shares == 0) {
+          console.log("existing position id2 " + existingPosition[0]._id);
+          console.log("test2 " + existingPosition[0].shares);
+          // let idHolder = existingPosition[0]._id;
+          Position.findByIdAndDelete(existingPosition[0]._id)
+            .then(
+              console.log("deleted succesffully"),
+              console.log(existingPosition[0]._id)
+            )
+            .catch((err) => {
+              console.log(err);
+            });
+        }
 
         Account.findById(req.user.account).then((account) => {
           account.cash += Number(req.body.value);
