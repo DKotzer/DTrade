@@ -250,8 +250,9 @@ exports.trade_buy_submit_post = (req, res) => {
 exports.trade_sell_submit_post = (req, res) => {
   Position.find({ account: req.user.account, symbol: req.body.symbol }).then(
     (existingPosition) => {
+      let existingID = existingPosition[0]._id;
       //need help here, existingPosition is not updating
-      // console.log("existingPosition " + existingPosition);
+      console.log("existingPosition " + existingPosition);
       if (existingPosition != "") {
         // console.log(
         //   "existingPosition.shares before " +
@@ -267,45 +268,75 @@ exports.trade_sell_submit_post = (req, res) => {
         existingPosition[0].value =
           existingPosition[0].shares -
           Number(req.body.shares) * Number(req.body.price);
-        existingPosition[0].save();
+        existingPosition[0]
+          .save()
+          .then(() => {
+            if (existingPosition[0].shares == 0) {
+              console.log("existing position id2 " + existingPosition[0]._id);
+              console.log("test2 " + existingPosition[0].shares);
+              let idHolder = existingPosition[0]._id;
+              Position.findByIdAndDelete(existingPosition[0]._id)
+                .then(
+                  console.log("deleted succesffully")
+                  // res.send("Hello World")
+                  // console.log(existingPosition[0]._id)
+                )
+                .catch((err) => {
+                  console.log(err);
+                });
+            }
+          })
+          .catch();
 
-        console.log("existing position id" + existingPosition[0]._id);
-        console.log("test " + existingPosition[0].shares);
-        if (existingPosition[0].shares == 0) {
-          console.log("existing position id2 " + existingPosition[0]._id);
-          console.log("test2 " + existingPosition[0].shares);
-          // let idHolder = existingPosition[0]._id;
-          Position.findByIdAndDelete(existingPosition[0]._id)
-            .then(
-              console.log("deleted succesffully"),
-              console.log(existingPosition[0]._id)
-            )
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-
-        Account.findById(req.user.account).then((account) => {
-          account.cash += Number(req.body.value);
-          account.maketValue = Number(account.marketValue);
-          account.marketValue -= Number(req.body.value);
-          account.totalValue = account.marketValue + account.cash;
-
-          let history = {
-            symbol: req.body.symbol,
-            price: req.body.price,
-            shares: req.body.shares,
-            value: req.body.value,
-            trade: "Sell",
-          };
-          account.history.push(history);
-          account.save();
-
-          res.redirect("/");
-        });
+        // console.log("existing position id" + existingPosition[0]._id);
+        // console.log("test " + existingPosition[0].shares);
       }
+      Account.findById(req.user.account).then((account) => {
+        console.log("existing id " + existingID);
+        console.log("account positions" + account.positions);
+        for (i = 0; i < account.positions.length; i++) {
+          console.log(account.positions[i]._id + " == " + existingID);
+
+          if (account.positions[i]._id.toString() == existingID.toString()) {
+            // console.log("Wheres Waldo");
+            // account
+            //   .updateOne(
+            //     { _id: req.user.account },
+            //     {
+            //       $pull: {
+            //         positions: { $in: account.positions[i]._id.toString() },
+            //       },
+            //     }
+            //   )
+            //   .then(
+            //     console.log(req.user.account),
+            //     console.log(
+            //       "account position delete test " + account.positions[i]._id
+            //     )
+            //   )
+            //   .catch((err) => {
+            //     console.log(err);
+            //   });
+            account.positions.splice(i, 1);
+          }
+        }
+        account.cash += Number(req.body.value);
+        account.maketValue = Number(account.marketValue);
+        account.marketValue -= Number(req.body.value);
+        account.totalValue = account.marketValue + account.cash;
+        // attempted fix for crash on delete
+        let history = {
+          symbol: req.body.symbol,
+          price: req.body.price,
+          shares: req.body.shares,
+          value: req.body.value,
+          trade: "Sell",
+        };
+        account.history.push(history);
+        account.save();
+        res.redirect("/");
+      });
     }
   );
 };
-
 //to do: trade_quote_post that uses quote function on req.body.quote input and then render the page with price, then render the page with toal after shares is entered
