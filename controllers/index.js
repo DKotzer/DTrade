@@ -25,6 +25,7 @@ async function quote(ticker) {
 //   // await res.render("trade/quote.ejs", { btcPrice: btcPrice });
 // }
 
+//this function goes through every position and updates all the data in database + and recaluclates account totals
 exports.index_get = async (req, res) => {
   Account.findById(req.user.account)
     .populate("positions")
