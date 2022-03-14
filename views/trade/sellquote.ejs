@@ -1,0 +1,82 @@
+<div class="buyArea">
+  <div class="subheader">
+    <div class="row">
+      <div>Account: <%=account.number%></div>
+      <div>
+        Total Value:
+        <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div>
+        Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+        '$&,')%>
+      </div>
+      <div>
+        Market Value:
+        <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+      </div>
+    </div>
+  </div>
+
+  <div>graph</div>
+  <img src="https://i.imgur.com/EFqRbev.png" alt="stonks" />
+  <P> </P>
+  <p></p>
+  <h1>Sell</h1>
+  <form class="buyForm" action="/trade/sell/quote" method="post">
+    <div>
+      <select class="form-select select sellDropDown" name="symbol" value="<%=symbol%>">
+    <selected>
+      <% account.positions.forEach(function(position) { %>
+        <option value="<%=position.symbol%>"><%=position.symbol%></option>
+      <% }) %>
+  </selected>  
+    
+    
+    </div>
+    <% let red = '' %> <% let buyButton = '' %> <% if (shares > shares){ red="red", buyButton = 'hidden' } %>
+    <div>
+      <label for="shares">shares</label>
+      <input type="number" name="shares" value="<%=shares%>" />
+      <% if(shares) { %>
+          <span id="priceFix">
+     Price: <%=price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,')%>   
+     </span> 
+      <span id="total" class="<%=red%>">
+        Total: <%=(shares*price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,')%>
+      </span>
+      <% }%>
+    </div>
+    <button type="submit">quote</button>
+  </form>
+  <p></p>
+  <form class="sharesForm" action="/trade/buy/submit" method="post">
+    <input class="hidden" type="text" name="symbol" value="<%=symbol%>" />
+    <input class="hidden" type="number" name="shares" value="<%=shares%>" />
+    <input
+      class="hidden"
+      type="number"
+      name="price"
+      value="<%=price.toFixed(2)%>"
+    />
+    <input
+      class="hidden"
+      type="number"
+      name="originalPrice"
+      value="<%=price.toFixed(2)%>"
+    />
+    <input
+      class="hidden"
+      type="number"
+      name="value"
+      value="<%=(shares*price).toFixed(2)%>"
+    />
+    <input class="hidden" type="text" name="account" value="<%=account._id%>" />
+
+    <div><button class="<%=buyButton%>" type="submit">Sell</button></div>
+  </form>
+</div>
+
+

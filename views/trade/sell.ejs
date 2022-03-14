@@ -29,7 +29,7 @@
     <div>
       <label for="symbol">Symbol</label>
           
-    <select class="form-select select" name="symbol">
+    <select class="form-select select sellDropDown" name="symbol">
     <selected>
       <% account.positions.forEach(function(position) { %>
         <option value="<%=position.symbol%>"><%=position.symbol%></option>
@@ -51,8 +51,4 @@
   <p></p>
 </div>
 
-<% account.positions.forEach(function(position) { %>
 
-<div><%=position.symbol%></div>
-
-<% }) %>

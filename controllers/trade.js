@@ -7,6 +7,7 @@ const { validationResult } = require("express-validator");
 const flash = require("connect-flash");
 // console.log(ccxt.exchanges);
 
+//external API function to get quote, can alter it to also get name of stock or do own filter
 async function quote(ticker) {
   // let bitfinex = new ccxt.bitfinex();
   // let btcPrice = (bitfinex.id, await bitfinex.fetchTicker("BTC/USD"));
@@ -14,17 +15,9 @@ async function quote(ticker) {
   let price = (kraken.id, await kraken.fetchTicker(`${ticker}/USD`));
   console.log(`${ticker}/USD: ` + price.ask);
   return price.ask;
-  // await res.render("trade/quote.ejs", { btcPrice: btcPrice });
 }
 
-// async function kraken() {
-//   let kraken = new ccxt.kraken();
-//   console.log(kraken.id, await kraken.fetchOrderBook());
-// }
-
-// kraken();
-
-// quote("BTC");
+//HTTP GET trade/buy
 exports.trade_buy_get = (req, res) => {
   Account.findById(req.user.account)
     // .populate("user")
@@ -32,6 +25,7 @@ exports.trade_buy_get = (req, res) => {
       res.render("trade/buy", { account });
     });
 };
+//HTTP GET trade/sell
 exports.trade_sell_get = (req, res) => {
   Account.findById(req.user.account)
     .populate("positions")
@@ -41,10 +35,12 @@ exports.trade_sell_get = (req, res) => {
     });
 };
 
+//HTTP GET trade/quote - blank still
 exports.trade_quote_get = (req, res) => {
   res.render("trade/quote");
 };
 
+//HTTP GET trade/history
 exports.trade_history_get = (req, res) => {
   Account.findById(req.user.account)
     // .populate("user")
@@ -53,6 +49,7 @@ exports.trade_history_get = (req, res) => {
     });
 };
 
+//HTTP POST trade/buy/quote
 exports.trade_buy_quote_post = async (req, res) => {
   //array of acceptable values
   let stonks = [
@@ -108,33 +105,16 @@ exports.trade_buy_quote_post = async (req, res) => {
     // console.log("symbol " + symbol);
     let price = await quote(`${symbol}`);
     // console.log("price " + price);
-    Account.findById(req.user.account)
-
-      //up to here in includes function
-
-      // .populate("user")
-      .then((account) => {
-        res.render("trade/buyquote", { price, account, symbol, shares });
-      });
+    Account.findById(req.user.account).then((account) => {
+      res.render("trade/buyquote", { price, account, symbol, shares });
+    });
   } else {
     req.flash("error", "Email is already in use");
     res.render("trade/quote");
   }
-  // let symbol = req.body.symbol;
-  // let shares = req.body.shares;
-  // // console.log("symbol " + symbol);
-  // let price = await quote(`${symbol}`);
-  // // console.log("price " + price);
-  // Account.findById(req.user.account)
-
-  //   //up to here in includes function
-
-  //   // .populate("user")
-  //   .then((account) => {
-  //     res.render("trade/buyquote", { price, account, symbol, shares });
-  //   });
 };
 
+//HTTP POST sell/quote/post
 exports.trade_sell_quote_post = async (req, res) => {
   let symbol = req.body.symbol;
   let shares = req.body.shares;
@@ -142,8 +122,8 @@ exports.trade_sell_quote_post = async (req, res) => {
   let price = await quote(`${symbol}`);
   // console.log("price " + price);
   Account.findById(req.user.account)
+    .populate("positions")
 
-    // .populate("user")
     .then((account) => {
       res.render("trade/sellquote", { price, account, symbol, shares });
     });
