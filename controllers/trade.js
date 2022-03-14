@@ -202,7 +202,7 @@ exports.trade_sell_submit_post = (req, res) => {
           (existingPosition.shares - req.body.shares) * req.body.price;
 
         Account.findById(req.user.account).then((account) => {
-          account.cash += req.body.value;
+          account.cash += Number(req.body.value);
           account.maketValue = Number(account.marketValue);
           account.marketValue -= Number(req.body.value);
 

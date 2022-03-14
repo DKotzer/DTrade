@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-
+<p><p></p></p>
 
  <div class="row2 float">
     <script
@@ -28,7 +28,7 @@
     ></script>
     <script type="text/javascript">
       new TradingView.widget({
-        width: 475,
+        width: 550,
         height: 475,
         symbol: "KRAKEN:<%=symbol%>USD",
         interval: "H",
@@ -87,26 +87,26 @@
    
       
 
-  <form class="sharesForm" action="/trade/buy/submit" method="post">
+  <form class="sharesForm" action="/trade/sell/submit" method="post">
     <input class="hidden" type="text" name="symbol" value="<%=symbol%>" />
-    <input class="hidden" type="number" name="shares" value="<%=shares%>" />
+    <input class="hidden" type="number" name="shares" value="Number(<%=shares%>)" />
     <input
       class="hidden"
       type="number"
       name="price"
-      value="<%=price.toFixed(2)%>"
+      value="<%=Number(price.toFixed(2))%>"
     />
     <input
       class="hidden"
       type="number"
       name="originalPrice"
-      value="<%=price.toFixed(2)%>"
+      value="<%=Number(price.toFixed(2))%>"
     />
     <input
       class="hidden"
       type="number"
       name="value"
-      value="<%=(shares*price).toFixed(2)%>"
+      value="<%=Number((shares*price).toFixed(2))%>"
     />
     <input class="hidden" type="text" name="account" value="<%=account._id%>" />
 
