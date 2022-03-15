@@ -119,6 +119,10 @@ td {
   font-size: 20px;
   font-weight: bold;
 }
+/* tr:last child removes unwated line from bottom of tables */
+tr:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
 .menu-right {
   text-align: right;
   display: flex;
@@ -131,7 +135,7 @@ td {
   border-radius: 15px;
   padding: 10px;
   background-color: #d8dee9;
-  width: 440px;
+  width: 460px;
   text-align: left;
   font-size: 18px;
   font-weight: bold;
@@ -167,11 +171,109 @@ td {
   background-color: #d8dee9;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
+.sellDropDown {
+  width: 130px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.sharesInput {
+  width: 100px;
+  position: center;
+  margin: 0 auto;
+}
+
+.name {
+  margin-top: 15px;
+}
+
+img {
+  border-radius: 15px;
+}
+
+.stonks {
+  width: 600px;
+}
+
+#priceFix {
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+
+.quoteTable {
+  display: flex;
+  margin-top: 15px;
+  border: 2px inset #d8dee9;
+  border-radius: 15px;
+  padding: 20px;
+  background-color: white;
+}
+.topRow {
+  flex-direction: row;
+  margin-right: 10px;
+  text-align: left;
+}
+
+.bottomRow {
+  flex-direction: row;
+}
+
+.bottomButton {
+  position: relative;
+  left: 605px;
+  top: -25px;
+  width: 70px;
+  border-radius: 9px;
+}
+
+.sellMain {
+  justify-content: center;
+  justify-items: center;
+}
+
+/* remove arrows on number input chromium*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* remove arrows on number input firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.icon {
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  margin: 0;
+  margin-right: -20px;
+  margin-top: -5px;
+}
+
+.iconSpot {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+.chart {
+  border-radius: 15px;
+}
+
+#tradingview_8fb06-wrapper {
+  border-radius: 15px;
+}
+
+/* ------ Drop down buttons ------- */
 /* Dropdown Button */
 .dropbtn {
   background-color: #04aa6d;
   color: white;
-  padding: 10px;
+  padding: 8px;
   font-size: 16px;
   border: none;
   border-radius: 15px;
@@ -179,8 +281,9 @@ td {
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-  position: relative;
   display: inline-block;
+  line-height: 15px;
+  margin-left: -15px;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -220,76 +323,4 @@ td {
 
 .red {
   color: red;
-}
-
-.hidden {
-  visibility: hidden;
-}
-
-.sellDropDown {
-  width: 130px;
-  margin: 0 auto;
-  margin-top: 10px;
-}
-.sharesInput {
-  width: 100px;
-  position: center;
-  margin: 0 auto;
-}
-
-.name {
-  margin-top: 15px;
-}
-
-img {
-  width: 600px;
-  border-radius: 15px;
-}
-
-#priceFix {
-  position: relative;
-  top: 1px;
-  left: 1px;
-}
-
-.quoteTable {
-  display: flex;
-  margin-top: 15px;
-  border: 1px solid black;
-  border-radius: 15px;
-  padding: 20px;
-  background-color: white;
-}
-.topRow {
-  flex-direction: row;
-  margin-right: 10px;
-  text-align: right;
-}
-
-.bottomRow {
-  flex-direction: row;
-}
-
-.bottomButton {
-  position: relative;
-  left: 605px;
-  top: -25px;
-  width: 70px;
-  border-radius: 9px;
-}
-
-.sellMain {
-  justify-content: center;
-  justify-items: center;
-}
-
-/* remove arrows on number input chromium*/
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-/* remove arrows on number input firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
 }

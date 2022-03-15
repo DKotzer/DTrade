@@ -28,11 +28,11 @@
 <div class="summary">
   <table class="summaryTable table table-striped">
     <tr>
-      <th>Equity</th>
+      <th></th>
       <th>Symbol</th>
       <th>Shares</th>
       <th>Cost</th>
-      <th>Mkt Price</th>
+      <th>Price</th>
       <th>Total</th>
       <th>Change</th>
       <th></th>
@@ -40,7 +40,14 @@
 
     <% account.positions.forEach(function(position) { %>
     <tr>
-      <td><%=position.symbol %></td>
+      <td>
+        <img
+          class="icon"
+          src="/icons/<%=position.symbol.toLowerCase()%>.png"
+          alt="<%=position.symbol%>"
+          title="<%=position.symbol%>"
+        />
+      </td>
       <td><%=position.symbol %></td>
       <td><%=position.shares %></td>
       <td>

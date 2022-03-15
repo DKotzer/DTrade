@@ -20,7 +20,7 @@
     </div>
   </div>
   <p><p></p></p>
-  <div class="row2 float">
+  <div class="chart">
     <script
       type="text/javascript"
       src="https://s3.tradingview.com/tv.js"
@@ -45,8 +45,8 @@
           "MASimple@tv-basicstudies",
         ],
         show_popup_button: true,
-        popup_width: "600",
-        popup_height: "325",
+        popup_width: "700",
+        popup_height: "500",
       });
     </script>
   </div>
@@ -72,6 +72,12 @@
     <button type="submit">quote</button>
   </form>
   <div class="quoteTable">
+    <img
+          class="iconSpot"
+          src="/icons/<%=symbol.toLowerCase()%>.png"
+          alt="<%=symbol%>"
+          title="<%=symbol%>"
+        />
     <div class="topRow">
       <div>Symbol:</div>
       <div>Price:</div>
