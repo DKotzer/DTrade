@@ -29,9 +29,7 @@ const accountSchema = mongoose.Schema(
     },
     number: {
       type: Number,
-      default: Math.round(
-        Math.random() * (9999999999999 - 123456791011 + 1) + 1
-      ),
+      default: Math.round(Math.random() * (999999999 - 123456789) + 1),
     },
   },
   {

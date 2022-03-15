@@ -2,7 +2,7 @@
   text-decoration: none;
 } */
 body {
-  background-color: lightblue;
+  background-color: #8fbcbb;
 }
 
 /* ---nav styling---- */
@@ -13,17 +13,23 @@ section {
   margin: 0px auto;
   display: table;
 }
+.leftNav {
+  float: left;
+}
+.rightNav {
+  float: right;
+}
 
 header {
   width: 100%;
   display: table;
-  background-color: #fde428;
+  background-color: #d8dee9;
 }
 #logo {
   float: left;
   font-size: 24px;
   text-transform: uppercase;
-  color: #002e5b;
+  color: #5e81ac;
   font-weight: 600;
   padding: 20px 0px;
 }
@@ -31,6 +37,7 @@ nav {
   width: auto;
   float: right;
 }
+
 ul {
   list-style-type: none;
 }
@@ -44,24 +51,34 @@ a {
   text-decoration: none;
 }
 nav ul li a {
-  color: #002e5b;
+  color: #5e81ac;
+  font-weight: bold;
   font-size: 18px;
   padding: 25px 20px;
+  min-width: 85px;
   display: inline-block;
   transition: all 0.5s ease 0s;
+  text-align: center;
+}
+.nameNav {
+  font-size: 15px;
+  line-height: 26px;
+  padding-bottom: 26px;
+  margin-left: 20px;
 }
 nav ul li a:hover {
-  background-color: #002e5b;
-  color: #fde428;
+  background-color: #5e81ac;
+  color: #d8dee9;
   transition: all 0.5s ease 0s;
+  border-radius: 15px;
 }
 nav ul li a:hover i {
-  color: #fde428;
+  color: #d8dee9;
   transition: all 0.5s ease 0s;
 }
 nav ul li a i {
   padding-right: 10px;
-  color: #002e5b;
+  color: #5e81ac;
   transition: all 0.5s ease 0s;
 }
 
@@ -110,11 +127,14 @@ td {
 }
 .subheader {
   display: flex;
-  border: 1px solid black;
+  border: 2px inset #d8dee9;
   border-radius: 15px;
-  padding: 5px;
-  background-color: aliceblue;
-  width: 500px;
+  padding: 10px;
+  background-color: #d8dee9;
+  width: 440px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .row {
@@ -219,6 +239,7 @@ td {
 
 img {
   width: 600px;
+  border-radius: 15px;
 }
 
 #priceFix {
