@@ -1,57 +1,7 @@
-<div class="buyArea">
-  <div class="subheader">
-    <div class="row">
-      <div>Account: <%=account.number%></div>
-      <div>
-        Total Value:
-        <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-      </div>
-    </div>
-    <br />
-    <div class="row">
-      <div>
-        Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-        '$&,')%>
-      </div>
-      <div>
-        Market Value:
-        <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-      </div>
-    </div>
-  </div>
-  <p></p>
-  <div class="chart">
-    <script
-      type="text/javascript"
-      src="https://s3.tradingview.com/tv.js"
-    ></script>
-    <script type="text/javascript">
-      new TradingView.widget({
-        width: 550,
-        height: 475,
-        symbol: "KRAKEN:<%=symbol%>USD",
-        interval: "H",
-        timezone: "Etc/UTC",
-        theme: "Dark",
-        style: "1",
-        locale: "en",
-        toolbar_bg: "#f1f3f6",
-        enable_publishing: true,
-        hide_side_toolbar: true,
-        allow_symbol_change: true,
-        details: true,
-        hideideas: true,
-        studies: ["MASimple@tv-basicstudies"],
-        show_popup_button: true,
-        popup_width: "700",
-        popup_height: "500",
-      });
-    </script>
-  </div>
-  <p></p>
-  <h1>Buy</h1>
+<div class="wrapper">
   <div class="bottomForm">
     <form class="buy-form" action="/trade/buy/quote" method="post">
+      <h1>Buy</h1>
       <div class="form-input-material">
         <span class="center" for="symbol">Symbol</span>
         <input
@@ -79,64 +29,123 @@
       <p></p>
       <button type="submit" class="btn btn-primary btn-ghost">Quote</button>
     </form>
-  </div>
-  <% let red = '' %> <% let buyButton = '' %> <% if (shares*price > account.cash
-  ){ red="red", buyButton = 'hidden' } %>
 
-  <div class="quoteTable">
-    <img
-      class="iconSpot"
-      src="/icons/<%=symbol.toLowerCase()%>.png"
-      alt="<%=symbol%>"
-      title="<%=symbol%>"
-    />
-    <div class="topRow">
-      <div>Symbol:</div>
-      <div>Price:</div>
-      <div>Shares:</div>
-      <div>Total:</div>
-    </div>
-    <div class="bottomRow">
-      <div><%=symbol%></div>
-      <div><%=price%></div>
-      <div><%=shares%></div>
-      <div>
-        <span id="total" class="<%=red%>">
-          <%=(shares*price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,')%>
-        </span>
+    <% let red = '' %> <% let buyButton = '' %> <% if (shares*price >
+    account.cash ){ red="red", buyButton = 'hidden' } %>
+
+    <div class="quoteTable">
+      <img
+        class="iconSpot"
+        src="/icons/<%=symbol.toLowerCase()%>.png"
+        alt="<%=symbol%>"
+        title="<%=symbol%>"
+      />
+      <div class="topRow">
+        <div>Symbol:</div>
+        <div>Price:</div>
+        <div>Shares:</div>
+        <div>Total:</div>
+      </div>
+      <div class="bottomRow">
+        <div><%=symbol%></div>
+        <div><%=price%></div>
+        <div><%=shares%></div>
+        <div>
+          <span id="total" class="<%=red%>">
+            <%=(shares*price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,')%>
+          </span>
+        </div>
       </div>
     </div>
-  </div>
-  <form class="sharesForm" action="/trade/buy/submit" method="post">
-    <input class="hidden" type="text" name="symbol" value="<%=symbol%>" />
-    <input class="hidden" type="number" name="shares" value="<%=shares%>" />
-    <input
-      class="hidden"
-      type="number"
-      name="price"
-      value="<%=price.toFixed(2)%>"
-    />
-    <input
-      class="hidden"
-      type="number"
-      name="originalPrice"
-      value="<%=price.toFixed(2)%>"
-    />
-    <input
-      class="hidden"
-      type="number"
-      name="value"
-      value="<%=(shares*price).toFixed(2)%>"
-    />
-    <input class="hidden" type="text" name="account" value="<%=account._id%>" />
+    <form class="sharesForm" action="/trade/buy/submit" method="post">
+      <input class="hidden" type="text" name="symbol" value="<%=symbol%>" />
+      <input class="hidden" type="number" name="shares" value="<%=shares%>" />
+      <input
+        class="hidden"
+        type="number"
+        name="price"
+        value="<%=price.toFixed(2)%>"
+      />
+      <input
+        class="hidden"
+        type="number"
+        name="originalPrice"
+        value="<%=price.toFixed(2)%>"
+      />
+      <input
+        class="hidden"
+        type="number"
+        name="value"
+        value="<%=(shares*price).toFixed(2)%>"
+      />
+      <input
+        class="hidden"
+        type="text"
+        name="account"
+        value="<%=account._id%>"
+      />
 
-    <div>
-      <button
-        class="bottomButton btn btn-primary btn-ghost <%=buyButton%>"
-        type="submit"
-      >
-        Buy
-      </button>
+      <div>
+        <button
+          class="bottomButton btn btn-primary btn-ghost<%=buyButton%>"
+          type="submit"
+        >
+          Buy
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="buyArea">
+    <div class="subheader">
+      <div class="row">
+        <div>Account: <%=account.number%></div>
+        <div>
+          Total Value:
+          <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div>
+          Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+          '$&,')%>
+        </div>
+        <div>
+          Market Value:
+          <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+          '$&,')%>
+        </div>
+      </div>
     </div>
-  </form>
+    <p></p>
+    <div class="chart">
+      <script
+        type="text/javascript"
+        src="https://s3.tradingview.com/tv.js"
+      ></script>
+      <script type="text/javascript">
+        new TradingView.widget({
+          width: 550,
+          height: 475,
+          symbol: "KRAKEN:<%=symbol%>USD",
+          interval: "H",
+          timezone: "Etc/UTC",
+          theme: "Dark",
+          style: "1",
+          locale: "en",
+          toolbar_bg: "#f1f3f6",
+          enable_publishing: true,
+          hide_side_toolbar: true,
+          allow_symbol_change: true,
+          details: true,
+          hideideas: true,
+          studies: ["MASimple@tv-basicstudies"],
+          show_popup_button: true,
+          popup_width: "700",
+          popup_height: "500",
+        });
+      </script>
+    </div>
+    <p></p>
+  </div>
 </div>

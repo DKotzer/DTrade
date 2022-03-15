@@ -221,14 +221,6 @@ img {
   flex-direction: row;
 }
 
-.bottomButton {
-  position: relative;
-  left: 605px;
-  top: -25px;
-  width: 70px;
-  border-radius: 9px;
-}
-
 .sellMain {
   justify-content: center;
   justify-items: center;
@@ -336,21 +328,6 @@ btn:hover {
   width: 100px;
 }
 
-.buy-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5px 10px;
-  margin: 0 auto;
-  width: 230px;
-  height: 150px;
-  color: black;
-  background-color: #d8dee9;
-  border: 2px solid #5e81ac;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
 .buy-form btn {
   width: 100%;
   background-color: #5e81ac;
@@ -371,9 +348,6 @@ h1 {
 
 .quoteTable {
   padding-bottom: 50px;
-}
-.bottomButton {
-  transform: translateY(-55px);
 }
 
 /* button {
@@ -408,4 +382,54 @@ button::before {
 
 #widget-container {
   border-radius: 16px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.bottomForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  align-content: center;
+  width: 300px;
+
+  /* align-items: flex-end; */
+  /* align-content: flex-end; */
+}
+.buy-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 10px;
+  margin: 0 auto;
+  width: 230px;
+  height: 210px;
+  color: black;
+  background-color: #d8dee9;
+  border: 2px solid #5e81ac;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* .noneMe {
+  type: hidden;
+} */
+
+.bottomButton {
+  transform: translateY(-400px);
+  transform: translateX(-700px);
+}
+.sharesForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  margin: 0;
+  padding: 0;
 }

@@ -1,24 +1,60 @@
-<div class="buyArea">
-  <div class="subheader">
-    <div class="row">
-      <div>Account: <%=account.number%></div>
-      <div>
-        Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-        '$&,')%>
+
+
+<div class="wrapper">
+  <div class="bottomForm">
+    
+    <form class="buy-form" action="/trade/buy/quote" method="post">
+      <h1>Buy</h1>
+      <div class="form-input-material">
+        <span class="center" for="symbol">Symbol</span>
+        <input
+          class="sellDropDown"
+          type="text"
+          onkeyup="this.value = this.value.toUpperCase();"
+          list="symbol"
+          name="symbol"
+          id="symbol"
+        />
       </div>
-    </div>
-    <br />
-    <div class="row">
-      <div>
-        Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-        '$&,')%>
+      <div class="form-input-material">
+        <label class="center" for="shares">Shares</label>
+        <input
+          required
+          type="number"
+          name="shares"
+          placeholder="shares"
+          min="1"
+          class="sellDropDown"
+        />
       </div>
-      <div>
-        Market Value:
-        <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-      </div>
-    </div>
+      <p></p>
+      <button type="submit" class="btn btn-primary btn-ghost buttonTest">
+        Quote
+      </button>
+    </form>
   </div>
+
+  <div class="buyArea">
+    <div class="subheader">
+      <div class="row">
+        <div>Account: <%=account.number%></div>
+        <div>
+          Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+          '$&,')%>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div>
+          Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+          '$&,')%>
+        </div>
+        <div>
+          Market Value:
+          <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+        </div>
+      </div>
+    </div>
 
   <div class="chart">
     <script
@@ -49,35 +85,7 @@
     </script>
   </div>
   <P> </P>
-</div>
-<h1>Buy</h1>
-<div class="bottomForm">
-  <form class="buy-form" action="/trade/buy/quote" method="post">
-    <div class="form-input-material">
-      <span class="center" for="symbol">Symbol</span>
-      <input
-        class="sellDropDown"
-        type="text"
-        onkeyup="this.value = this.value.toUpperCase();"
-        list="symbol"
-        name="symbol"
-        id="symbol"
-      />
-    </div>
-    <div class="form-input-material">
-      <label class="center" for="shares">Shares</label>
-      <input
-        required
-        type="number"
-        name="shares"
-        placeholder="shares"
-        min="1"
-        class="sellDropDown"
-      />
-    </div>
-    <p></p>
-    <button type="submit" class="btn btn-primary btn-ghost buttonTest">
-      Quote
-    </button>
-  </form>
+  </div>
+  </div>
+  </div>
 </div>
