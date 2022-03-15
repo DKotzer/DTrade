@@ -107,6 +107,7 @@ nav ul li a i {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: -15px;
 }
 .title {
   text-align: center;

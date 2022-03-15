@@ -29,6 +29,7 @@
   <div class="summary">
     <table class="summaryTable table table-striped">
       <tr>
+        <th></th>
         <th>Symbol</th>
         <th>Shares</th>
         <th>Price</th>
@@ -38,6 +39,14 @@
 
       <% account.history.forEach(function(trade) { %>
       <tr>
+        <td>
+        <img
+          class="icon"
+          src="/icons/<%=trade.symbol.toLowerCase()%>.png"
+          alt="<%=trade.symbol%>"
+          title="<%=trade.symbol%>"
+        />
+      </td>
         <td><%=trade.symbol %></td>
         <td><%=trade.shares %></td>
         <td><%=trade.price %></td>

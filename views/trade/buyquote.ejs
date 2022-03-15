@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <p><p></p></p>
+  <p></p>
   <div class="chart">
     <script
       type="text/javascript"
@@ -41,17 +41,14 @@
         allow_symbol_change: true,
         details: true,
         hideideas: true,
-        studies: [
-          "MASimple@tv-basicstudies",
-        ],
+        studies: ["MASimple@tv-basicstudies"],
         show_popup_button: true,
         popup_width: "700",
         popup_height: "500",
       });
     </script>
   </div>
-  <P> </P>
-  <p></p>
+
   <h1>Buy</h1>
   <form class="buyForm" action="/trade/buy/quote" method="post">
     <div>
@@ -73,11 +70,11 @@
   </form>
   <div class="quoteTable">
     <img
-          class="iconSpot"
-          src="/icons/<%=symbol.toLowerCase()%>.png"
-          alt="<%=symbol%>"
-          title="<%=symbol%>"
-        />
+      class="iconSpot"
+      src="/icons/<%=symbol.toLowerCase()%>.png"
+      alt="<%=symbol%>"
+      title="<%=symbol%>"
+    />
     <div class="topRow">
       <div>Symbol:</div>
       <div>Price:</div>

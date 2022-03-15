@@ -238,7 +238,7 @@ exports.trade_buy_submit_post = (req, res) => {
             price: req.body.price,
             shares: req.body.shares,
             value: req.body.value,
-            trade: "buy",
+            trade: "Buy",
           };
           account.history.push(history);
           account.save();
