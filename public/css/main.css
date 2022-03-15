@@ -161,6 +161,10 @@ td {
 
 .summaryTable {
   width: 60%;
+  border-collapse: collapse;
+  border-radius: 1em;
+  /* overflow: hidden; */
+  background-color: #d8dee9;
 }
 
 /* Dropdown Button */
