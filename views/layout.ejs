@@ -13,10 +13,51 @@
     />
     <link rel="stylesheet" href="/css/main.css" />
   </head>
-  <body>
-    <h1 class="title">DCrypto</h1>
 
-    <hr />
+  <p></p>
+
+  <header>
+    <section>
+      <a id="logo" href="/">DCrypto</a>
+      <nav>
+        <ul>
+          <li>
+            <a href="/trade/quote">Quote</a>
+          </li>
+          <li>
+            <a href="/trade/buy">Buy</a>
+          </li>
+          <li>
+            <a href="/trade/sell">Sell</a>
+          </li>
+          <li>
+            <a href="/trade/history">History</a>
+          </li>
+          <li>
+            <a href="/">Overview</a>
+          </li>
+
+          <span>
+            <li>
+              <span class="name">
+                <% if(currentUser){ %>
+                <a href="/">
+                  <%=currentUser.firstName%> <%=currentUser.lastName%></a
+                >
+              </span>
+            </li>
+            &nbsp; &nbsp; &nbsp;
+            <li><a href="/auth/logout">Sign Out</a></li>
+            <%} else { %>
+            <li><a href="/auth/signin">Sign In</a></li>
+            <li><a href="/auth/signup">Sign Up</a></li>
+            <%}%>
+          </span>
+        </ul>
+      </nav>
+    </section>
+  </header>
+  <body>
     <% if(alerts.validationErrors) { %> <%
     alerts.validationErrors.forEach(function(msg) { %>
     <div class="alert alert-danger">Your<%=msg.param %> has <%=msg.msg %></div>
@@ -27,27 +68,6 @@
     alerts.error.forEach(function(msg) { %>
     <div class="alert alert-danger"><%=msg %></div>
     <% }) %> <% }%>
-    <nav class="navbar-brand">
-      <ul>
-        <a href="/trade/quote">Quote</a>
-        <a href="/trade/buy">Buy</a>
-        <a href="/trade/sell">Sell</a>
-        <a href="/trade/history">History</a>
-        <a href="/">Overview</a>
-        <span class="menu-right">
-          <span class="name">
-            <% if(currentUser){ %> <%=currentUser.firstName%>
-            <%=currentUser.lastName%>
-          </span>
-          &nbsp; &nbsp; &nbsp;
-          <a href="/auth/logout">Sign Out</a>
-          <%} else { %>
-          <a href="/auth/signin">Sign In</a>
-          <a href="/auth/signup">Sign Up</a>
-          <%}%>
-        </span>
-      </ul>
-    </nav>
     <br /><br />
 
     <%- body %> <br /><br />

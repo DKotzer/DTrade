@@ -15,16 +15,6 @@ async function quote(ticker) {
   // await res.render("trade/quote.ejs", { btcPrice: btcPrice });
 }
 
-// async function quotes([]) {
-//   // let bitfinex = new ccxt.bitfinex();
-//   // let btcPrice = (bitfinex.id, await bitfinex.fetchTicker("BTC/USD"));
-//   let kraken = new ccxt.kraken();
-//   let price = (kraken.id, await kraken.fetchTicker(`${ticker}/USD`));
-//   console.log(`${ticker}/USD: ` + price.ask);
-//   return price.ask;
-//   // await res.render("trade/quote.ejs", { btcPrice: btcPrice });
-// }
-
 //this function goes through every position and updates all the data in database + and recaluclates account totals
 exports.index_get = async (req, res) => {
   Account.findById(req.user.account)
@@ -47,12 +37,6 @@ exports.index_get = async (req, res) => {
         account.save();
         // console.log("new market value :" + newMarketValue);
       });
-      // console.log("new market value out of for Each:" + newMarketValue);
-      // account.totalValue = newMarketValue.reduce((a, b) => a + b, 0);
-      // account.save();
-      //for each position, holderVar += position.value
-      //marketValue = holderVar
-      //totalValue = buying power + marketValue
       res.render("home/index", { account });
     });
 };

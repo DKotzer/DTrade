@@ -99,7 +99,7 @@ exports.trade_buy_quote_post = async (req, res) => {
     "REP",
     "NANO",
   ];
-  //check if req.body.symbol is in array  .includes  if(arr.includes()){}
+  //check if req.body.symbol is in array of acceptable symbols
   if (stonks.includes(`${req.body.symbol}`)) {
     let symbol = req.body.symbol;
     let shares = req.body.shares;
@@ -110,6 +110,7 @@ exports.trade_buy_quote_post = async (req, res) => {
       res.render("trade/buyquote", { price, account, symbol, shares });
     });
   } else {
+    //error if unnacceptable symbol input but it only shows after 2nd time on onwards for some reason
     req.flash("error", "Please input a Valid Symbol");
     Account.findById(req.user.account)
       .populate("positions")
@@ -255,10 +256,6 @@ exports.trade_sell_submit_post = (req, res) => {
       //need help here, existingPosition is not updating
       console.log("existingPosition " + existingPosition);
       if (existingPosition != "") {
-        // console.log(
-        //   "existingPosition.shares before " +
-        //     JSON.parse(existingPosition).symbol
-        // );
         // console.log("stringify " + JSON.stringify(existingPosition));
         // console.log("existingPosition " + existingPosition[0].shares);
         // console.log("existing shares before " + existingPosition[0].shares);
@@ -275,13 +272,8 @@ exports.trade_sell_submit_post = (req, res) => {
             if (existingPosition[0].shares == 0) {
               console.log("existing position id2 " + existingPosition[0]._id);
               console.log("test2 " + existingPosition[0].shares);
-              let idHolder = existingPosition[0]._id;
               Position.findByIdAndDelete(existingPosition[0]._id)
-                .then(
-                  console.log("deleted succesffully")
-                  // res.send("Hello World")
-                  // console.log(existingPosition[0]._id)
-                )
+                .then(console.log("deleted succesffully"))
                 .catch((err) => {
                   console.log(err);
                 });
