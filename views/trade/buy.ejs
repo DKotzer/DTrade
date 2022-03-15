@@ -20,15 +20,41 @@
     </div>
   </div>
 
-  <div>graph</div>
-
-  <img class="stonks" src="https://i.imgur.com/EFqRbev.png" alt="stonks" />
+  <div class="chart">
+    <script
+      type="text/javascript"
+      src="https://s3.tradingview.com/tv.js"
+    ></script>
+    <script type="text/javascript">
+      new TradingView.widget({
+        width: 550,
+        height: 475,
+        symbol: "KRAKEN:ETHUSD",
+        interval: "H",
+        timezone: "Etc/UTC",
+        theme: "Dark",
+        style: "1",
+        locale: "en",
+        toolbar_bg: "#f1f3f6",
+        enable_publishing: true,
+        hide_side_toolbar: true,
+        allow_symbol_change: true,
+        details: true,
+        hideideas: true,
+        studies: ["MASimple@tv-basicstudies"],
+        show_popup_button: true,
+        popup_width: "700",
+        popup_height: "500",
+      });
+    </script>
+  </div>
   <P> </P>
-  <p></p>
-  <h1>Buy</h1>
-  <form class="buyForm" action="/trade/buy/quote" method="post">
-    <div class="sellDropDown">
-      <label for="symbol">Symbol</label>
+</div>
+<h1>Buy</h1>
+<div class="bottomForm">
+  <form class="buy-form" action="/trade/buy/quote" method="post">
+    <div class="form-input-material">
+      <span class="center" for="symbol">Symbol</span>
       <input
         class="sellDropDown"
         type="text"
@@ -38,8 +64,8 @@
         id="symbol"
       />
     </div>
-    <div class="sellDropDown">
-      <label for="shares">Shares</label>
+    <div class="form-input-material">
+      <label class="center" for="shares">Shares</label>
       <input
         required
         type="number"
@@ -49,7 +75,9 @@
         class="sellDropDown"
       />
     </div>
-    <button class="sellDropDown" type="submit">quote</button>
+    <p></p>
+    <button type="submit" class="btn btn-primary btn-ghost buttonTest">
+      Quote
+    </button>
   </form>
-  <p></p>
 </div>

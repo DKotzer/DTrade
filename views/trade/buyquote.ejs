@@ -48,26 +48,41 @@
       });
     </script>
   </div>
-
+  <p></p>
   <h1>Buy</h1>
-  <form class="buyForm" action="/trade/buy/quote" method="post">
-    <div>
-      <label for="symbol">Symbol</label>
-      <input
-        class="sellDropDown"
-        type="text"
-        name="symbol"
-        value="<%=symbol%>"
-      />
-    </div>
-    <% let red = '' %> <% let buyButton = '' %> <% if (shares*price >
-    account.cash ){ red="red", buyButton = 'hidden' } %>
-    <div>
-      <label for="shares">shares</label>
-      <input type="number" name="shares" value="<%=shares%>" />
-    </div>
-    <button type="submit">quote</button>
-  </form>
+  <div class="bottomForm">
+    <form class="buy-form" action="/trade/buy/quote" method="post">
+      <div class="form-input-material">
+        <span class="center" for="symbol">Symbol</span>
+        <input
+          class="sellDropDown"
+          type="text"
+          onkeyup="this.value = this.value.toUpperCase();"
+          list="symbol"
+          name="symbol"
+          id="symbol"
+          value="<%=symbol%>"
+        />
+      </div>
+
+      <div class="form-input-material">
+        <label class="center" for="shares">Shares</label>
+        <input
+          required
+          type="number"
+          name="shares"
+          min="1"
+          class="sellDropDown"
+          value="<%=shares%>"
+        />
+      </div>
+      <p></p>
+      <button type="submit" class="btn btn-primary btn-ghost">Quote</button>
+    </form>
+  </div>
+  <% let red = '' %> <% let buyButton = '' %> <% if (shares*price > account.cash
+  ){ red="red", buyButton = 'hidden' } %>
+
   <div class="quoteTable">
     <img
       class="iconSpot"
@@ -116,7 +131,10 @@
     <input class="hidden" type="text" name="account" value="<%=account._id%>" />
 
     <div>
-      <button class="bottomButton center <%=buyButton%>" type="submit">
+      <button
+        class="bottomButton btn btn-primary btn-ghost <%=buyButton%>"
+        type="submit"
+      >
         Buy
       </button>
     </div>

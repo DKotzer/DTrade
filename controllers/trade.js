@@ -111,12 +111,14 @@ exports.trade_buy_quote_post = async (req, res) => {
     });
   } else {
     //error if unnacceptable symbol input but it only shows after 2nd time on onwards for some reason
-    req.flash("error", "Please input a Valid Symbol");
+    console.log("unacceptable symbol");
     Account.findById(req.user.account)
       .populate("positions")
       // .populate("user")
       .then((account) => {
-        res.render("trade/buy", { account });
+        req.flash("error", "Please input a Valid Symbol");
+        res.redirect("back");
+        // res.render("trade/buy", { account });
       });
   }
 };
