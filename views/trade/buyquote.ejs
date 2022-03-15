@@ -56,44 +56,44 @@
           </span>
         </div>
       </div>
-    </div>
-    <form class="sharesForm" action="/trade/buy/submit" method="post">
-      <input class="hidden" type="text" name="symbol" value="<%=symbol%>" />
-      <input class="hidden" type="number" name="shares" value="<%=shares%>" />
-      <input
-        class="hidden"
-        type="number"
-        name="price"
-        value="<%=price.toFixed(2)%>"
-      />
-      <input
-        class="hidden"
-        type="number"
-        name="originalPrice"
-        value="<%=price.toFixed(2)%>"
-      />
-      <input
-        class="hidden"
-        type="number"
-        name="value"
-        value="<%=(shares*price).toFixed(2)%>"
-      />
-      <input
-        class="hidden"
-        type="text"
-        name="account"
-        value="<%=account._id%>"
-      />
+      <form class="sharesForm" action="/trade/buy/submit" method="post">
+        <input class="hidden" type="text" name="symbol" value="<%=symbol%>" />
+        <input class="hidden" type="number" name="shares" value="<%=shares%>" />
+        <input
+          class="hidden"
+          type="number"
+          name="price"
+          value="<%=price.toFixed(2)%>"
+        />
+        <input
+          class="hidden"
+          type="number"
+          name="originalPrice"
+          value="<%=price.toFixed(2)%>"
+        />
+        <input
+          class="hidden"
+          type="number"
+          name="value"
+          value="<%=(shares*price).toFixed(2)%>"
+        />
+        <input
+          class="hidden"
+          type="text"
+          name="account"
+          value="<%=account._id%>"
+        />
 
-      <div>
-        <button
-          class="bottomButton btn btn-primary btn-ghost<%=buyButton%>"
-          type="submit"
-        >
-          Buy
-        </button>
-      </div>
-    </form>
+        <div>
+          <button
+            class="bottomButton btn btn-primary btn-ghost<%=buyButton%>"
+            type="submit"
+          >
+            Buy
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
   <div class="buyArea">
     <div class="subheader">
