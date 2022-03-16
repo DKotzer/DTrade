@@ -105,10 +105,21 @@ exports.trade_buy_quote_post = async (req, res) => {
     let shares = req.body.shares;
     // console.log("symbol " + symbol);
     let price = await quote(`${symbol}`);
+    if (req.body.shares > 0) {
+      Account.findById(req.user.account).then((account) => {
+        res.render("trade/buyquote", { price, account, symbol, shares });
+      });
+    } else {
+      Account.findById(req.user.account)
+        .populate("positions")
+        // .populate("user")
+        .then((account) => {
+          req.flash("error", "You cannot buy 0 or negative shares");
+          res.redirect("back");
+          // res.render("trade/buy", { account });
+        });
+    }
     // console.log("price " + price);
-    Account.findById(req.user.account).then((account) => {
-      res.render("trade/buyquote", { price, account, symbol, shares });
-    });
   } else {
     //error if unnacceptable symbol input but it only shows after 2nd time on onwards for some reason
     console.log("unacceptable symbol");
