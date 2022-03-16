@@ -34,26 +34,34 @@
     account.cash ){ red="red", buyButton = 'hidden' } %>
 
     <div class="quoteTable">
-      <img
-        class="iconSpot"
-        src="/icons/<%=symbol.toLowerCase()%>.png"
-        alt="<%=symbol%>"
-        title="<%=symbol%>"
-      />
-      <div class="topRow">
-        <div>Symbol:</div>
-        <div>Price:</div>
-        <div>Shares:</div>
-        <div>Total:</div>
+      <div class="iconContainer">
+        <img
+          class="iconSpot"
+          src="/icons/<%=symbol.toLowerCase()%>.png"
+          alt="<%=symbol%>"
+          title="<%=symbol%>"
+        />
       </div>
-      <div class="bottomRow">
-        <div><%=symbol%></div>
-        <div><%=price%></div>
-        <div><%=shares%></div>
-        <div>
-          <span id="total" class="<%=red%>">
-            <%=(shares*price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,')%>
-          </span>
+      <div class="topBottomThing">
+        <div class="topThing">
+          <div class="topRow">
+            <div>Symbol:</div>
+            <div>Price:</div>
+            <div>Shares:</div>
+            <div>Total:</div>
+          </div>
+        </div>
+        <div class="bottomThing">
+          <div class="bottomRow">
+            <div><%=symbol%></div>
+            <div><%=price%></div>
+            <div><%=shares%></div>
+            <div>
+              <span id="total" class="<%=red%>">
+                <%=(shares*price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,')%>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
       <form class="sharesForm" action="/trade/buy/submit" method="post">
