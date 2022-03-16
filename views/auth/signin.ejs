@@ -1,5 +1,5 @@
 <h1>Sign In</h1>
-<form action="/auth/signin" method="post">
+<form class="authForm" action="/auth/signin" method="post">
   <div class="form-group">
     <label>Email</label>
     <input
@@ -11,9 +11,16 @@
   </div>
   <br />
   <div>
-    <label>Password</label>
-    <input type="password" name="password" id="password" class="form-contorl" />
+    <label>Password</label><br />
+    <input
+      type="password"
+      name="password"
+      id="password"
+      class="form-contorl form-group password"
+    />
   </div>
   <br />
-  <div><button type="submit" class="btn btn-primary">Sign In</button></div>
+  <div>
+    <button type="submit" class="btn btn-primary">Sign In</button>
+  </div>
 </form>

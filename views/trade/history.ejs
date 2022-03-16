@@ -1,45 +1,45 @@
-<div class="buyArea">
-  <div class="subheader">
-    <div class="row">
-      <div>Account: <%=account.number%></div>
-      <div>
-        Total Value:
-        <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-      </div>
+<div class="buyArea"></div>
+<p></p>
+<p></p>
+<h1 class="center">Account History</h1>
+<p></p>
+<p></p>
+<div class="subheader">
+  <div class="row">
+    <div>Account: <%=account.number%></div>
+    <div>
+      Total Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+      '$&,')%>
     </div>
-    <br />
-    <div class="row">
-      <div>
-        Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-        '$&,')%>
-      </div>
-      <div>
-        Market Value:
-        <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-      </div>
+  </div>
+  <br />
+  <div class="row">
+    <div>
+      Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+      '$&,')%>
+    </div>
+    <div>
+      Market Value:
+      <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
     </div>
   </div>
 </div>
-<p></p>
-<p></p>
-<h1 class="center">
-  Account History</h1>
-  <p></p>
-  <p></p>
-  <div class="summary">
-    <table class="summaryTable table table-striped">
-      <tr>
-        <th></th>
-        <th>Symbol</th>
-        <th>Shares</th>
-        <th>Price</th>
-        <th>Total</th>
-        <th>Order</th>
-      </tr>
+<div class="summary">
+  <table class="summaryTable table table-striped table-dark table-hover">
+    <tr>
+      <th></th>
+      <th>Symbol</th>
+      <th>Shares</th>
+      <th>Price</th>
+      <th>Total</th>
+      <th>Order</th>
+    </tr>
 
-      <% account.history.forEach(function(trade) { %>
-      <tr>
-        <td>
+    <% account.history.forEach(function(trade) { %>
+    <tr>
+      <% if(trade.trade == "Sell"){ red="red" }%>
+      <td>
+        <% if(trade.trade == "Buy") { red="green" }%>
         <img
           class="icon"
           src="/icons/<%=trade.symbol.toLowerCase()%>.png"
@@ -47,16 +47,15 @@
           title="<%=trade.symbol%>"
         />
       </td>
-        <td><%=trade.symbol %></td>
-        <td><%=trade.shares %></td>
-        <td><%=trade.price %></td>
-        <td>
-          <%=(trade.shares*trade.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-          '$&,') %>
-        </td>
-        <td><%=trade.trade%></td>
-      </tr>
-      <% }) %>
-    </table>
-  </div>
-</h1>
+      <td><%=trade.symbol %></td>
+      <td><%=trade.shares %></td>
+      <td><%=trade.price %></td>
+      <td>
+        <%=(trade.shares*trade.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+        '$&,') %>
+      </td>
+      <td class="<%=red%>"><%=trade.trade%></td>
+    </tr>
+    <% }) %>
+  </table>
+</div>
