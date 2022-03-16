@@ -106,10 +106,9 @@ nav ul li a i {
 }
 .buyArea {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: -15px;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* flex-direction: column; */
 }
 .title {
   text-align: center;
@@ -404,10 +403,10 @@ button::before {
   transition: all 250ms;
 } */
 
-#widget-container {
+/* #widget-container {
   border-radius: 16px;
   overflow: hidden;
-}
+} */
 
 .wrapper {
   display: flex;
@@ -473,3 +472,6 @@ button::before {
 /* margin-left: -775px; */
 /* margin-bottom: -135px; */
 /* } */
+.holder {
+  height: 266px;
+}

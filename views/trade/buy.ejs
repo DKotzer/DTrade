@@ -1,6 +1,28 @@
-
+<div class="toptop">
+  <div class="subheader">
+      <div class="row">
+        <div>Account: <%=account.number%></div>
+        <div>
+          Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+          '$&,')%>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div>
+          Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+          '$&,')%>
+        </div>
+        <div>
+          Market Value:
+          <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+        </div>
+      </div>
+    </div>
+</div>
 
 <div class="wrapper">
+  <div class="leftWrapper">
   <div class="bottomForm">
     
     <form class="buy-form" action="/trade/buy/quote" method="post">
@@ -33,28 +55,13 @@
       </button>
     </form>
   </div>
-
-  <div class="buyArea">
-    <div class="subheader">
-      <div class="row">
-        <div>Account: <%=account.number%></div>
-        <div>
-          Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-          '$&,')%>
-        </div>
-      </div>
-      <br />
-      <div class="row">
-        <div>
-          Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-          '$&,')%>
-        </div>
-        <div>
-          Market Value:
-          <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-        </div>
-      </div>
+  <div>
+    <div class="quoteTable holder"></div>
+  </div>
+</div>
+  <div class="buyArea ">
     </div>
+    
 
   <div class="chart">
     <script
