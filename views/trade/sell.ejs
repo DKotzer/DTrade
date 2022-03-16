@@ -1,98 +1,99 @@
 
-<div class="top">
-  <div class="topRow">
-      <div>
-          Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-          '$&,')%>
-      </div>
-      <div>
-        Market Value:
-        <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-      </div>
-       <div>
-          Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-          '$&,')%>
-      </div> 
+<div class="everything">
+  <div class="top">
+    <div class="topRow">
+        <div>
+            Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+            '$&,')%>
+        </div>
+        <div>
+          Market Value:
+          <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+        </div>
+        <div>
+            Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+            '$&,')%>
+        </div> 
 
+      </div>
+    </div>
+  
+
+
+  <div class="wrapper">
+    <div class="leftWrapper">
+    <div class="bottomForm">
+      
+      <form class="sell-form" action="/trade/sell/quote" method="post">
+        <h1>Sell</h1>
+        <div class="sellDropDown">
+        <select class="form-select select sellDropDown" name="symbol">
+          <option selected disabled hidden>Symbol</option>
+          <% account.positions.forEach(function(position) { %>
+          <option value="<%=position.symbol%>"><%=position.symbol%></option>
+          <% }) %>
+      </div>
+        </div>
+        <div class="form-input-material">
+          <label class="center" for="shares">Shares</label>
+          <input
+            required
+            type="number"
+            name="shares"
+            placeholder="shares"
+            step="0.0001"
+            class="sellDropDown"
+          />
+        </div>
+        <p></p>
+        <button type="submit" class="btn btn-primary btn-ghost buttonTest">
+          Quote
+        </button>
+      </form>
+    </div>
+    <div>
+      <div class="quoteTable holder"></div>
     </div>
   </div>
-</div>
+    <div class="buyArea ">
+      
+      
 
-
-<div class="wrapper">
-  <div class="leftWrapper">
-  <div class="bottomForm">
-    
-    <form class="sell-form" action="/trade/sell/quote" method="post">
-      <h1>Sell</h1>
-      <div class="sellDropDown">
-      <select class="form-select select sellDropDown" name="symbol">
-        <option selected disabled hidden>Symbol</option>
-        <% account.positions.forEach(function(position) { %>
-        <option value="<%=position.symbol%>"><%=position.symbol%></option>
-        <% }) %>
+    <div class="chart">
+      <script
+        type="text/javascript"
+        src="https://s3.tradingview.com/tv.js"
+      ></script>
+      <script type="text/javascript">
+        new TradingView.widget({
+          autosize: true,
+          symbol: "KRAKEN:ETHUSD",
+          interval: "H",
+          timezone: "Etc/UTC",
+          theme: "Dark",
+          style: "1",
+          locale: "en",
+          toolbar_bg: "#f1f3f6",
+          enable_publishing: true,
+          hide_side_toolbar: true,
+          allow_symbol_change: true,
+          details: true,
+          hideideas: true,
+          studies: ["MASimple@tv-basicstudies"],
+          show_popup_button: true,
+          popup_width: "700",
+          popup_height: "500",
+        });
+      </script>
     </div>
-      </div>
-      <div class="form-input-material">
-        <label class="center" for="shares">Shares</label>
-        <input
-          required
-          type="number"
-          name="shares"
-          placeholder="shares"
-          step="0.0001"
-          class="sellDropDown"
-        />
-      </div>
-      <p></p>
-      <button type="submit" class="btn btn-primary btn-ghost buttonTest">
-        Quote
-      </button>
-    </form>
-  </div>
-  <div>
-    <div class="quoteTable holder"></div>
-  </div>
-</div>
-  <div class="buyArea ">
     </div>
-    
+    <P> </P>
+    </div>
+    </div>
+    </div>
+  </div>
 
-  <div class="chart">
-    <script
-      type="text/javascript"
-      src="https://s3.tradingview.com/tv.js"
-    ></script>
-    <script type="text/javascript">
-      new TradingView.widget({
-        width: 550,
-        height: 475,
-        symbol: "KRAKEN:ETHUSD",
-        interval: "H",
-        timezone: "Etc/UTC",
-        theme: "Dark",
-        style: "1",
-        locale: "en",
-        toolbar_bg: "#f1f3f6",
-        enable_publishing: true,
-        hide_side_toolbar: true,
-        allow_symbol_change: true,
-        details: true,
-        hideideas: true,
-        studies: ["MASimple@tv-basicstudies"],
-        show_popup_button: true,
-        popup_width: "700",
-        popup_height: "500",
-      });
-    </script>
-  </div>
-  <P> </P>
-  </div>
-  </div>
-  </div>
 </div>
-
-
 
 
 

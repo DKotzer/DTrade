@@ -1,162 +1,161 @@
+<div class="everything">
 
-
-<div class="top">
-  <div class="topRow">
-      <div>
-          Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-          '$&,')%>
-      </div>
-      <div>
-        Market Value:
-        <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-      </div>
-       <div>
-          Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-          '$&,')%>
-      </div> 
-
-    </div>
-  </div>
-</div>
-
-
-<div class="wrapper">
-  <div class="bottomForm">
-    <form class="buy-form" action="/trade/sell/quote" method="post">
-      <h1 class="sellHeader">Sell</h1>
-      <div class="form-input-material">
-        <select class="form-select select sellDropDown" name="symbol" value="<%=symbol%>">
-    <selected>
-      <% account.positions.forEach(function(position) { %>
-        <option value="<%=position.symbol%>"><%=position.symbol%></option>
-      <% }) %>
-  </selected>  
-      </div>
-
-      <div class="form-input-material">
-        <label class="center" for="shares">Shares</label>
-        <input
-          required
-          type="number"
-          name="shares"
-          min="1"
-          class="sellDropDown"
-          value="<%=shares%>"
-        />
-      </div>
-      <p></p>
-      <button type="submit" class="btn btn-primary btn-ghost">Quote</button>
-    </form>
-
-    <% let red = '' %> <% let buyButton = '' %> <% if (shares >
-    account.cash ){ red="red", buyButton = 'hidden' } %>
-
-    <div class="quoteTable">
-      <div class="iconContainer">
-        <img
-          class="iconSpot"
-          src="/icons/<%=symbol.toLowerCase()%>.png"
-          alt="<%=symbol%>"
-          title="<%=symbol%>"
-        />
-      </div>
-      <div class="topBottomThing">
-        <div class="topThing">
-          <div class="tt">
-            <div>Symbol:</div>
-            <div>Price:</div>
-            <div>Shares:</div>
-            <div>Total:</div>
-          </div>
+  <div class="top">
+    <div class="topRow">
+        <div>
+            Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+            '$&,')%>
         </div>
-        <div class="bottomThing">
-          <div class="bottomRow">
-            <div><%=symbol%></div>
-            <div><%=price%></div>
-            <div class="<%=red%>"><%=shares%></div>
-            <div>
-              <span id="total" class=""">
-                <%=(shares*price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,')%>
-              </span>
+        <div>
+          Market Value:
+          <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+        </div>
+        <div>
+            Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+            '$&,')%>
+        </div> 
+
+      </div>
+    
+  </div>
+
+
+  <div class="wrapper">
+    <div class="bottomForm">
+      <form class="buy-form" action="/trade/sell/quote" method="post">
+        <h1 class="sellHeader">Sell</h1>
+        <div class="form-input-material">
+          <select class="form-select select sellDropDown" name="symbol" value="<%=symbol%>">
+      <selected>
+        <% account.positions.forEach(function(position) { %>
+          <option value="<%=position.symbol%>"><%=position.symbol%></option>
+        <% }) %>
+    </selected>  
+        </div>
+
+        <div class="form-input-material">
+          <label class="center" for="shares">Shares</label>
+          <input
+            required
+            type="number"
+            name="shares"
+            min="1"
+            class="sellDropDown"
+            value="<%=shares%>"
+          />
+        </div>
+        <p></p>
+        <button type="submit" class="btn btn-primary btn-ghost">Quote</button>
+      </form>
+
+      <% let red = '' %> <% let buyButton = '' %> <% if (shares >
+      account.cash ){ red="red", buyButton = 'hidden' } %>
+
+      <div class="quoteTable">
+        <div class="iconContainer">
+          <img
+            class="iconSpot"
+            src="/icons/<%=symbol.toLowerCase()%>.png"
+            alt="<%=symbol%>"
+            title="<%=symbol%>"
+          />
+        </div>
+        <div class="topBottomThing">
+          <div class="topThing">
+            <div class="tt">
+              <div>Symbol:</div>
+              <div>Price:</div>
+              <div>Shares:</div>
+              <div>Total:</div>
+            </div>
+          </div>
+          <div class="bottomThing">
+            <div class="bottomRow">
+              <div><%=symbol%></div>
+              <div><%=price%></div>
+              <div class="<%=red%>"><%=shares%></div>
+              <div>
+                <span id="total" class=""">
+                  <%=(shares*price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,')%>
+                </span>
+              </div>
             </div>
           </div>
         </div>
+        <form class="sharesForm" action="/trade/sell/submit" method="post">
+          <input class="hidden" type="text" name="symbol" value="<%=symbol%>" />
+          <input class="hidden" type="number" name="shares" value="<%=shares%>" />
+          <input
+            class="hidden"
+            type="number"
+            name="price"
+            value="<%=price.toFixed(2)%>"
+          />
+          <input
+            class="hidden"
+            type="number"
+            name="originalPrice"
+            value="<%=price.toFixed(2)%>"
+          />
+          <input
+            class="hidden"
+            type="number"
+            name="value"
+            value="<%=(shares*price).toFixed(2)%>"
+          />
+          <input
+            class="hidden"
+            type="text"
+            name="account"
+            value="<%=account._id%>"
+          />
+
+          <div>
+            <button
+              class="bottomButton btn btn-primary btn-ghost"
+              type="submit"
+            >
+              Sell
+            </button>
+          </div>
+        </form>
       </div>
-      <form class="sharesForm" action="/trade/sell/submit" method="post">
-        <input class="hidden" type="text" name="symbol" value="<%=symbol%>" />
-        <input class="hidden" type="number" name="shares" value="<%=shares%>" />
-        <input
-          class="hidden"
-          type="number"
-          name="price"
-          value="<%=price.toFixed(2)%>"
-        />
-        <input
-          class="hidden"
-          type="number"
-          name="originalPrice"
-          value="<%=price.toFixed(2)%>"
-        />
-        <input
-          class="hidden"
-          type="number"
-          name="value"
-          value="<%=(shares*price).toFixed(2)%>"
-        />
-        <input
-          class="hidden"
-          type="text"
-          name="account"
-          value="<%=account._id%>"
-        />
+    </div>
+    <div class="buyArea">
+      <p></p>
+      <div class="chart">
+        <script
+          type="text/javascript"
+          src="https://s3.tradingview.com/tv.js"
+        ></script>
+        <script type="text/javascript">
+          new TradingView.widget({
+            autosize: true,
+            symbol: "KRAKEN:<%=symbol%>USD",
+            interval: "H",
+            timezone: "Etc/UTC",
+            theme: "Dark",
+            style: "1",
+            locale: "en",
+            toolbar_bg: "#f1f3f6",
+            enable_publishing: true,
+            hide_side_toolbar: true,
+            allow_symbol_change: true,
+            details: true,
+            hideideas: true,
+            studies: ["MASimple@tv-basicstudies"],
+            show_popup_button: true,
+            popup_width: "700",
+            popup_height: "500",
+          });
+        </script>
+      </div>
+      <p></p>
+    </div>
+  </div>
 
-        <div>
-          <button
-            class="bottomButton btn btn-primary btn-ghost"
-            type="submit"
-          >
-            Sell
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="buyArea">
-    <p></p>
-    <div class="chart">
-      <script
-        type="text/javascript"
-        src="https://s3.tradingview.com/tv.js"
-      ></script>
-      <script type="text/javascript">
-        new TradingView.widget({
-          width: 550,
-          height: 475,
-          symbol: "KRAKEN:<%=symbol%>USD",
-          interval: "H",
-          timezone: "Etc/UTC",
-          theme: "Dark",
-          style: "1",
-          locale: "en",
-          toolbar_bg: "#f1f3f6",
-          enable_publishing: true,
-          hide_side_toolbar: true,
-          allow_symbol_change: true,
-          details: true,
-          hideideas: true,
-          studies: ["MASimple@tv-basicstudies"],
-          show_popup_button: true,
-          popup_width: "700",
-          popup_height: "500",
-        });
-      </script>
-    </div>
-    <p></p>
-  </div>
+
+
+
+
 </div>
-
-
-
-
-
-
