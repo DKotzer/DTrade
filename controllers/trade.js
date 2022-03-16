@@ -305,11 +305,27 @@ exports.trade_sell_submit_post = (req, res) => {
         // console.log("existingPosition.shares after " + existingPosition.shares);
         existingPosition[0].price = Number(req.body.price);
         existingPosition[0].value =
-          existingPosition[0].shares -
-          Number(req.body.shares) * Number(req.body.price);
+          (existingPosition[0].shares - Number(req.body.shares)) *
+          Number(req.body.price);
         existingPosition[0]
           .save()
           .then(() => {
+            Account.findById(req.user.account).then((account) => {
+              account.cash += Number(req.body.value);
+              account.maketValue = Number(account.marketValue);
+              account.marketValue -= Number(req.body.value);
+              account.totalValue = account.marketValue + account.cash;
+              // attempted fix for crash on delete
+              let history = {
+                symbol: req.body.symbol,
+                price: req.body.price,
+                shares: req.body.shares,
+                value: req.body.value,
+                trade: "Sell",
+              };
+              account.history.push(history);
+              account.save();
+            });
             //needed to move below if function after the .then to stop it from deleting positions that are above 0 shares
             if (existingPosition[0].shares == 0) {
               console.log("Existing position = 0shares --- deleting");
@@ -334,23 +350,8 @@ exports.trade_sell_submit_post = (req, res) => {
                         account.positions.splice(i, 1);
                       }
                     }
-                    account.cash += Number(req.body.value);
-                    account.maketValue = Number(account.marketValue);
-                    account.marketValue -= Number(req.body.value);
-                    account.totalValue = account.marketValue + account.cash;
-                    // attempted fix for crash on delete
-                    let history = {
-                      symbol: req.body.symbol,
-                      price: req.body.price,
-                      shares: req.body.shares,
-                      value: req.body.value,
-                      trade: "Sell",
-                    };
-                    account.history.push(history);
-                    account.save();
                   });
                 })
-
                 .catch((err) => {
                   console.log(err);
                 });
