@@ -173,6 +173,9 @@ tr:last-child {
   display: none;
   visibility: hidden;
 }
+.hide {
+  visibility: hidden;
+}
 
 .sellDropDown {
   width: 130px;
@@ -221,7 +224,7 @@ img {
   width: 194px;
 }
 .topRow {
-  flex-direction: row;
+  flex-direction: column;
   margin-right: 10px;
   text-align: left;
 }
@@ -373,41 +376,6 @@ h1 {
   justify-content: center;
 }
 
-/* button {
-  padding: 15px 25px;
-  border: 1px solid black;
-  border-radius: 15px;
-  color: #212121;
-  z-index: 1;
-  background: #d8dee9;
-  position: relative;
-  font-weight: 1000;
-  font-size: 17px;
-  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-  transition: all 250ms;
-  overflow: hidden;
-}
-
-button::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0;
-  border-radius: 15px;
-  background-color: #8fbcbb;
-  z-index: -1;
-  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-  transition: all 250ms;
-} */
-
-/* #widget-container {
-  border-radius: 16px;
-  overflow: hidden;
-} */
-
 .wrapper {
   display: flex;
   flex-direction: row;
@@ -417,20 +385,13 @@ button::before {
 .bottomForm {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* align-content: center; */
-  /* align-content: center; */
-  width: 194px;
 
-  /* align-items: flex-end; */
-  /* align-content: flex-end; */
+  width: 194px;
 }
 .buy-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding: 5px 10px; */
   margin: 0 auto;
   width: 194px;
   height: 210px;
@@ -438,19 +399,26 @@ button::before {
   background-color: #131722;
   border: 2px solid #b2b5be;
   font-weight: bold;
-  /* border-radius: 15px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-/* .noneMe {
-  type: hidden;
-} */
+.sell-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 194px;
+  height: 225px;
+  color: #b2b5be;
+  background-color: #131722;
+  border: 2px solid #b2b5be;
+  font-weight: bold;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 .bottomButton {
   display: flex;
   justify-content: center;
   transform: translateY(10px);
-  /* transform: translate(-625px, -52px); */
 }
 
 .sharesForm {
@@ -463,15 +431,45 @@ button::before {
 }
 .topBottomThing {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
-/* margin-left: -775px; */
-/* margin-bottom: -135px */
-/* button.bottomButton.btn.btn-primary.btn-ghost { */
-/* margin-left: -775px; */
-/* margin-bottom: -135px; */
-/* } */
 .holder {
+  height: 251px;
+}
+
+.buyholder {
   height: 266px;
+}
+
+.sellHeader {
+  margin-bottom: -6px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+}
+
+.topRow {
+  display: flex;
+  flex-direction: row;
+  color: #b2b5be;
+  align-items: center;
+  justify-content: space-evenly;
+  justify-self: center;
+  width: 744px;
+  background: #131722;
+  text-align: center;
+  transform: translateX(5px);
+  border: 2px solid #b2b5be;
+  font-size: 18px;
+}
+
+.topBottomThing {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }

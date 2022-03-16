@@ -1,61 +1,121 @@
-<div class="buyArea">
+<!-- <div class="toptop">
   <div class="subheader">
-    <div class="row">
-      <div>Account: <%=account.number%></div>
-      <div>
-        Net Value:
-        <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+      <div class="row">
+        <div>Account: <%=account.number%></div>
+        <div>
+          Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+          '$&,')%>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div>
+          Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+          '$&,')%>
+        </div>
+        <div>
+          Market Value:
+          <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+        </div>
       </div>
     </div>
-    <br />
-    <div class="row">
+</div> -->
+<div class="top">
+  <div class="topRow">
       <div>
-        Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-        '$&,')%>
-      </div>
-      <div>
-        Market Value:
-        <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-      </div>
+          Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+          '$&,')%>
+      </div>   
+        <div>
+          Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+          '$&,')%>
+        </div>
+        <div>
+          Market Value:
+          <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+        </div>
     </div>
   </div>
+</div>
 
-  <div>graph</div>
-  <img class="stonks" src="https://i.imgur.com/EFqRbev.png" alt="stonks" />
-  <P> </P>
-  <p></p>
-  <h1>Sell</h1>
-  <form class="buyForm" action="/trade/sell/quote" method="post">
-    <div class="sellDropDown">
-      
+
+<div class="wrapper">
+  <div class="leftWrapper">
+  <div class="bottomForm">
+    
+    <form class="sell-form" action="/trade/sell/quote" method="post">
+      <h1>Sell</h1>
+      <div class="sellDropDown">
       <select class="form-select select sellDropDown" name="symbol">
         <option selected disabled hidden>Symbol</option>
         <% account.positions.forEach(function(position) { %>
         <option value="<%=position.symbol%>"><%=position.symbol%></option>
         <% }) %>
-          
-      
     </div>
-    <div>
-      <div></div>
-    </div>
-    
-<div class="sellDropDown">
-      <label for="shares">Shares</label>
-      <input 
-        required
-        type="number"
-        name="shares"
-        placeholder="shares"
-        min="1"
-        class="sellDropDown"
-      />
-      
-    </div>
-    
-    <button class="sellDropDown" type="submit">quote</button>
-  </form>
-  <p></p>
+      </div>
+      <div class="form-input-material">
+        <label class="center" for="shares">Shares</label>
+        <input
+          required
+          type="number"
+          name="shares"
+          placeholder="shares"
+          min="1"
+          class="sellDropDown"
+        />
+      </div>
+      <p></p>
+      <button type="submit" class="btn btn-primary btn-ghost buttonTest">
+        Quote
+      </button>
+    </form>
+  </div>
+  <div>
+    <div class="quoteTable holder"></div>
+  </div>
 </div>
+  <div class="buyArea ">
+    </div>
+    
+
+  <div class="chart">
+    <script
+      type="text/javascript"
+      src="https://s3.tradingview.com/tv.js"
+    ></script>
+    <script type="text/javascript">
+      new TradingView.widget({
+        width: 550,
+        height: 475,
+        symbol: "KRAKEN:ETHUSD",
+        interval: "H",
+        timezone: "Etc/UTC",
+        theme: "Dark",
+        style: "1",
+        locale: "en",
+        toolbar_bg: "#f1f3f6",
+        enable_publishing: true,
+        hide_side_toolbar: true,
+        allow_symbol_change: true,
+        details: true,
+        hideideas: true,
+        studies: ["MASimple@tv-basicstudies"],
+        show_popup_button: true,
+        popup_width: "700",
+        popup_height: "500",
+      });
+    </script>
+  </div>
+  <P> </P>
+  </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+
+
 
 

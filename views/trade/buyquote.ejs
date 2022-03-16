@@ -1,25 +1,21 @@
-<div class="toptop">
-  <div class="subheader">
-    <div class="row">
-      <div>Account: <%=account.number%></div>
+<div class="top">
+  <div class="topRow">
       <div>
-        Total Value:
-        <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-      </div>
-    </div>
-    <br />
-    <div class="row">
-      <div>
-        Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-        '$&,')%>
-      </div>
-      <div>
-        Market Value:
-        <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-      </div>
+          Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+          '$&,')%>
+      </div>   
+        <div>
+          Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+          '$&,')%>
+        </div>
+        <div>
+          Market Value:
+          <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+        </div>
     </div>
   </div>
 </div>
+
 
 <div class="wrapper">
   <div class="bottomForm">
@@ -67,7 +63,7 @@
       </div>
       <div class="topBottomThing">
         <div class="topThing">
-          <div class="topRow">
+          <div class="">
             <div>Symbol:</div>
             <div>Price:</div>
             <div>Shares:</div>
@@ -127,8 +123,9 @@
     </div>
   </div>
   <div class="buyArea">
+    
     <p></p>
-    <div class="chart">
+    <div class="chart hide">
       <script
         type="text/javascript"
         src="https://s3.tradingview.com/tv.js"
