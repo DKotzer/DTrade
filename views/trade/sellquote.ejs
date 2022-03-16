@@ -1,40 +1,20 @@
-<!-- <div class="toptop">
-  <div class="subheader">
-    <div class="row">
-      <div>Account: <%=account.number%></div>
+
+
+<div class="top">
+  <div class="topRow">
       <div>
-        Total Value:
-        <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-      </div>
-    </div>
-    <br />
-    <div class="row">
-      <div>
-        Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-        '$&,')%>
+          Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+          '$&,')%>
       </div>
       <div>
         Market Value:
         <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
       </div>
-    </div>
-  </div>
-</div> -->
-
-<div class="top">
-  <div class="topRow">
-      <div>
+       <div>
           Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
           '$&,')%>
-      </div>   
-        <div>
-          Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-          '$&,')%>
-        </div>
-        <div>
-          Market Value:
-          <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-        </div>
+      </div> 
+
     </div>
   </div>
 </div>
@@ -68,7 +48,8 @@
       <button type="submit" class="btn btn-primary btn-ghost">Quote</button>
     </form>
 
-
+    <% let red = '' %> <% let buyButton = '' %> <% if (shares >
+    account.cash ){ red="red", buyButton = 'hidden' } %>
 
     <div class="quoteTable">
       <div class="iconContainer">
@@ -92,7 +73,7 @@
           <div class="bottomRow">
             <div><%=symbol%></div>
             <div><%=price%></div>
-            <div><%=shares%></div>
+            <div class="<%=red%>"><%=shares%></div>
             <div>
               <span id="total" class=""">
                 <%=(shares*price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,')%>

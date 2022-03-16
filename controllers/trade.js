@@ -36,6 +36,15 @@ exports.trade_sell_get = (req, res) => {
     });
 };
 
+exports.trade_sell_get_param = (req, res) => {
+  Account.findById(req.user.account)
+    .populate("positions")
+    // .populate("user")
+    .then((account) => {
+      res.render("trade/sell", { account });
+    });
+};
+
 //HTTP GET trade/quote - blank still
 exports.trade_quote_get = (req, res) => {
   res.render("trade/quote");
@@ -119,6 +128,10 @@ exports.trade_buy_quote_post = async (req, res) => {
           // res.render("trade/buy", { account });
         });
     }
+    /// if (value < 1){
+    // value
+    // }
+
     // console.log("price " + price);
   } else {
     //error if unnacceptable symbol input but it only shows after 2nd time on onwards for some reason
@@ -194,7 +207,18 @@ exports.trade_sell_quote_post = async (req, res) => {
 
       // .populate("user")
       .then((account) => {
-        res.render("trade/sellquote", { price, account, symbol, shares });
+        Position.find({
+          account: req.user.account,
+          symbol: req.body.symbol,
+        }).then((existingPosition) => {
+          if (existingPosition[0].shares < req.body.shares) {
+            console.log("existing Position not enough deteced");
+            req.flash("error", "You cannot sell more shares than you own");
+            res.redirect("back");
+          } else {
+            res.render("trade/sellquote", { price, account, symbol, shares });
+          }
+        });
       });
   } else {
     req.flash("error", "Please input a Valid Symbol");
@@ -218,7 +242,8 @@ exports.trade_buy_submit_post = (req, res) => {
         console.log("existing shares after " + existingPosition[0].shares);
         existingPosition[0].price = Number(req.body.price);
         existingPosition[0].value =
-          (existingPosition[0].shares + req.body.shares) * req.body.price;
+          (existingPosition[0].shares + Number(req.body.shares)) *
+          Number(req.body.price);
 
         Account.findById(req.user.account).then((account) => {
           account.cash -= req.body.value;
@@ -265,10 +290,13 @@ exports.trade_buy_submit_post = (req, res) => {
 exports.trade_sell_submit_post = (req, res) => {
   Position.find({ account: req.user.account, symbol: req.body.symbol }).then(
     (existingPosition) => {
+      //store existingPosition[0]._id in a variable to use in case existingPosition[0] is deleted
       let existingID = existingPosition[0]._id;
-      //need help here, existingPosition is not updating
       console.log("existingPosition " + existingPosition);
+      //if existingPosition exists
       if (existingPosition != "") {
+        //if existing position exists and is less than number of shares being sold
+
         // console.log("stringify " + JSON.stringify(existingPosition));
         // console.log("existingPosition " + existingPosition[0].shares);
         // console.log("existing shares before " + existingPosition[0].shares);
@@ -282,47 +310,57 @@ exports.trade_sell_submit_post = (req, res) => {
         existingPosition[0]
           .save()
           .then(() => {
+            //needed to move below if function after the .then to stop it from deleting positions that are above 0 shares
             if (existingPosition[0].shares == 0) {
+              console.log("Existing position = 0shares --- deleting");
               console.log("existing position id2 " + existingPosition[0]._id);
               console.log("test2 " + existingPosition[0].shares);
+              //Here is my DELETE CRUD operation, it exists!
               Position.findByIdAndDelete(existingPosition[0]._id)
-                .then(console.log("deleted succesffully"))
+                .then(() => {
+                  Account.findById(req.user.account).then((account) => {
+                    console.log("existing id " + existingID);
+                    console.log("account positions" + account.positions);
+                    for (i = 0; i < account.positions.length; i++) {
+                      console.log(
+                        account.positions[i]._id + " == " + existingID
+                      );
+
+                      if (
+                        account.positions[i]._id.toString() ==
+                        existingID.toString()
+                      ) {
+                        //splice removes the positon from account DB object, without this it would still show up in account.positions even though the position db object is deleted
+                        account.positions.splice(i, 1);
+                      }
+                    }
+                    account.cash += Number(req.body.value);
+                    account.maketValue = Number(account.marketValue);
+                    account.marketValue -= Number(req.body.value);
+                    account.totalValue = account.marketValue + account.cash;
+                    // attempted fix for crash on delete
+                    let history = {
+                      symbol: req.body.symbol,
+                      price: req.body.price,
+                      shares: req.body.shares,
+                      value: req.body.value,
+                      trade: "Sell",
+                    };
+                    account.history.push(history);
+                    account.save();
+                  });
+                })
+
                 .catch((err) => {
                   console.log(err);
                 });
             }
           })
           .catch();
-
+        res.redirect("/");
         // console.log("existing position id" + existingPosition[0]._id);
         // console.log("test " + existingPosition[0].shares);
       }
-      Account.findById(req.user.account).then((account) => {
-        console.log("existing id " + existingID);
-        console.log("account positions" + account.positions);
-        for (i = 0; i < account.positions.length; i++) {
-          console.log(account.positions[i]._id + " == " + existingID);
-
-          if (account.positions[i]._id.toString() == existingID.toString()) {
-            account.positions.splice(i, 1);
-          }
-        }
-        account.cash += Number(req.body.value);
-        account.maketValue = Number(account.marketValue);
-        account.marketValue -= Number(req.body.value);
-        account.totalValue = account.marketValue + account.cash;
-        // attempted fix for crash on delete
-        let history = {
-          symbol: req.body.symbol,
-          price: req.body.price,
-          shares: req.body.shares,
-          value: req.body.value,
-          trade: "Sell",
-        };
-        account.history.push(history);
-        account.save();
-        res.redirect("/");
-      });
     }
   );
 };

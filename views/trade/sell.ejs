@@ -1,39 +1,19 @@
-<!-- <div class="toptop">
-  <div class="subheader">
-      <div class="row">
-        <div>Account: <%=account.number%></div>
-        <div>
-          Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-          '$&,')%>
-        </div>
-      </div>
-      <br />
-      <div class="row">
-        <div>
-          Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-          '$&,')%>
-        </div>
-        <div>
-          Market Value:
-          <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-        </div>
-      </div>
-    </div>
-</div> -->
+
 <div class="top">
   <div class="topRow">
       <div>
-          Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-          '$&,')%>
-      </div>   
-        <div>
           Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
           '$&,')%>
-        </div>
-        <div>
-          Market Value:
-          <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
-        </div>
+      </div>
+      <div>
+        Market Value:
+        <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
+      </div>
+       <div>
+          Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+          '$&,')%>
+      </div> 
+
     </div>
   </div>
 </div>
@@ -60,7 +40,7 @@
           type="number"
           name="shares"
           placeholder="shares"
-          min="1"
+          step="0.0001"
           class="sellDropDown"
         />
       </div>

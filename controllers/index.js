@@ -20,6 +20,7 @@ exports.index_get = async (req, res) => {
   Account.findById(req.user.account)
     .populate("positions")
     .then(async (account) => {
+      console.log(account.positions);
       //look up each position and update values/totals
       let newMarketValue = [];
       account.positions.forEach(async function (position) {
