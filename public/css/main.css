@@ -530,3 +530,10 @@ h1 {
 .chart {
   width: 100%;
 }
+
+.signUp {
+  display: flex;
+
+  justify-content: center;
+  transform: translateY(-21px);
+}
