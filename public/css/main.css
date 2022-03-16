@@ -1,6 +1,8 @@
-/* * {
-  text-decoration: none;
-} */
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  font-family: "Roboto", sans-serif;
+}
 body {
   background-color: #8fbcbb;
 }
@@ -208,11 +210,12 @@ img {
   justify-content: center;
   justify-items: center;
   /* margin-top: 15px; */
-  border: 4px solid #25b63e;
+  border: 2px solid #b2b5be;
   justify-content: center;
   /* border-radius: 9px; */
   padding: 20px;
-  background-color: white;
+  color: #b2b5be;
+  background-color: #131722;
   font-weight: bold;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding-bottom: 25px;
@@ -257,6 +260,7 @@ input[type="number"] {
   width: 88px;
   height: 88px;
   margin-top: -10px;
+  margin-bottom: 3px;
 
   /* margin-right: 10px; */
 }
@@ -431,9 +435,9 @@ button::before {
   margin: 0 auto;
   width: 194px;
   height: 210px;
-  color: black;
-  background-color: #d8dee9;
-  border: 2px solid #5e81ac;
+  color: #b2b5be;
+  background-color: #131722;
+  border: 2px solid #b2b5be;
   font-weight: bold;
   /* border-radius: 15px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -446,6 +450,7 @@ button::before {
 .bottomButton {
   display: flex;
   justify-content: center;
+  transform: translateY(10px);
   /* transform: translate(-625px, -52px); */
 }
 
@@ -453,7 +458,7 @@ button::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
