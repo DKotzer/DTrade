@@ -1,19 +1,14 @@
 <div class="buyArea"></div>
 <p></p>
 <p></p>
-<h1 class="center">Account History</h1>
+<h1 class="center">
+  <div>Account <%=account.number%> History</div>
+</h1>
 <p></p>
 <p></p>
-<div class="subheader">
-  <div class="row">
-    <div>Account: <%=account.number%></div>
-    <div>
-      Total Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
-      '$&,')%>
-    </div>
-  </div>
-  <br />
-  <div class="row">
+
+<div class="summary">
+  <div class="topRowSummary">
     <div>
       Buying Power: <%=account.cash.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
       '$&,')%>
@@ -22,9 +17,11 @@
       Market Value:
       <%=account.marketValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%>
     </div>
+    <div>
+      Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
+      '$&,')%>
+    </div>
   </div>
-</div>
-<div class="summary">
   <table class="summaryTable table table-striped table-dark table-hover">
     <tr>
       <th></th>
