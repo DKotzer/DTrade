@@ -49,7 +49,7 @@
         />
       </td>
       <td><%=position.symbol %></td>
-      <td><%=position.shares %></td>
+      <td><%=Number(position.shares.toFixed(4)) %></td>
       <td>
         <%=position.originalPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
         %>

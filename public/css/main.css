@@ -4,7 +4,7 @@
   font-family: "Roboto", sans-serif;
 }
 body {
-  background-color: #8fbcbb;
+  background-color: #102331;
 }
 
 /* ---nav styling---- */
@@ -31,7 +31,7 @@ header {
   float: left;
   font-size: 24px;
   text-transform: uppercase;
-  color: #5e81ac;
+  color: #102331;
   font-weight: 600;
   padding: 20px 0px;
 }
@@ -53,7 +53,7 @@ a {
   text-decoration: none;
 }
 nav ul li a {
-  color: #5e81ac;
+  color: #102331;
   font-weight: bold;
   font-size: 18px;
   padding: 25px 20px;
@@ -69,7 +69,7 @@ nav ul li a {
   margin-left: 20px;
 }
 nav ul li a:hover {
-  background-color: #5e81ac;
+  background-color: #102331;
   color: #d8dee9;
   transition: all 0.5s ease 0s;
   border-radius: 15px;
@@ -378,6 +378,7 @@ input {
 
 h1 {
   text-align: center;
+  color: #eceff4;
 }
 
 .toptop {
@@ -494,6 +495,7 @@ h1 {
 .authForm {
   width: 400px;
   margin: 0 auto;
+  color: #eceff4;
 }
 
 .password {
