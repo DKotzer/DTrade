@@ -35,10 +35,10 @@ exports.index_get = async (req, res) => {
         account.marketValue = newMarketValue.reduce((a, b) => a + b, 0);
         // console.log("account MarketValue update: " + account.marketValue);
         account.totalValue = account.marketValue + account.cash;
-        account.save();
+
         // console.log("new market value :" + newMarketValue);
       });
-
+      account.save();
       res.render("home/index", { account });
     });
 };

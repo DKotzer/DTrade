@@ -1,8 +1,5 @@
 <div class="buyArea"></div>
-<p></p>
-<p></p>
-<h1 class="center"><div>Account <%=account.number%></div></h1>
-<p></p>
+<h1 class="center"><div>Account <%=account.number%> Overview</div></h1>
 <p></p>
 <% account.positions.sort((a,b)=>{ return (b.shares*b.price) -
 (a.shares*a.price)})%>
