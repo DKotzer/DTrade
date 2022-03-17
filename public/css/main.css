@@ -40,6 +40,13 @@ nav {
   float: right;
 }
 
+chat ul li {
+  background: white;
+}
+#messages {
+  background: white;
+}
+
 ul {
   list-style-type: none;
 }
@@ -321,9 +328,9 @@ input[type="number"] {
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-  background-color: hsla(204, 70%, 53%, 0.9);
+  background-color: hsla(204, 70%, 53%, 1);
   border-radius: 10px;
-  width: 104px;
+  width: 106px;
 }
 
 /* Show the dropdown menu on hover */
@@ -542,4 +549,19 @@ h1 {
 
   justify-content: center;
   transform: translateY(-21px);
+}
+
+#form {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+.chatWindow {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#messages li {
+  border-radius: 15px;
 }

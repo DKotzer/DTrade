@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const flash = require("connect-flash");
 require("dotenv").config();
 
+const socket = require("socket.io");
+
 // Port Configuration
 const PORT = process.env.PORT;
 
@@ -73,4 +75,37 @@ mongoose.connect(
 );
 
 //not sure if the listen does something or its just logging the port to console
-app.listen(PORT, () => console.log(`App is using port: ${PORT}`));
+const server = app.listen(PORT, () =>
+  console.log(`App is using port: ${PORT}`)
+);
+
+app.get("/chat", (req, res) => {
+  res.sendFile(__dirname + "/home/index");
+});
+
+// Socket setup
+const io = socket(server);
+
+io.on("connection", (socket) => {
+  console.log("a user connected");
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+});
+
+io.emit("some event", {
+  someProperty: "some value",
+  otherProperty: "other value",
+});
+
+io.on("connection", (socket) => {
+  socket.on("chat message", (msg) => {
+    io.emit("chat message", msg);
+  });
+});
+
+io.on("connection", (socket) => {
+  socket.on("chat message", (msg) => {
+    console.log("message: " + msg);
+  });
+});

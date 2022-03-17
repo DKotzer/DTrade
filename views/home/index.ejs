@@ -4,6 +4,8 @@
 <h1 class="center"><div>Account <%=account.number%></div></h1>
 <p></p>
 <p></p>
+<% account.positions.sort((a,b)=>{ return (b.shares*b.price) -
+(a.shares*a.price)})%>
 
 <div class="top"></div>
 <div class="summary">

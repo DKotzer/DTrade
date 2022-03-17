@@ -38,6 +38,11 @@ exports.index_get = async (req, res) => {
         account.save();
         // console.log("new market value :" + newMarketValue);
       });
+
       res.render("home/index", { account });
     });
+};
+
+exports.chat = (req, res) => {
+  res.render("home/chat");
 };

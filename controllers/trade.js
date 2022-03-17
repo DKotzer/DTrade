@@ -197,6 +197,7 @@ exports.trade_sell_quote_post = async (req, res) => {
   }
 };
 
+//second favorite function
 exports.trade_buy_submit_post = (req, res) => {
   Position.find({ account: req.user.account, symbol: req.body.symbol }).then(
     (existingPosition) => {
@@ -252,6 +253,7 @@ exports.trade_buy_submit_post = (req, res) => {
   );
 };
 
+//favorite function
 exports.trade_sell_submit_post = (req, res) => {
   Position.find({ account: req.user.account, symbol: req.body.symbol }).then(
     (existingPosition) => {
@@ -296,7 +298,7 @@ exports.trade_sell_submit_post = (req, res) => {
               // console.log("Existing position = 0shares --- deleting");
               // console.log("existing position id2 " + existingPosition[0]._id);
               // console.log("test2 " + existingPosition[0].shares);
-              //Here is my DELETE CRUD operation, it exists!
+              //Here is my DELETE CRUD operation, it exists! If position exists and after selling position.shares =0, delete position
               Position.findByIdAndDelete(existingPosition[0]._id)
                 .then(() => {
                   Account.findById(req.user.account).then((account) => {
