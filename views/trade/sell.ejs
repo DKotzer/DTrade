@@ -26,27 +26,28 @@
       
       <form class="sell-form" action="/trade/sell/quote" method="post">
         <h1>Sell</h1>
-        <div class="sellDropDown">
-        <select class="form-select select sellDropDown" name="symbol">
+        <div class="sell-drop-down" >
+        <select class="form-select select" name="symbol">
           
           <option selected value="<%=symbol%>" ><%=symbol%></option>
           <% account.positions.forEach(function(position) { %>
           <option value="<%=position.symbol%>"><%=position.symbol%></option>
           <% }) %>
-      </div>
+          
         </div>
+      </div>
         <div class="form-input-material">
           <label class="center" for="shares">Shares</label>
           <input
             required
             type="number"
             name="shares"
-            placeholder="shares"
+            placeholder="Shares"
             step="0.0001"
             class="sellDropDown"
           />
         </div>
-        <p></p>
+        
         <button type="submit" class="btn btn-primary btn-ghost buttonTest">
           Quote
         </button>

@@ -45,7 +45,7 @@
         />
       </td>
       <td><%=trade.symbol %></td>
-      <td><%=trade.shares %></td>
+      <td><%=Number(Number(trade.shares).toFixed(4)) %></td>
       <td><%=trade.price %></td>
       <td>
         <%=(trade.shares*trade.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g,

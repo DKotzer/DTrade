@@ -1,31 +1,86 @@
 var ccxt = require("ccxt");
-// module.exports = { quote };
 const { Account } = require("../models/Account");
 const User = require("../models/User");
 let { Position } = require("../models/Position");
 const { validationResult } = require("express-validator");
 const flash = require("connect-flash");
-// console.log(ccxt.exchanges);
 
-//external API function to get quote, can alter it to also get name of stock or do own filter
+//external API function to get quote
 async function quote(ticker) {
   // let bitfinex = new ccxt.bitfinex();
-
   // let btcPrice = (bitfinex.id, await bitfinex.fetchTicker("BTC/USD"));
   let kraken = new ccxt.kraken();
   let price = (kraken.id, await kraken.fetchTicker(`${ticker}/USD`));
   console.log(`${ticker}/USD: ` + price.ask);
   return price.ask;
 }
+//array of acceptable values
+let stonks = [
+  "BTC",
+  "ETH",
+  "DOGE",
+  "XRP",
+  "LUNA",
+  "USDT",
+  "USDC",
+  "SOL",
+  "ADA",
+  "AVAX",
+  "DOT",
+  "UST",
+  "SHIB",
+  "MATIC",
+  "DAI",
+  "ATOM",
+  "LTC",
+  "LINK",
+  "TRX",
+  "UNI",
+  "ALGO",
+  "XLM",
+  "XMR",
+  "SAND",
+  "WAVES",
+  "XTZ",
+  "ZEC",
+  "EOS",
+  "MKR",
+  "ENJ",
+  "DASH",
+  "KSM",
+  "BAT",
+  "LRC",
+  "ICX",
+  "QTUM",
+  "OMG",
+  "ZRX",
+  "STORJ",
+  "SUSHI",
+  "SC",
+  "ANT",
+  "REP",
+  "NANO",
+  "ENJ",
+  "KIN",
+  "FIL",
+  "GRT",
+  "AAVE",
+  "KSM",
+  "COMP",
+  "ANKR",
+  "BNT",
+  "KNC",
+  "LSK",
+];
 
 //HTTP GET trade/buy
-exports.trade_buy_get = (req, res) => {
-  Account.findById(req.user.account)
-    // .populate("user")
-    .then((account) => {
-      res.render("trade/buy", { account });
-    });
-};
+// exports.trade_buy_get = (req, res) => {
+//   Account.findById(req.user.account)
+//     // .populate("user")
+//     .then((account) => {
+//       res.render("trade/buy", { account });
+//     });
+// };
 //HTTP GET trade/sell
 // exports.trade_sell_get = (req, res) => {
 //   Account.findById(req.user.account)
@@ -35,6 +90,19 @@ exports.trade_buy_get = (req, res) => {
 //       res.render("trade/sell", { account });
 //     });
 // };
+
+exports.trade_buy_get_query = (req, res) => {
+  Account.findById(req.user.account)
+    .populate("positions")
+    .then((account) => {
+      //below 4 lines are for handling the sell drop down option on the account summary page
+      let symbol = req.query.symbol;
+      if (!symbol) {
+        symbol = "Symbol";
+      }
+      res.render("trade/buy", { account, symbol });
+    });
+};
 
 exports.trade_sell_get_query = (req, res) => {
   Account.findById(req.user.account)
@@ -65,58 +133,10 @@ exports.trade_history_get = (req, res) => {
 
 //HTTP POST trade/buy/quote
 exports.trade_buy_quote_post = async (req, res) => {
-  //array of acceptable values
-  let stonks = [
-    "BTC",
-    "ETH",
-    "DOGE",
-    "XRP",
-    "LUNA",
-    "USDT",
-    "USDC",
-    "SOL",
-    "ADA",
-    "AVAX",
-    "DOT",
-    "UST",
-    "SHIB",
-    "MATIC",
-    "DAI",
-    "ATOM",
-    "LTC",
-    "LINK",
-    "TRX",
-    "UNI",
-    "ALGO",
-    "XLM",
-    "XMR",
-    "SAND",
-    "WAVES",
-    "XTZ",
-    "ZEC",
-    "EOS",
-    "MKR",
-    "ENJ",
-    "DASH",
-    "KSM",
-    "BAT",
-    "LRC",
-    "ICX",
-    "QTUM",
-    "OMG",
-    "ZRX",
-    "STORJ",
-    "SUSHI",
-    "SC",
-    "ANT",
-    "REP",
-    "NANO",
-  ];
   //check if req.body.symbol is in array of acceptable symbols
   if (stonks.includes(`${req.body.symbol}`)) {
     let symbol = req.body.symbol;
     let shares = req.body.shares;
-    // console.log("symbol " + symbol);
     let price = await quote(`${symbol}`);
     if (req.body.shares > 0) {
       Account.findById(req.user.account).then((account) => {
@@ -125,18 +145,11 @@ exports.trade_buy_quote_post = async (req, res) => {
     } else {
       Account.findById(req.user.account)
         .populate("positions")
-        // .populate("user")
         .then((account) => {
           req.flash("error", "You cannot buy 0 or negative shares");
           res.redirect("back");
-          // res.render("trade/buy", { account });
         });
     }
-    /// if (value < 1){
-    // value
-    // }
-
-    // console.log("price " + price);
   } else {
     //error if unnacceptable symbol input but it only shows after 2nd time on onwards for some reason
     console.log("unacceptable symbol");
@@ -153,63 +166,13 @@ exports.trade_buy_quote_post = async (req, res) => {
 
 //HTTP POST sell/quote/post
 exports.trade_sell_quote_post = async (req, res) => {
-  let stonks = [
-    "BTC",
-    "ETH",
-    "DOGE",
-    "XRP",
-    "LUNA",
-    "USDT",
-    "USDC",
-    "SOL",
-    "ADA",
-    "AVAX",
-    "DOT",
-    "UST",
-    "SHIB",
-    "MATIC",
-    "DAI",
-    "ATOM",
-    "LTC",
-    "LINK",
-    "TRX",
-    "UNI",
-    "ALGO",
-    "XLM",
-    "XMR",
-    "SAND",
-    "WAVES",
-    "XTZ",
-    "ZEC",
-    "EOS",
-    "MKR",
-    "ENJ",
-    "DASH",
-    "KSM",
-    "BAT",
-    "LRC",
-    "ICX",
-    "QTUM",
-    "OMG",
-    "ZRX",
-    "STORJ",
-    "SUSHI",
-    "SC",
-    "ANT",
-    "REP",
-    "NANO",
-  ];
   //check if req.body.symbol is in array  .includes  if(arr.includes()){}
   if (stonks.includes(`${req.body.symbol}`)) {
     let symbol = req.body.symbol;
     let shares = req.body.shares;
-    // console.log("symbol " + symbol);
     let price = await quote(`${symbol}`);
-    // console.log("price " + price);
     Account.findById(req.user.account)
       .populate("positions")
-
-      // .populate("user")
       .then((account) => {
         Position.find({
           account: req.user.account,
@@ -228,7 +191,6 @@ exports.trade_sell_quote_post = async (req, res) => {
     req.flash("error", "Please input a Valid Symbol");
     Account.findById(req.user.account)
       .populate("positions")
-      // .populate("user")
       .then((account) => {
         res.render("trade/sell", { account });
       });
@@ -238,12 +200,11 @@ exports.trade_sell_quote_post = async (req, res) => {
 exports.trade_buy_submit_post = (req, res) => {
   Position.find({ account: req.user.account, symbol: req.body.symbol }).then(
     (existingPosition) => {
-      //need help here, existingPosition is not updating
-      console.log("existingPosition " + existingPosition);
+      // console.log("existingPosition " + existingPosition);
       if (existingPosition != "") {
-        console.log("existing shares before " + existingPosition[0].shares);
+        // console.log("existing shares before " + existingPosition[0].shares);
         existingPosition[0].shares += Number(req.body.shares);
-        console.log("existing shares after " + existingPosition[0].shares);
+        // console.log("existing shares after " + existingPosition[0].shares);
         existingPosition[0].price = Number(req.body.price);
         existingPosition[0].value =
           (existingPosition[0].shares + Number(req.body.shares)) *
@@ -296,7 +257,7 @@ exports.trade_sell_submit_post = (req, res) => {
     (existingPosition) => {
       //store existingPosition[0]._id in a variable to use in case existingPosition[0] is deleted
       let existingID = existingPosition[0]._id;
-      console.log("existingPosition " + existingPosition);
+      // console.log("existingPosition " + existingPosition);
       //if existingPosition exists
       if (existingPosition != "") {
         //if existing position exists and is less than number of shares being sold
@@ -332,20 +293,17 @@ exports.trade_sell_submit_post = (req, res) => {
             });
             //needed to move below if function after the .then to stop it from deleting positions that are above 0 shares
             if (existingPosition[0].shares == 0) {
-              console.log("Existing position = 0shares --- deleting");
-              console.log("existing position id2 " + existingPosition[0]._id);
-              console.log("test2 " + existingPosition[0].shares);
+              // console.log("Existing position = 0shares --- deleting");
+              // console.log("existing position id2 " + existingPosition[0]._id);
+              // console.log("test2 " + existingPosition[0].shares);
               //Here is my DELETE CRUD operation, it exists!
               Position.findByIdAndDelete(existingPosition[0]._id)
                 .then(() => {
                   Account.findById(req.user.account).then((account) => {
-                    console.log("existing id " + existingID);
-                    console.log("account positions" + account.positions);
+                    // console.log("existing id " + existingID);
+                    // console.log("account positions" + account.positions);
                     for (i = 0; i < account.positions.length; i++) {
-                      console.log(
-                        account.positions[i]._id + " == " + existingID
-                      );
-
+                      // console.log(account.positions[i]._id + " == " + existingID);
                       if (
                         account.positions[i]._id.toString() ==
                         existingID.toString()
@@ -363,10 +321,7 @@ exports.trade_sell_submit_post = (req, res) => {
           })
           .catch();
         res.redirect("/");
-        // console.log("existing position id" + existingPosition[0]._id);
-        // console.log("test " + existingPosition[0].shares);
       }
     }
   );
 };
-//to do: trade_quote_post that uses quote function on req.body.quote input and then render the page with price, then render the page with toal after shares is entered

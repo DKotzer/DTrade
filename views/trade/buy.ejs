@@ -26,13 +26,14 @@
         <div class="form-input-material">
           <span class="center" for="symbol">Symbol</span>
           <input
-            class="sellDropDown"
+            class=""
             type="text"
             onkeyup="this.value = this.value.toUpperCase();"
             list="symbol"
             name="symbol"
             id="symbol"
-            placeholder="Symbol"
+            placeholder="<%=symbol%>"
+            
           />
         </div>
         <div class="form-input-material">
@@ -51,7 +52,7 @@
             
           
         </div>
-        <p></p>
+        
         <button type="submit" class="btn btn-primary btn-ghost buttonTest">
           Quote
         </button>

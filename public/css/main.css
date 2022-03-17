@@ -192,8 +192,6 @@ tr:last-child {
 
 .sellDropDown {
   width: 130px;
-  margin: 0 auto;
-  margin-top: 10px;
 }
 .sharesInput {
   width: 100px;
@@ -211,6 +209,10 @@ img {
 
 .stonks {
   width: 600px;
+}
+
+.form-select {
+  margin-bottom: 5px;
 }
 
 #priceFix {
@@ -267,10 +269,9 @@ input[type="number"] {
 }
 
 .iconSpot {
-  width: 88px;
-  height: 88px;
-  margin-top: -10px;
-  margin-bottom: 3px;
+  width: 95px;
+  height: 95px;
+  margin-bottom: 15px;
 
   /* margin-right: 10px; */
 }
@@ -406,9 +407,11 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-content: center;
+  justify-content: space-evenly;
   margin: 0 auto;
   width: 194px;
-  height: 210px;
+  height: 230px;
   color: #b2b5be;
   background-color: #131722;
   border: 2px solid #b2b5be;
@@ -417,6 +420,7 @@ h1 {
 }
 .sell-form {
   display: flex;
+  justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
@@ -449,7 +453,7 @@ h1 {
 }
 
 .holder {
-  height: 251px;
+  height: 271px;
 }
 
 .buyholder {
@@ -496,13 +500,15 @@ h1 {
   align-items: center;
   justify-content: space-evenly;
   justify-self: center;
-  width: 97%;
+  width: 98%;
   background: #212529;
   text-align: center;
   border: 2px solid #b2b5be;
   font-size: 22px;
   margin: 0;
   padding: 0;
+  border-top-left-radius: 14px 14px;
+  border-top-right-radius: 14px 14px;
 }
 
 .topBottomThing {
