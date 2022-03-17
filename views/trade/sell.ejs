@@ -28,7 +28,8 @@
         <h1>Sell</h1>
         <div class="sellDropDown">
         <select class="form-select select sellDropDown" name="symbol">
-          <option selected disabled hidden>Symbol</option>
+          
+          <option selected value="<%=symbol%>" ><%=symbol%></option>
           <% account.positions.forEach(function(position) { %>
           <option value="<%=position.symbol%>"><%=position.symbol%></option>
           <% }) %>

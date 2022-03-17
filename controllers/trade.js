@@ -27,21 +27,25 @@ exports.trade_buy_get = (req, res) => {
     });
 };
 //HTTP GET trade/sell
-exports.trade_sell_get = (req, res) => {
-  Account.findById(req.user.account)
-    .populate("positions")
-    // .populate("user")
-    .then((account) => {
-      res.render("trade/sell", { account });
-    });
-};
+// exports.trade_sell_get = (req, res) => {
+//   Account.findById(req.user.account)
+//     .populate("positions")
+//     // .populate("user")
+//     .then((account) => {
+//       res.render("trade/sell", { account });
+//     });
+// };
 
-exports.trade_sell_get_param = (req, res) => {
+exports.trade_sell_get_query = (req, res) => {
   Account.findById(req.user.account)
     .populate("positions")
-    // .populate("user")
     .then((account) => {
-      res.render("trade/sell", { account });
+      //below 4 lines are for handling the sell drop down option on the account summary page
+      let symbol = req.query.symbol;
+      if (!symbol) {
+        symbol = "Symbol";
+      }
+      res.render("trade/sell", { account, symbol });
     });
 };
 

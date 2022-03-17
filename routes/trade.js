@@ -15,11 +15,10 @@ router.get("/trade/history", isLoggedIn, tradeCntrl.trade_history_get);
 
 router.get("/trade/buy", isLoggedIn, tradeCntrl.trade_buy_get);
 
-router.get("/trade/sell", isLoggedIn, tradeCntrl.trade_sell_get);
+router.get("/trade/sell", isLoggedIn, tradeCntrl.trade_sell_get_query);
+// router.get("/trade/sell", isLoggedIn, tradeCntrl.trade_sell_get);
 
 // router.get("/trade/buy:symbol", isLoggedIn, tradeCntrl.trade_buy_get_param);
-
-router.get("/trade/sell:symbol", isLoggedIn, tradeCntrl.trade_sell_get_param);
 
 router.post("/trade/sell/quote", isLoggedIn, tradeCntrl.trade_sell_quote_post);
 
