@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const flash = require("connect-flash");
 require("dotenv").config();
 
+const { instrument } = require("@socket.io/admin-ui");
 const socket = require("socket.io");
 
 // Port Configuration
@@ -84,7 +85,11 @@ app.get("/chat", (req, res) => {
 });
 
 // Socket setup
-const io = socket(server);
+const io = socket(server)({
+  cors: {
+    origin: ["https://dcrypto-app.herokuapp.com", "https://admin.socket.io"],
+  },
+});
 
 io.on("connection", (socket) => {
   console.log("a user connected");
@@ -109,3 +114,5 @@ io.on("connection", (socket) => {
     console.log("message: " + msg);
   });
 });
+
+instrument(io, { auth: false });
