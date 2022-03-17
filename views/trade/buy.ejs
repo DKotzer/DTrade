@@ -25,9 +25,10 @@
         <h1>Buy</h1>
         <div class="form-input-material">
           <span class="center" for="symbol">Symbol</span>
+          <!-- //help here -->
           <input
             class=""
-            type="text"
+            type="list"
             onkeyup="this.value = this.value.toUpperCase();"
             list="symbol"
             name="symbol"
@@ -35,6 +36,10 @@
             placeholder="<%=symbol%>"
             
           />
+          <datalist id="symbol">
+            <option value="BTC"></option>
+            <option value="ETH"></option>
+          </datalist>
         </div>
         <div class="form-input-material">
           <label class="center" for="shares">Shares</label>

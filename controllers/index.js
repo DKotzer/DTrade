@@ -20,7 +20,7 @@ exports.index_get = async (req, res) => {
   Account.findById(req.user.account)
     .populate("positions")
     .then(async (account) => {
-      console.log(account.positions);
+      // console.log(account.positions);
       //look up each position and update values/totals
       let newMarketValue = [];
       account.positions.forEach(async function (position) {
@@ -28,15 +28,31 @@ exports.index_get = async (req, res) => {
         // console.log(`${position.symbol} price before: ` + position.price);
         position.price = Number(price);
         // console.log(`${position.symbol} price after: ` + position.price);
-        position.value = price * position.shares;
+        position.value = Number(price) * Number(position.shares);
+        position.save();
         // console.log("position value " + position.value);
         newMarketValue.push(position.value);
-        position.save();
-        account.marketValue = newMarketValue.reduce((a, b) => a + b, 0);
+        // console.log("newMarketValue: " + newMarketValue);
+
         // console.log("account MarketValue update: " + account.marketValue);
-        account.totalValue = account.marketValue + account.cash;
+
+        // console.log("total Value: " + account.totalValue);
 
         // console.log("new market value :" + newMarketValue);
+        account.marketValue = newMarketValue.reduce((a, b) => a + b, 0);
+        // console.log(account.marketValue);
+
+        account.totalValue = account.marketValue + account.cash;
+        account
+          .save()
+          .then()
+          .catch((err) => {
+            console.log(
+              "This is a triumph! I'm making a note here: 'Huge success'"
+              //this catch is the bandaid holding back app breaking errors, remove at your own peril
+            );
+            res.render("/home/index", { account });
+          });
       });
       account.save();
       res.render("home/index", { account });
