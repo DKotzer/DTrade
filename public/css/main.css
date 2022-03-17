@@ -554,7 +554,9 @@ h1 {
 #form {
   width: 50%;
   margin: 0 auto;
-  margin-bottom: 15px;
+  margin-bottom: 45px;
+  background-color: #122c3f;
+  border-radius: 15px;
 }
 
 .chatWindow {
