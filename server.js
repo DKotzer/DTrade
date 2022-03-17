@@ -85,11 +85,7 @@ app.get("/chat", (req, res) => {
 });
 
 // Socket setup
-const io = socket(server)({
-  cors: {
-    origin: ["https://dcrypto-app.herokuapp.com", "https://admin.socket.io"],
-  },
-});
+const io = socket(server);
 
 io.on("connection", (socket) => {
   console.log("a user connected");
