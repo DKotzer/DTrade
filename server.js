@@ -9,13 +9,13 @@ const socket = require("socket.io");
 // Port Configuration
 const PORT = process.env.PORT;
 
-//Initialize Express Appliation
+//Initialize Express Application
 const app = express();
 
 // look for static files(like css/image/audio/js/etc files) in public folder
 app.use(express.static("public"));
 
-//body parser, password entry doesnt work without it
+//body parser, password entry doesn't work without it
 app.use(express.urlencoded({ extended: true }));
 
 const expressLayouts = require("express-ejs-layouts");
