@@ -591,3 +591,34 @@ h1 {
 #messages li {
   border-radius: 15px;
 }
+
+/* social media footer icons */
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-github {
+  background: #161b22;
+  color: white;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 75px;
+  text-align: center;
+  text-decoration: none;
+  margin: 0 auto;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}

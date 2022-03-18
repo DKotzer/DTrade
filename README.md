@@ -1,23 +1,19 @@
 <br />
 <div align="center">
   <a href="https://dkotzer.github.io/card-games/">
-    <img src="images/logo.jpg" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h1 align="center">DCrypto</h1>
 
     Second Project for General Assembly SEI
 
-[Explore the docs](https://github.com/DKotzer/DTrade/)
-
-<!-- <a href="https://github.com/DKotzer/card-games">View Demo</a> -->
-
-·
+<a href="https://github.com/DKotzer/DTrade/">Explore the docs</a>
+~
 <a href="https://github.com/DKotzer/DTrade/issues">Report Bug</a>
-·
+~
 <a href="https://github.com/DKotzer/DTrade/issues">Request Feature</a>
 
-<!-- ABOUT THE PROJECT -->
 </div>
 
 ## General Overview :bar_chart:
@@ -64,7 +60,7 @@ On the chat page you can anonymously chat with your fellow DCrypto users, no cha
 
 ## Getting Started
 
-### [Click here to check out DCrypto](https://dcrypto-app.herokuapp.com/auth/signin)
+### [Click here to check out DCrypto](https://dcrypto-app.herokuapp.com/)
 
 ## About The Project
 
@@ -78,6 +74,16 @@ The purpose of the project is to demonstrate our newly learned skills from unit 
 - CSS
 
 ## Icebox :icecream:
+
+- Fix the multiple .save() bug properly instead of current workaround.
+- Implement a working datalist for the buy symbol input to autosuggest symbols based on input.
+- Add user first names to chat instead of anon.
+- Allow various sorting of the account summary page by clicking the headings.
+- Display crypto news in the bottom left of buy/sell pages
+- Account page with some options, light/dark mode, profile picture
+- Allow user to delete account from account page
+- Allow user to create multiple trade accounts from account page
+- Allow to view history of individual cryptos by clicking it from history page
 
 See the [open issues](https://github.com/DKotzer/DTrade/issues) for a full list of proposed features (and known issues).
 
