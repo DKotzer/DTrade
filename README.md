@@ -75,6 +75,9 @@ DCrypto was built in one week.
 - JavaScript
 - EJS
 - CSS
+- NODE
+- MongoDB
+- Express
 
 ## Icebox :icecream:
 
