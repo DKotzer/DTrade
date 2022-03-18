@@ -207,6 +207,7 @@ exports.trade_buy_submit_post = (req, res) => {
         });
       } else {
         //this is working, if no position exists, new one is made
+        //Create CRUD example
         let position = new Position(req.body);
         position.save();
         Account.findById(req.user.account).then((account) => {
@@ -230,7 +231,7 @@ exports.trade_buy_submit_post = (req, res) => {
   );
 };
 
-//favorite function -- post/update/delete CRUD
+//favorite function -- read/update/delete CRUD
 exports.trade_sell_submit_post = (req, res) => {
   Position.find({ account: req.user.account, symbol: req.body.symbol }).then(
     (existingPosition) => {
