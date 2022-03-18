@@ -66,6 +66,7 @@ On the chat page you can anonymously chat with your fellow DCrypto users, no cha
 
 For my second project at my software engineering bootcamp I am making a practice trade site for trading cryptocurrencies.
 The purpose of the project is to demonstrate our newly learned skills from unit 2: Node, Express, Mongoose, APIs and CRUD in comination with skills learned in unit 1: CSS, HTML, JavaScript.
+DCrypto was built in one week.
 
 ## Built With:
 
@@ -78,7 +79,7 @@ The purpose of the project is to demonstrate our newly learned skills from unit 
 - Fix the multiple .save() bug properly instead of current workaround.
 - Implement a working datalist for the buy symbol input to autosuggest symbols based on input.
 - Add user first names to chat instead of anon.
-- Move javascript from ejs in to controllers and models
+- Move some javascript from ejs files in to controllers and models
 - Make more mobile friendly by removing all margin/padding from sides if below 900 pixels and and lower height as well for trade/buy
 - Allow various sorting of the account summary page by clicking the headings.
 - Display crypto news in the bottom left of buy/sell pages
