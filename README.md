@@ -91,8 +91,9 @@ See the [open issues](https://github.com/DKotzer/DTrade/issues) for a full list 
 
 Original wireframe images, I did replicate the wire frame at first but it looked really bad so I completely changed it to focus around the charts and a darker theme.
 
-<img src="images/wire1.png" width="800" style="border-radius:15px">
-<img src="images/wire2.png" width="800" style="border-radius:15px">
+![wire1](https://user-images.githubusercontent.com/34380246/158926007-9e975536-2da9-425c-8cc3-46989a111eba.png)
+
+![wire2](https://user-images.githubusercontent.com/34380246/158926019-dc838a7f-8760-4af0-9cbd-11df89bafdd8.png)
 
 ## Contact
 
