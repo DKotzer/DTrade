@@ -599,13 +599,16 @@ h1 {
   background: #007bb5;
   color: white;
 }
+.fa-refresh {
+  color: white;
+}
 
 .fa-github {
   background: #161b22;
   color: white;
 }
 
-.fa {
+.footerLinks .fa {
   padding: 20px;
   font-size: 30px;
   width: 75px;
