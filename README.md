@@ -65,7 +65,9 @@ On the chat page you can anonymously chat with your fellow DCrypto users, no cha
 ## About The Project
 
 For my second project at my software engineering bootcamp I am making a practice trade site for trading cryptocurrencies.
+
 The purpose of the project is to demonstrate our newly learned skills from unit 2: Node, Express, Mongoose, APIs and CRUD in comination with skills learned in unit 1: CSS, HTML, JavaScript.
+
 DCrypto was built in one week.
 
 ## Built With:
