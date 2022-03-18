@@ -70,7 +70,7 @@ The purpose of the project is to demonstrate our newly learned skills from unit 
 ## Built With:
 
 - JavaScript
-- HTML
+- EJS
 - CSS
 
 ## Icebox :icecream:
