@@ -7,8 +7,6 @@ const flash = require("connect-flash");
 
 //external API function to get quote
 async function quote(ticker) {
-  // let bitfinex = new ccxt.bitfinex();
-  // let btcPrice = (bitfinex.id, await bitfinex.fetchTicker("BTC/USD"));
   let kraken = new ccxt.kraken();
   let price = (kraken.id, await kraken.fetchTicker(`${ticker}/USD`));
   console.log(`${ticker}/USD: ` + price.ask);
@@ -73,24 +71,7 @@ let stonks = [
   "LSK",
 ];
 
-//HTTP GET trade/buy
-// exports.trade_buy_get = (req, res) => {
-//   Account.findById(req.user.account)
-//     // .populate("user")
-//     .then((account) => {
-//       res.render("trade/buy", { account });
-//     });
-// };
-//HTTP GET trade/sell
-// exports.trade_sell_get = (req, res) => {
-//   Account.findById(req.user.account)
-//     .populate("positions")
-//     // .populate("user")
-//     .then((account) => {
-//       res.render("trade/sell", { account });
-//     });
-// };
-
+//HTTP BUY GET for both query and non query
 exports.trade_buy_get_query = (req, res) => {
   Account.findById(req.user.account)
     .populate("positions")
@@ -104,6 +85,7 @@ exports.trade_buy_get_query = (req, res) => {
     });
 };
 
+//HTTP SELL GET for both query and non query
 exports.trade_sell_get_query = (req, res) => {
   Account.findById(req.user.account)
     .populate("positions")
@@ -124,16 +106,14 @@ exports.trade_quote_get = (req, res) => {
 
 //HTTP GET trade/history
 exports.trade_history_get = (req, res) => {
-  Account.findById(req.user.account)
-    // .populate("user")
-    .then((account) => {
-      res.render("trade/history", { account });
-    });
+  Account.findById(req.user.account).then((account) => {
+    res.render("trade/history", { account });
+  });
 };
 
 //HTTP POST trade/buy/quote
 exports.trade_buy_quote_post = async (req, res) => {
-  //check if req.body.symbol is in array of acceptable symbols
+  //checks if req.body.symbol is in array of acceptable symbols
   if (stonks.includes(`${req.body.symbol}`)) {
     let symbol = req.body.symbol;
     let shares = req.body.shares;
@@ -151,15 +131,12 @@ exports.trade_buy_quote_post = async (req, res) => {
         });
     }
   } else {
-    //error if unnacceptable symbol input but it only shows after 2nd time on onwards for some reason
     console.log("unacceptable symbol");
     Account.findById(req.user.account)
       .populate("positions")
-      // .populate("user")
       .then((account) => {
         req.flash("error", "Please input a Valid Symbol");
         res.redirect("back");
-        // res.render("trade/buy", { account });
       });
   }
 };

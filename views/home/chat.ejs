@@ -81,7 +81,7 @@
       socket.on("chat message", function (msg) {
         var item = document.createElement("li");
         // console.log("testing something " + req.user);
-        item.textContent = "Anon: " + msg;
+        item.textContent = "<%=name%>: " + msg;
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
       });

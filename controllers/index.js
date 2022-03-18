@@ -16,6 +16,7 @@ async function quote(ticker) {
 }
 
 //this function goes through every position and updates all the data in database + and recalculates account totals
+//this function is being held together by a bandaid
 exports.index_get = async (req, res) => {
   Account.findById(req.user.account)
     .populate("positions")
@@ -49,7 +50,7 @@ exports.index_get = async (req, res) => {
           .catch((err) => {
             console.log(
               "This is a triumph! I'm making a note here: 'Huge success'"
-              //this catch is the bandaid holding back app breaking errors, remove at your own peril
+              //this catch is the bandaid holding back app breaking errors, do not remove
             );
             res.render("/home/index", { account });
           });
@@ -58,7 +59,13 @@ exports.index_get = async (req, res) => {
       res.render("home/index", { account });
     });
 };
-
+// SocketIO Chat
 exports.chat = (req, res) => {
-  res.render("home/chat");
+  Account.findById(req.user.account)
+    .populate("user")
+    .then((account) => {
+      let name = account.user.firstName;
+      res.render("home/chat", { name });
+    })
+    .catch();
 };
