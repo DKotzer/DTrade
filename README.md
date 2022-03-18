@@ -78,6 +78,8 @@ The purpose of the project is to demonstrate our newly learned skills from unit 
 - Fix the multiple .save() bug properly instead of current workaround.
 - Implement a working datalist for the buy symbol input to autosuggest symbols based on input.
 - Add user first names to chat instead of anon.
+- Move javascript from ejs in to controllers and models
+- Make more mobile friendly by removing all margin/padding from sides if below 900 pixels and and lower height as well for trade/buy
 - Allow various sorting of the account summary page by clicking the headings.
 - Display crypto news in the bottom left of buy/sell pages
 - Account page with some options, light/dark mode, profile picture

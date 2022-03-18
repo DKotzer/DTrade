@@ -143,7 +143,7 @@ exports.trade_buy_quote_post = async (req, res) => {
 
 //HTTP POST sell/quote/post
 exports.trade_sell_quote_post = async (req, res) => {
-  //check if req.body.symbol is in array  .includes  if(arr.includes()){}
+  //check if req.body.symbol is in array
   if (stonks.includes(`${req.body.symbol}`)) {
     let symbol = req.body.symbol;
     let shares = req.body.shares;
@@ -230,23 +230,15 @@ exports.trade_buy_submit_post = (req, res) => {
   );
 };
 
-//favorite function
+//favorite function -- post/update/delete CRUD
 exports.trade_sell_submit_post = (req, res) => {
   Position.find({ account: req.user.account, symbol: req.body.symbol }).then(
     (existingPosition) => {
       //store existingPosition[0]._id in a variable to use in case existingPosition[0] is deleted
       let existingID = existingPosition[0]._id;
-      // console.log("existingPosition " + existingPosition);
-      //if existingPosition exists
       if (existingPosition != "") {
-        //if existing position exists and is less than number of shares being sold
-
-        // console.log("stringify " + JSON.stringify(existingPosition));
-        // console.log("existingPosition " + existingPosition[0].shares);
-        // console.log("existing shares before " + existingPosition[0].shares);
+        //if existing position is not the placeholder, update existing position
         existingPosition[0].shares -= Number(req.body.shares);
-        // console.log("existing shares after " + existingPosition[0].shares);
-        // console.log("existingPosition.shares after " + existingPosition.shares);
         existingPosition[0].price = Number(req.body.price);
         existingPosition[0].value =
           (existingPosition[0].shares - Number(req.body.shares)) *
@@ -254,12 +246,13 @@ exports.trade_sell_submit_post = (req, res) => {
         existingPosition[0]
           .save()
           .then(() => {
+            //find account and update account info
             Account.findById(req.user.account).then((account) => {
               account.cash += Number(req.body.value);
               account.maketValue = Number(account.marketValue);
               account.marketValue -= Number(req.body.value);
               account.totalValue = account.marketValue + account.cash;
-              // attempted fix for crash on delete
+              //create a history object and push it to account.history
               let history = {
                 symbol: req.body.symbol,
                 price: req.body.price,
@@ -272,17 +265,11 @@ exports.trade_sell_submit_post = (req, res) => {
             });
             //needed to move below if function after the .then to stop it from deleting positions that are above 0 shares
             if (existingPosition[0].shares == 0) {
-              // console.log("Existing position = 0shares --- deleting");
-              // console.log("existing position id2 " + existingPosition[0]._id);
-              // console.log("test2 " + existingPosition[0].shares);
               //Here is my DELETE CRUD operation, it exists! If position exists and after selling position.shares =0, delete position
               Position.findByIdAndDelete(existingPosition[0]._id)
                 .then(() => {
                   Account.findById(req.user.account).then((account) => {
-                    // console.log("existing id " + existingID);
-                    // console.log("account positions" + account.positions);
                     for (i = 0; i < account.positions.length; i++) {
-                      // console.log(account.positions[i]._id + " == " + existingID);
                       if (
                         account.positions[i]._id.toString() ==
                         existingID.toString()
