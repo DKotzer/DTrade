@@ -199,18 +199,19 @@ tr:last-child {
 }
 
 .summaryTable {
+  width: 100%;
   border-collapse: collapse !important;
-  border-radius: 1em !important;
+  border-radius: 15px !important;
   overflow: hidden;
   background-color: #d8dee9;
 }
 
-.summaryTable {
-  width: 100%;
-  border-collapse: collapse !important;
-  border-radius: 1em !important;
-  overflow: hidden;
-  background-color: #d8dee9;
+.summaryTable tr {
+  border-top: 2px solid #b2b5be;
+}
+
+.summaryTable tr:first-child {
+  border-top: 1px solid #b2b5be00;
 }
 
 .hidden {
