@@ -138,9 +138,6 @@ nav ul li a i {
 .buyArea {
   display: flex;
   width: 100%;
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* flex-direction: column; */
 }
 .title {
   text-align: center;
@@ -625,4 +622,10 @@ h1 {
   display: flex;
   justify-content: center;
   align-content: center;
+}
+
+@media screen and (max-width: 900px) {
+  everything {
+    max-width: 95%;
+  }
 }
