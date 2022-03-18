@@ -11,15 +11,31 @@ body {
 
 section {
   width: 100%;
-  max-width: 1200px;
   margin: 0px auto;
   display: table;
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
 }
 .leftNav {
   float: left;
 }
 .rightNav {
   float: right;
+  display: flex;
+  align-self: right;
+}
+
+.middleNav {
+  display: flex;
+  justify-content: space-evenly;
+  justify-self: start;
+}
+
+.endNav {
+  float: right;
+  display: flex;
+  justify-self: right;
 }
 
 header {
@@ -36,8 +52,10 @@ header {
   padding: 20px 0px;
 }
 nav {
-  width: auto;
+  width: 90%;
   float: right;
+  display: flex;
+  flex-direction: row;
 }
 
 chat ul li {
@@ -49,6 +67,10 @@ chat ul li {
 
 ul {
   list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
 }
 nav ul li {
   float: left;

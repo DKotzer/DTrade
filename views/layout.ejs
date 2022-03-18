@@ -22,37 +22,41 @@
       <a id="logo" href="/">DCrypto</a>
       <nav>
         <ul>
-          <li>
-            <a href="/trade/buy">Buy</a>
-          </li>
-          <li>
-            <a href="/trade/sell">Sell</a>
-          </li>
-          <li>
-            <a href="/trade/history">History</a>
-          </li>
-          <li>
-            <a href="/">Overview</a>
-          </li>
-          <li>
-            <a href="/chat">Chat</a>
-          </li>
-          <span class="rightNav">
+          <div class="middleNav">
             <li>
-              <span class="name">
-                <% if(currentUser){ %>
-                <a class="nameNav" href="/">
-                  <%=currentUser.firstName%> <%=currentUser.lastName%></a
-                >
-              </span>
+              <a href="/trade/buy">Buy</a>
             </li>
-            &nbsp; &nbsp; &nbsp;
-            <li><a href="/auth/logout">Sign Out</a></li>
-            <%} else { %>
-            <li><a href="/auth/signin">Sign In</a></li>
-            <li><a href="/auth/signup">Sign Up</a></li>
-            <%}%>
-          </span>
+            <li>
+              <a href="/trade/sell">Sell</a>
+            </li>
+            <li>
+              <a href="/trade/history">History</a>
+            </li>
+            <li>
+              <a href="/">Overview</a>
+            </li>
+            <li>
+              <a href="/chat">Chat</a>
+            </li>
+          </div>
+          <div class="endNav">
+            <span class="rightNav">
+              <li>
+                <span class="name">
+                  <% if(currentUser){ %>
+                  <a class="nameNav" href="/">
+                    <%=currentUser.firstName%> <%=currentUser.lastName%></a
+                  >
+                </span>
+              </li>
+              &nbsp; &nbsp; &nbsp;
+              <li><a href="/auth/logout">Sign Out</a></li>
+              <%} else { %>
+              <li><a href="/auth/signin">Sign In</a></li>
+              <li><a href="/auth/signup">Sign Up</a></li>
+              <%}%>
+            </span>
+          </div>
         </ul>
       </nav>
     </section>
