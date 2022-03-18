@@ -4,22 +4,21 @@
     <img src="images/logo.jpg" alt="Logo" width="80" height="80">
   </a>
 
-<h1 align="center">DCrypto</h3>
+<h1 align="center">DCrypto</h1>
 
-  <p align="center">
-    Second Project for General Assembly SEI .
+    Second Project for General Assembly SEI
 
-    <a href="https://github.com/DKotzer/DTrade/"><strong>Explore the docs »</strong></a>
+[Explore the docs](https://github.com/DKotzer/DTrade/)
 
-    <!-- <a href="https://github.com/DKotzer/card-games">View Demo</a> -->
-    ·
-    <a href="https://github.com/DKotzer/DTrade/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/DKotzer/DTrade/issues">Request Feature</a>
+<!-- <a href="https://github.com/DKotzer/card-games">View Demo</a> -->
 
-  </p>
-</div>
+·
+<a href="https://github.com/DKotzer/DTrade/issues">Report Bug</a>
+·
+<a href="https://github.com/DKotzer/DTrade/issues">Request Feature</a>
+
 <!-- ABOUT THE PROJECT -->
+</div>
 
 ## General Overview :bar_chart:
 
@@ -84,7 +83,7 @@ See the [open issues](https://github.com/DKotzer/DTrade/issues) for a full list 
 
 ## Original Plan
 
-Original wireframe images, I did replicate the wire frame at first but it looked very amateurish so I completely changed it to focus around the charts and a darker theme.
+Original wireframe images, I did replicate the wire frame at first but it looked really bad so I completely changed it to focus around the charts and a darker theme.
 
 <img src="images/wire1.png" width="800" style="border-radius:15px">
 <img src="images/wire2.png" width="800" style="border-radius:15px">

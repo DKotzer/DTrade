@@ -29,8 +29,8 @@
       <th>Price</th>
       <th>Total</th>
       <th>Order</th>
+      <% account.history.reverse() %>
     </tr>
-
     <% account.history.forEach(function(trade) { %>
     <tr>
       <% if(trade.trade == "Sell"){ red="red" }%>
