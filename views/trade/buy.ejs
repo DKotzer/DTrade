@@ -24,23 +24,71 @@
       <form id="buy-form" class="buy-form" action="/trade/buy/quote" method="post">
         <h1>Buy</h1>
         <div class="form-input-material">
-          <span class="center" for="symbol">Symbol</span>
-          <!-- //help here -->
-          <input
-            class=""
-            type="list"
-            onkeyup="this.value = this.value.toUpperCase();"
-            list="symbol"
-            name="symbol"
-            id="symbol"
-            placeholder="<%=symbol%>"
-            autocomplete="off"
+
+
+          <label for="symbol">Symbol:</label>
+  <input list="browsers" name="symbol" id="symbol" placeholder="<%=symbol%>" autocomplete="off" onkeyup="this.value = this.value.toUpperCase();" />
             
-          />
-          <datalist id="symbol">
-            <option value="BTC"></option>
-            <option value="ETH"></option>
-          </datalist>
+  <datalist id="browsers">
+    <option value="BTC"></option>
+    <option value="ETH"></option>
+    <option value="NANO"></option>
+    <option value="DOGE"></option>
+    <option value="DOT"></option>
+    <option value="SOL"></option>
+    <option value="DOT"></option>
+    <option value="SHIB"></option>
+    <option value="MATIC"></option>
+    <option value="DAI"></option>
+    <option value="LTC"></option>
+    <option value="EOS"></option>
+    <option value="MKR"></option>
+    <option value="ENJ"></option>
+    <option value="DASH"></option>
+    <option value="XRP"></option>
+    <option value="BAT"></option>
+    <option value="LRC"></option>
+    <option value="LUNA"></option>
+    <option value="USDT"></option>
+    <option value="USDC"></option>
+    <option value="ADA"></option>
+    <option value="AVAX"></option>
+    <option value="UST"></option>
+    <option value="ATOM"></option>
+    <option value="LINK"></option>
+    <option value="TRX"></option>
+    <option value="UNI"></option>
+    <option value="ALGO"></option>
+    <option value="XLM"></option>
+    <option value="XMR"></option>
+    <option value="SAND"></option>
+    <option value="WAVES"></option>
+    <option value="XTZ"></option>
+    <option value="KSM"></option>
+    <option value="ICX"></option>
+    <option value="QTUM"></option>
+    <option value="OMG"></option>
+    <option value="ZRX"></option>
+    <option value="STORJ"></option>
+    <option value="SUSHI"></option>
+    <option value="SC"></option>
+    <option value="ANT"></option>
+    <option value="REP"></option>
+    <option value="NANO"></option>
+    <option value="KIN"></option>
+    <option value="FIL"></option>
+    <option value="GRT"></option>
+    <option value="AAVE"></option>
+    <option value="COMP"></option>    
+    <option value="ANKR"></option>
+    <option value="BNT"></option>
+    <option value="KNC"></option>
+    <option value="LSK"></option>
+ 
+  </datalist>
+
+
+          
         </div>
         <div class="form-input-material">
           <label class="center" for="shares">Shares</label>
