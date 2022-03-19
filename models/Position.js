@@ -50,6 +50,17 @@ const positionSchema = mongoose.Schema(
           "ANT",
           "REP",
           "NANO",
+          "ENJ",
+          "KIN",
+          "FIL",
+          "GRT",
+          "AAVE",
+          "KSM",
+          "COMP",
+          "ANKR",
+          "BNT",
+          "KNC",
+          "LSK",
         ],
         message: "Symbol is not supported",
       },
@@ -70,7 +81,6 @@ const positionSchema = mongoose.Schema(
     value: {
       type: Number,
       value: this.price * this.shares,
-      //some fancy way of adding up all the values from all positions goes here
     },
   },
   {

@@ -33,17 +33,6 @@ const userSchema = mongoose.Schema(
         ref: "Account",
       },
     ],
-    // accountNum: {
-    //   type: Number,
-    //   default: Math.round(
-    //     Math.random() * (9999999999999 - 123456791011 + 1) + 1
-    //   ),
-    // },
-    //userRole: {
-    //   type: String,
-    //   enum: ["admin", "regular", "SuperAdmin"],
-    //   default: "regular",
-    // }
   },
   {
     timestamps: true,

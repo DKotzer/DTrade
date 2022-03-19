@@ -16,7 +16,7 @@ async function quote(ticker) {
 }
 
 //this function goes through every position and updates all the data in database + and recalculates account totals
-//this function is being held together by a bandaid
+//this function is being held together by a bandaid, keeping debugging code here for now
 exports.index_get = async (req, res) => {
   Account.findById(req.user.account)
     .populate("positions")
@@ -34,11 +34,8 @@ exports.index_get = async (req, res) => {
         // console.log("position value " + position.value);
         newMarketValue.push(position.value);
         // console.log("newMarketValue: " + newMarketValue);
-
         // console.log("account MarketValue update: " + account.marketValue);
-
         // console.log("total Value: " + account.totalValue);
-
         // console.log("new market value :" + newMarketValue);
         account.marketValue = newMarketValue.reduce((a, b) => a + b, 0);
         // console.log(account.marketValue);

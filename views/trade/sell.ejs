@@ -14,26 +14,19 @@
             Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
             '$&,')%>
         </div> 
-
       </div>
     </div>
-  
-
-
   <div class="wrapper">
     <div class="leftWrapper">
     <div class="bottomForm">
-      
       <form class="sell-form" action="/trade/sell/quote" method="post">
         <h1>Sell</h1>
         <div class="sell-drop-down" >
         <select class="form-select select" name="symbol">
-          
           <option selected value="<%=symbol%>" ><%=symbol%></option>
           <% account.positions.forEach(function(position) { %>
           <option value="<%=position.symbol%>"><%=position.symbol%></option>
           <% }) %>
-          
         </div>
       </div>
         <div class="form-input-material">
@@ -58,9 +51,6 @@
     </div>
   </div>
     <div class="buyArea ">
-      
-      
-
     <div class="chart">
       <script
         type="text/javascript"

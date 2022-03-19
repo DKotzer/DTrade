@@ -84,7 +84,7 @@ app.get("/chat", (req, res) => {
   res.sendFile(__dirname + "/home/index");
 });
 
-// Socket setup
+// SocketIO setup - copy pasted from getting started page
 const io = socket(server);
 
 io.on("connection", (socket) => {

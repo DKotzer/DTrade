@@ -19,7 +19,6 @@ const accountSchema = mongoose.Schema(
     marketValue: {
       type: Number,
       default: 0,
-      //some fancy way of adding up all the values from all positions goes here
     },
     history: [],
     totalValue: {

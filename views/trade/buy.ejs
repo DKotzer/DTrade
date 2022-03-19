@@ -13,22 +13,16 @@
             Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
             '$&,')%>
         </div> 
-
       </div>
   </div>
-
   <div class="wrapper">
     <div class="leftWrapper">
     <div class="bottomForm">
-      
       <form id="buy-form" class="buy-form" action="/trade/buy/quote" method="post">
         <h1>Buy</h1>
         <div class="form-input-material">
-
-
           <label for="symbol">Symbol:</label>
   <input list="browsers" name="symbol" id="symbol" placeholder="<%=symbol%>" autocomplete="off" onkeyup="this.value = this.value.toUpperCase();" />
-            
   <datalist id="browsers">
     <option value="BTC"></option>
     <option value="ETH"></option>
@@ -86,28 +80,20 @@
     <option value="LSK"></option>
  
   </datalist>
-
-
-          
         </div>
         <div class="form-input-material">
           <label class="center" for="shares">Shares</label>
           <input
-            
             required
             type="number"
             name="shares"
-            
             placeholder="Shares"
             step="0.0001"
             class="sellDropDown"
             id="buyInput"
             autocomplete="off"
             />
-            
-          
         </div>
-        
         <button type="submit" class="btn btn-primary buttonTest">
           Quote
         </button>
@@ -121,9 +107,6 @@
     </div>
   </div>
     <div class="buyArea ">
-      
-      
-
     <div class="chart">
       <script
         type="text/javascript"
@@ -157,5 +140,4 @@
     </div>
     </div>
   </div>
-
   </div>

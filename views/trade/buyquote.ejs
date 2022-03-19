@@ -15,7 +15,6 @@
       </div>
     </div>
   </div>
-
   <div class="wrapper">
     <div class="bottomForm">
       <form class="buy-form" action="/trade/buy/quote" method="post">
@@ -32,7 +31,6 @@
             value="<%=symbol%>"
           />
         </div>
-
         <div class="form-input-material">
           <label class="center" for="shares">Shares</label>
           <input
@@ -44,13 +42,10 @@
             value="<%=shares%>"
           />
         </div>
-
         <button type="submit" class="btn btn-primary btn-ghost">Quote</button>
       </form>
-
       <% let red = '' %> <% let buyButton = '' %> <% if (shares*price >
       account.cash ){ red="red", buyButton = 'hidden' } %>
-
       <div class="quoteTable">
         <div class="iconContainer">
           <img

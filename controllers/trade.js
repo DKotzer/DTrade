@@ -76,7 +76,7 @@ exports.trade_buy_get_query = (req, res) => {
   Account.findById(req.user.account)
     .populate("positions")
     .then((account) => {
-      //below 4 lines are for handling the sell drop down option on the account summary page
+      //below 4 lines are for handling the buy drop down option on the account summary page
       let symbol = req.query.symbol;
       if (!symbol) {
         symbol = "Symbol";
@@ -178,11 +178,8 @@ exports.trade_sell_quote_post = async (req, res) => {
 exports.trade_buy_submit_post = (req, res) => {
   Position.find({ account: req.user.account, symbol: req.body.symbol }).then(
     (existingPosition) => {
-      // console.log("existingPosition " + existingPosition);
       if (existingPosition != "") {
-        // console.log("existing shares before " + existingPosition[0].shares);
         existingPosition[0].shares += Number(req.body.shares);
-        // console.log("existing shares after " + existingPosition[0].shares);
         existingPosition[0].price = Number(req.body.price);
         existingPosition[0].value =
           (existingPosition[0].shares + Number(req.body.shares)) *

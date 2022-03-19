@@ -1,5 +1,4 @@
 <div class="everything">
-
   <div class="top">
     <div class="topRow">
         <div>
@@ -14,12 +13,8 @@
             Net Value: <%=account.totalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,
             '$&,')%>
         </div> 
-
       </div>
-    
   </div>
-
-
   <div class="wrapper">
     <div class="bottomForm">
       <form class="buy-form" action="/trade/sell/quote" method="post">
@@ -32,7 +27,6 @@
         <% }) %>
     </selected>  
         </div>
-
         <div class="form-input-material">
           <label class="center" for="shares">Shares</label>
           <input
@@ -47,10 +41,8 @@
         <p></p>
         <button type="submit" class="btn btn-primary btn-ghost">Quote</button>
       </form>
-
       <% let red = '' %> <% let buyButton = '' %> <% if (shares >
       account.cash ){ red="red", buyButton = 'hidden' } %>
-
       <div class="quoteTable">
         <div class="iconContainer">
           <img
@@ -153,9 +145,4 @@
       <p></p>
     </div>
   </div>
-
-
-
-
-
 </div>
