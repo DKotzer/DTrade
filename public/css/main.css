@@ -632,7 +632,7 @@ h1 {
     height: 210px;
   }
   .quoteTable {
-    font-size: 10 px;
+    font-size: 9 px;
   }
   .buy-form {
     height: 180px;
@@ -646,5 +646,8 @@ h1 {
   }
   .sell-form {
     height: 200px;
+  }
+  .nowrap {
+    white-space: nowrap;
   }
 }
