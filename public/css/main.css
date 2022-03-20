@@ -640,4 +640,15 @@ h1 {
   .nowrap {
     white-space: nowrap;
   }
+  .nameNav {
+    line-height: 18px;
+    font-size: 15px;
+  }
+  nav a {
+    font-size: 16px;
+  }
+  .rightNav {
+    line-height: 18px;
+    font-size: 15px;
+  }
 }
